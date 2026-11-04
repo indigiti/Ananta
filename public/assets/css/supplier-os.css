@@ -133,3 +133,12 @@ html[data-theme=dark] .ananta-supplier-surface .ananta-connect-quick-link :is(st
 .ananta-supplier-surface .ananta-connect-send-form :is(input,select){width:100%;min-width:0;min-height:44px;padding:10px;border:1px solid #c9dcce;border-radius:10px;background:#fff}
 .ananta-supplier-surface .ananta-connect-send-form :is(button,p){grid-column:1/-1;justify-self:start}
 @media(max-width:650px){.ananta-supplier-surface .ananta-connect-send-form{grid-template-columns:1fr}.ananta-supplier-surface .ananta-connect-bubble{max-width:95%}}
+
+
+/* B8.3 CRM task and lead forms */
+.ananta-supplier-surface .ananta-connect-task{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #d9e7dc;padding:16px 0}
+.ananta-supplier-surface .ananta-connect-task strong{display:block;color:#254c36;font-size:13px}
+.ananta-supplier-surface .ananta-connect-task small{color:#66806d;font-size:11px;margin-top:5px;display:block}
+.ananta-supplier-surface .ananta-connect-send-form textarea{width:100%;border:1px solid #c9dcce;border-radius:10px;padding:11px;font-size:13px;min-width:0}
+.ananta-supplier-surface .ananta-connect-task button{min-height:38px}
+@media(max-width:650px){.ananta-supplier-surface .ananta-connect-task{align-items:start;flex-direction:column}}

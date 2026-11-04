@@ -1,0 +1,6 @@
+<section class="shell ananta-supplier-workspace">
+<div class="ananta-supplier-top"><div><p class="kicker">Ananta Connect · Pilot reporting</p><h1>CRM performance.</h1><p>Counts represent the nursery's encrypted records, not independent Meta billing or verified business conversion.</p></div><a class="btn outline" href="<?=e(url('/supplier/connect/inbox'))?>">Inbox</a></div>
+<div class="ananta-supplier-panel"><h2>Lead stages</h2><div class="ananta-connect-metrics"><?php foreach($report['stages'] as $stage=>$count):?><div><span><?=e($stage)?></span><strong><?=e((string)$count)?></strong></div><?php endforeach;?></div></div>
+<div class="ananta-supplier-panel"><h2>Follow-ups</h2><p><strong><?=e((string)$report['open_tasks'])?></strong> open · <strong><?=e((string)$report['overdue_tasks'])?></strong> overdue (UTC).</p></div>
+<div class="ananta-supplier-panel"><h2>Outbound message states</h2><div class="ananta-connect-metrics"><?php foreach($report['message_statuses'] as $stage=>$count):?><div><span><?=e(str_replace('_',' ',$stage))?></span><strong><?=e((string)$count)?></strong></div><?php endforeach;?></div>
+<p>Delivered and read values reflect Meta callbacks, not API acceptance. Queued/needs_review states are not delivery.</p></div></section>

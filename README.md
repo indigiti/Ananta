@@ -28,6 +28,14 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## B8.3 — Tenant CRM, assignments, follow-ups and RFQ reminders
+
+- Encrypted CRM lead records with stage, tags, notes, active owner/manager assignment, optimistic-version concurrency and tenant-private tasks.
+- Nursery screens: \`/supplier/connect/report\` and \`/supplier/connect/inbox/{uuid}/crm\`.
+- Optional CLI sourcing reconciler: \`php src/connect_crm_worker_cli.php\`. Requires \`ANANTA_CONNECT_RFQ_AUTOMATION=1\`, an explicitly approved \`ANANTA_WA_RFQ_TEMPLATE\`, B8.2 outbound activation and buyer-recorded \`rfq_updates\` opt-in.
+- Persisted quote-version notification keys guard replay. Buyer consent to share their contact is **not** WhatsApp opt-in; both are necessary. Template variables are not supported in this staging path.
+- No external sends or live Meta receipt claims without actual account integration and an end-to-end pilot.
+
 ## B8.2 — Meta webhook, durable outbox and tenant CRM (staging)
 
 B8.2 adds an authenticated WhatsApp Business Platform webhook, encrypted tenant-private inbox, and durable outbound queue.

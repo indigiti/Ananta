@@ -1,6 +1,7 @@
 <?php $conversation=$thread['conversation'];?>
 <section class="shell ananta-supplier-workspace">
 <div class="ananta-supplier-top"><div><p class="kicker">Ananta Connect · Tenant-scoped thread</p><h1><?=e($conversation['phone'])?></h1><p>Verified incoming messages and actual outbound status receipts, when available.</p></div><a class="btn outline" href="<?=e(url('/supplier/connect/inbox'))?>">All conversations</a></div>
+<a class="btn outline" href="<?=e(url('/supplier/connect/inbox/'.$conversation['id'].'/crm'))?>">Manage lead and follow-ups</a>
 <div class="ananta-supplier-panel">
 <div class="ananta-connect-thread"><?php foreach($thread['messages'] as $message):?>
 <article class="ananta-connect-bubble <?=($message['direction']==='outbound'?'outbound':'inbound')?>">

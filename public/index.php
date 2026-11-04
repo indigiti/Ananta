@@ -342,6 +342,38 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
         }catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/supplier/connect/inbox/'.$m[1]);
     }
+    if($path==='/supplier/connect/report'){
+        render('supplier/connect-report',['title'=>'Connect CRM reporting','robots'=>'noindex,nofollow',
+            'supplier'=>$supplier,'report'=>connect_crm_report($supplier['tenant_id'])]);exit;
+    }
+    if(preg_match('#^/supplier/connect/task/([0-9a-f-]{36})/complete$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{connect_crm_task_complete($supplier['tenant_id'],$m[1]);flash('success','Follow-up completed.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        $next=(string)($_POST['conversation_id']??'');
+        redirect(tenant_valid_id($next)?'/supplier/connect/inbox/'.$next.'/crm':'/supplier/connect/inbox');
+    }
+    if(preg_match('#^/supplier/connect/inbox/([0-9a-f-]{36})/crm$#D',$path,$m)){
+        if($method==='POST'){
+            verify_csrf();
+            try{connect_crm_save_lead($supplier['tenant_id'],$m[1],$_POST);flash('success','CRM lead updated.');}
+            catch(Throwable $e){flash('error',$e->getMessage());}
+            redirect('/supplier/connect/inbox/'.$m[1].'/crm');
+        }
+        $thread=connect_inbox_thread($supplier['tenant_id'],$m[1]);
+        if(!$thread){http_response_code(404);render('404',['title'=>'Not found','robots'=>'noindex,nofollow']);exit;}
+        render('supplier/connect-crm',['title'=>'Lead and follow-ups','robots'=>'noindex,nofollow',
+            'supplier'=>$supplier,'thread'=>$thread,
+            'lead'=>connect_crm_lead($supplier['tenant_id'],$m[1]),
+            'tasks'=>connect_crm_tasks($supplier['tenant_id'],$m[1]),
+            'team'=>connect_crm_team($supplier['tenant_id'])]);exit;
+    }
+    if(preg_match('#^/supplier/connect/inbox/([0-9a-f-]{36})/task$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{connect_crm_task_save($supplier['tenant_id'],$m[1],$_POST);flash('success','Follow-up saved.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/connect/inbox/'.$m[1].'/crm');
+    }
     if($path==='/supplier/connect/inbox'){
         $tenant=$supplier['tenant_id'];
         $conversations=connect_inbox_list($tenant);
