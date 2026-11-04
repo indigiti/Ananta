@@ -2,6 +2,16 @@
 
 v1.7.0 builds on the verified v1.6.4 storefront/theme release and v1.6.3 Web Operations layer. It adds a **web-managed AI Engine** for catalogue intelligence, SEO auditing, governed enrichment, comparisons, listicles, review/rollback and agent-readable discovery without making SSH/console access part of normal setup or operation.
 
+## Proposed AI-native multi-nursery roadmap (database-free pilot)
+
+Ananta's longer-term strategy is an **AI-native nursery sourcing and commerce network** combining public nursery storefronts, NurserySetu supplier operations, wholesale RFQs and WhatsApp-assisted workflows. **These multi-supplier features are planned, not shipped in v1.7.0.** The near-term proposal is to reuse the existing PHP/file-backed staging foundation on a single authoritative Cloudways-compatible host rather than require SQL or Laravel immediately. Complex multi-supplier checkout, automated payment settlement and cross-seller inventory reservations remain gated on transactional persistence.
+
+- [Product and AI-era blueprint v2.0](docs/ANANTA_AI_NATIVE_BLUEPRINT_V2.md)
+- [File-first pilot architecture, safety limits and SQL migration criteria](docs/FILE_FIRST_PILOT_ARCHITECTURE.md)
+- [P0–P5 implementation backlog and acceptance gates](docs/IMPLEMENTATION_BACKLOG_FILE_FIRST.md)
+
+The roadmap does **not** change the current release's installation steps or existing runtime behavior. Do not treat proposed new endpoints, roles or modules as implemented.
+
 ## What is new in v1.7.0
 
 ### AI Engine — Admin → AI & Search
