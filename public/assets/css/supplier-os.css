@@ -114,3 +114,22 @@ html[data-theme=dark] .ananta-supplier-surface .ananta-readiness-timeline strong
 html[data-theme=dark] .ananta-supplier-surface .ananta-connect-quick-link{background:#274632;border-color:#426d4c}
 html[data-theme=dark] .ananta-supplier-surface .ananta-connect-quick-link :is(strong,p){color:#e1efdf}
 @media(max-width:680px){.ananta-supplier-surface .ananta-connect-quick-link{grid-template-columns:1fr}.ananta-supplier-surface .ananta-connect-quick-link>a{grid-column:1;grid-row:auto}}
+
+
+/* B8.2 tenant CRM, SupplierOS palette */
+.ananta-supplier-surface .ananta-connect-list{display:grid}
+.ananta-supplier-surface .ananta-connect-item{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:18px 3px;border-bottom:1px solid #d8e5dc;text-decoration:none}
+.ananta-supplier-surface .ananta-connect-item strong{color:#244d36;font-size:15px}.ananta-supplier-surface .ananta-connect-item small{display:block;font-size:11px;color:#5f7866;margin-top:5px}
+.ananta-supplier-surface .ananta-connect-count{color:#39754d;font-weight:700;font-size:12px}
+.ananta-supplier-surface .ananta-connect-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:12px;margin:17px 0}
+.ananta-supplier-surface .ananta-connect-metrics>div{display:grid;gap:6px;padding:15px;background:#f3f8f0;border:1px solid #d4e4d4;border-radius:13px}
+.ananta-supplier-surface .ananta-connect-metrics span{font-size:11px;text-transform:capitalize;color:#55725c}.ananta-supplier-surface .ananta-connect-metrics strong{font-size:23px;color:#235039;font-variant-numeric:tabular-nums}
+.ananta-supplier-surface .ananta-connect-thread{display:grid;gap:14px;max-height:580px;overflow:auto;padding:12px 0}
+.ananta-supplier-surface .ananta-connect-bubble{display:grid;gap:8px;padding:16px;border:1px solid #dbe8db;border-radius:17px;background:#f9faf6;max-width:85%;overflow-wrap:anywhere}
+.ananta-supplier-surface .ananta-connect-bubble.outbound{justify-self:end;background:#e7f3e8}.ananta-supplier-surface .ananta-connect-bubble p{font-size:14px;line-height:1.6;margin:0;color:#2b5339}
+.ananta-supplier-surface .ananta-connect-bubble small,.ananta-supplier-surface .ananta-connect-bubble footer{font-size:11px;color:#607764;display:flex;gap:12px}
+.ananta-supplier-surface .ananta-connect-send-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;border-top:1px solid #dbe7dd;margin-top:21px;padding-top:20px}
+.ananta-supplier-surface .ananta-connect-send-form label{display:grid;gap:6px;font-size:12px;font-weight:700;color:#315640}
+.ananta-supplier-surface .ananta-connect-send-form :is(input,select){width:100%;min-width:0;min-height:44px;padding:10px;border:1px solid #c9dcce;border-radius:10px;background:#fff}
+.ananta-supplier-surface .ananta-connect-send-form :is(button,p){grid-column:1/-1;justify-self:start}
+@media(max-width:650px){.ananta-supplier-surface .ananta-connect-send-form{grid-template-columns:1fr}.ananta-supplier-surface .ananta-connect-bubble{max-width:95%}}

@@ -804,3 +804,10 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 **Acceptance:** B8 PHP regression tests include signed-payload verification, encrypted credential references, no-send gating, tenant-unique Meta Phone IDs, cross-tenant consent isolation, opt-out persistence, per-SKU eligibility reconciliation, well-formed Merchant XML and variant URL/structured-data checks. DigiOps package must include both modules and their dashboard assets, never private runtime data.
 
 **External gates:** Meta Business verification/phone onboarding/approved templates; Google Merchant Center identity, shop ownership, checkout compliance, shipping/returns, product images and review; Search Console and Google Rich Results validation; real mobile visual QA. Neither indexing nor messaging delivery is established by local release tests.
+
+
+---
+
+## B8.2 — Verified WhatsApp webhook and consent-gated CRM
+
+Signed provider-specific Meta webhooks, encrypted per-tenant CRM, deduplicated inbound messages, monotonic delivery receipts and an idempotent outbox are implemented for the staging pilot. Only owner/manager or platform admin access can view private inbox threads. Sending requires account activation, Cloudways ANANTA_CONNECT_ALLOW_SEND=1, allowlisted Meta-approved templates, and purpose-scoped consent. Suspicious or ambiguous sends are held for reconciliation. NO automatic RFQ notifications, bulk broadcasts or production-delivery guarantees. Real account onboarding, test receipts, backup recovery and retention management remain acceptance gates.

@@ -31,8 +31,8 @@ function tenant_user_email(string $email): string {
 }
 function tenant_roles(): array {
     return [
-        'owner'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','rfq.read','rfq.quote','team.read'],
-        'manager'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','rfq.read','rfq.quote'],
+        'owner'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','rfq.read','rfq.quote','team.read','connect.read','connect.send'],
+        'manager'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','rfq.read','rfq.quote','connect.read','connect.send'],
         'inventory'=>['offers.read','availability.report','branches.read','rfq.read'],
         'viewer'=>['offers.read','branches.read','rfq.read'],
     ];
