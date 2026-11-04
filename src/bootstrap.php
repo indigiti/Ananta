@@ -43,6 +43,7 @@ require_once $root . '/src/shopping_intelligence.php';
 require_once $root . '/src/passport.php';
 require_once $root . '/src/tradeos.php';
 require_once $root . '/src/connect.php';
+require_once $root . '/src/connect_runtime.php';
 require_once $root . '/src/integrations.php';
 require_once $root . '/src/discover_merchant.php';
 require_once $root . '/src/discovery.php';

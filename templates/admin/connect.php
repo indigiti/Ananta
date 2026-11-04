@@ -1,9 +1,9 @@
-<section class="admin-head"><div><p class="eyebrow">Ananta Connect · B8.1</p><h1>WhatsApp infrastructure</h1><p>Connect verified business senders and record contact consent without activating outbound traffic. Official Meta Cloud API only.</p></div><span class="status-pill">Provisioning only · Sending disabled</span></section>
+<section class="admin-head"><div><p class="eyebrow">Ananta Connect · B8.1</p><h1>WhatsApp infrastructure</h1><p>Connect verified business senders and record contact consent without activating outbound traffic. Official Meta Cloud API only.</p></div><span class="status-pill">Provisioned · Explicit activation required</span></section>
 <section class="admin-metric-grid">
  <article><span>Registered senders</span><strong><?=count($summary['accounts'])?></strong><small>Meta phone IDs mapped to one tenant each</small></article>
  <article><span>Consent records</span><strong><?=e((string)$summary['consent_total'])?></strong><small>Purpose-specific, encrypted</small></article>
  <article><span>Opted-out contacts</span><strong><?=e((string)$summary['opted_out'])?></strong><small>Not eligible for promotional messages</small></article>
- <article><span>Outbound messaging</span><strong>OFF</strong><small>B8.2 delivery queue and signed webhooks required</small></article>
+ <article><span>Enabled senders</span><strong><?=e((string)$summary['send_enabled'])?></strong><small>Live traffic additionally requires server kill switch, opt-in and approved templates</small></article>
 </section>
 <div class="ananta-b8-grid">
  <section class="admin-panel">
@@ -31,7 +31,14 @@
   <div class="ananta-b8-account">
    <strong><?=e($account['name'])?></strong><small><?=e($account['tenant_id']==='platform'?'Platform':$account['tenant_id'])?></small>
    <div class="ananta-b8-badges"><span>Access token: <?=$account['token_ready']?'Configured':'Missing'?></span><span>App secret: <?=$account['app_secret_ready']?'Configured':'Missing'?></span><span>Verify token: <?=$account['verify_token_ready']?'Configured':'Missing'?></span></div>
-   <small>Provider connected: No · Send mode: Disabled</small>
+   <small>Provider connection: unverified · Inbound: <?=$account['inbound_enabled']?'Enabled':'Disabled'?> · Sending: <?=$account['send_enabled']?'Enabled':'Disabled'?></small>
+   <form method="post" action="<?=e(url('/admin/connect/activation'))?>" class="ananta-connect-controls">
+    <?=csrf_field()?>
+    <input type="hidden" name="tenant_id" value="<?=e($account['tenant_id'])?>">
+    <label>Channel<select name="direction"><option value="inbound">Signed inbound webhooks</option><option value="outbound">Consent-gated outbound queue</option></select></label>
+    <label>Set mode<select name="enable"><option value="no">Disable</option><option value="yes">Enable (requires configured secrets and server safety gate)</option></select></label>
+    <button class="btn primary" type="submit">Apply channel mode</button>
+   </form>
   </div>
   <?php endforeach;?>
   <?php if(!$summary['accounts']):?><p>No sender registered. Configure a Meta Business App and WhatsApp Business Account before registering the sender here.</p><?php endif;?>
@@ -51,4 +58,7 @@
    <button type="submit" class="btn primary">Record consent event</button>
   </form>
   <p class="ananta-b8-help">Contact numbers and evidence are encrypted at rest. Only hashed identifiers appear in the audit journal; exports and bulk sends are not enabled in B8.1.</p>
-</section>
+</section><section class="admin-panel"><h2>B8.2 · CRM inbox and delivery receipts</h2>
+<p>Inbound events are accepted only when the Meta app HMAC is valid, the phone ID matches this tenant, and the receiver is enabled. Acknowledgement happens only after encrypted persistence.</p>
+<a class="btn primary" href="<?=e(url('/admin/connect/inbox'))?>">Open platform inbox</a>
+<p>Webhook endpoint for each configured sender: <code>/ananta/webhooks/meta/whatsapp/{phone_number_id}</code>. Only supply the real phone number ID to Meta; never place secrets in the URL. Configure Cloudways CLI cron to run the included worker after testing.</p></section>

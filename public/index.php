@@ -38,6 +38,38 @@ if(preg_match('#^/assets/images/products/([a-z0-9][a-z0-9-]{0,100}\.webp)$#D',$p
 
 if ($path==='/LIVE_VARIANT_IMPORT_TEMPLATE.csv' && $method==='GET'){header('Content-Type: text/csv; charset=utf-8');header('Content-Disposition: attachment; filename="Sanjay_Nursery_Live_Variant_Import_Template.csv"');readfile(dirname(__DIR__).'/resources/LIVE_VARIANT_IMPORT_TEMPLATE.csv');exit;}
 
+/* B8.2 Meta Cloud API: exact sender-specific path and raw-body HMAC. */
+if(preg_match('#^/webhooks/meta/whatsapp/([0-9]{6,30})$#D',$path,$m)){
+    header('Cache-Control: no-store');
+    header('Content-Type: text/plain; charset=utf-8');
+    $phoneId=$m[1];
+    if($method==='GET'){
+        $challenge=connect_webhook_verify($phoneId,
+            (string)($_GET['hub_mode']??$_GET['hub.mode']??''),
+            (string)($_GET['hub_verify_token']??$_GET['hub.verify_token']??''),
+            (string)($_GET['hub_challenge']??$_GET['hub.challenge']??''));
+        if($challenge===null){http_response_code(403);echo 'Forbidden';}
+        else echo $challenge;
+        exit;
+    }
+    if($method!=='POST'){header('Allow: GET, POST');http_response_code(405);exit;}
+    $length=(int)($_SERVER['CONTENT_LENGTH']??0);
+    if($length>262144){http_response_code(413);echo 'Request too large';exit;}
+    $raw=file_get_contents('php://input',false,null,0,262145);
+    if(!is_string($raw)||strlen($raw)>262144){http_response_code(413);echo 'Request too large';exit;}
+    try{
+        connect_webhook_payload($phoneId,$raw,(string)($_SERVER['HTTP_X_HUB_SIGNATURE_256']??''));
+        http_response_code(200);echo 'EVENT_RECEIVED';
+    }catch(InvalidArgumentException $e){
+        http_response_code(403);echo 'Invalid webhook';
+    }catch(Throwable $e){
+        // Returning a retryable failure is essential: a webhook is only
+        // acknowledged after its events have been durably committed.
+        http_response_code(503);echo 'Receiver unavailable';
+    }
+    exit;
+}
+
 if ($path === '/health') {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
@@ -297,6 +329,39 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
     $supplier=tenant_identity();
     if(!$supplier){flash('error','Supplier authentication is required.');redirect('/supplier/login');}
     if($path==='/supplier'){render('supplier/dashboard',['title'=>'Supplier workspace','supplier'=>$supplier,'robots'=>'noindex,nofollow']);exit;}
+    if(preg_match('#^/supplier/connect/inbox/([0-9a-f-]{36})/send$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{
+            $tenant=$supplier['tenant_id'];
+            $thread=connect_inbox_thread($tenant,$m[1]);
+            if(!$thread)throw new RuntimeException('Conversation not found.');
+            connect_enqueue($tenant,$thread['conversation']['phone'],
+                (string)($_POST['purpose']??''),(string)($_POST['template']??''),
+                (string)($_POST['language']??''),(string)($_POST['unique_ref']??''));
+            flash('success','Approved template queued. Provider delivery is not yet confirmed.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/connect/inbox/'.$m[1]);
+    }
+    if($path==='/supplier/connect/inbox'){
+        $tenant=$supplier['tenant_id'];
+        $conversations=connect_inbox_list($tenant);
+        render('supplier/connect-inbox',['title'=>'WhatsApp tenant inbox','robots'=>'noindex,nofollow',
+            'supplier'=>$supplier,'tenantId'=>$tenant,'conversations'=>$conversations,
+            'queue'=>connect_queue_summary($tenant)]);exit;
+    }
+    if(preg_match('#^/supplier/connect/inbox/([0-9a-f-]{36})$#D',$path,$m)){
+        $tenant=$supplier['tenant_id'];
+        $thread=connect_inbox_thread($tenant,$m[1]);
+        if(!$thread){http_response_code(404);render('404',['title'=>'Conversation not found','robots'=>'noindex,nofollow']);exit;}
+        render('supplier/connect-thread',['title'=>'WhatsApp conversation','robots'=>'noindex,nofollow',
+            'supplier'=>$supplier,'thread'=>$thread]);exit;
+    }
+    if(preg_match('#^/supplier/connect/inbox/([0-9a-f-]{36})/read$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{connect_inbox_mark_read($supplier['tenant_id'],$m[1]);}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/connect/inbox/'.$m[1]);
+    }
     if($path==='/supplier/connect'){
         $sender=connect_sender_for_tenant($supplier['tenant_id']);
         render('supplier/connect',['title'=>'WhatsApp business readiness','robots'=>'noindex,nofollow',
@@ -427,6 +492,43 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
     if ($path === '/admin/system/scan' && $method==='POST') { verify_csrf();$h=monitor_run_health_scan(true);flash($h['status']==='HEALTHY'?'success':'error','Health scan completed: '.$h['status'].' · '.$h['checks_failed'].' failed check(s).');redirect('/admin/system'); }
     if ($path === '/admin/errors') { $status=trim((string)($_GET['status']??''));$severity=trim((string)($_GET['severity']??''));$source=trim((string)($_GET['source']??''));$q=trim((string)($_GET['q']??''));render_admin('errors',['title'=>'Error Monitor','incidents'=>monitor_list_incidents($status,$severity,$source,$q),'status'=>$status,'severity'=>$severity,'source'=>$source,'q'=>$q,'health'=>$adminHealth]);exit; }
     if ($path === '/admin/errors/cleanup' && $method==='POST') { verify_csrf();$r=monitor_cleanup(true);flash('success','Retention cleanup completed. '.$r['removed'].' non-critical resolved incident(s) removed; critical incidents retained.');redirect('/admin/errors'); }
+    if(preg_match('#^/admin/connect/inbox/([0-9a-f-]{36})/send$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{
+            $thread=connect_inbox_thread('platform',$m[1]);
+            if(!$thread)throw new RuntimeException('Conversation not found.');
+            connect_enqueue('platform',$thread['conversation']['phone'],
+                (string)($_POST['purpose']??''),(string)($_POST['template']??''),
+                (string)($_POST['language']??''),(string)($_POST['unique_ref']??''));
+            flash('success','Consent-checked approved template queued, not delivered.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/connect/inbox/'.$m[1]);
+    }
+    if($path==='/admin/connect/activation'&&$method==='POST'){
+        verify_csrf();
+        try{
+            connect_account_activate((string)($_POST['tenant_id']??''),
+                (string)($_POST['direction']??''),($_POST['enable']??'')==='yes');
+            flash('success','Meta sender activation changed. Delivery still depends on provider setup and user consent.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/connect');
+    }
+    if($path==='/admin/connect/inbox'){
+        render_admin('connect-inbox',['title'=>'Ananta Connect · Platform inbox',
+            'tenantId'=>'platform','conversations'=>connect_inbox_list('platform'),
+            'queue'=>connect_queue_summary('platform'),'back'=>url('/admin/connect')]);exit;
+    }
+    if(preg_match('#^/admin/connect/inbox/([0-9a-f-]{36})$#D',$path,$m)){
+        $thread=connect_inbox_thread('platform',$m[1]);
+        if(!$thread){http_response_code(404);render_admin('404',['title'=>'Conversation unavailable']);exit;}
+        render_admin('connect-thread',['title'=>'WhatsApp conversation',
+            'tenantId'=>'platform','thread'=>$thread,'back'=>url('/admin/connect/inbox')]);exit;
+    }
+    if(preg_match('#^/admin/connect/inbox/([0-9a-f-]{36})/read$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();try{connect_inbox_mark_read('platform',$m[1]);}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/connect/inbox/'.$m[1]);
+    }
     if ($path === '/admin/connect') {
         render_admin('connect',['title'=>'Ananta Connect · WhatsApp',
             'summary'=>connect_admin_summary(),

@@ -2,7 +2,7 @@
 
 **AI-ready nursery discovery and commerce, built PHP-first.**
 
-Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its transaction-ready multi-seller marketplace, fully autonomous AI BOQ procurement, live WhatsApp messaging and settlement remain **roadmap items**. B3–B6 add staging-only supplier onboarding, multi-nursery RFQs, buyer-reviewed BOQs, optional AI-assisted text intake and non-binding supplier fulfilment planning.
+Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its transaction-ready multi-seller marketplace, fully autonomous AI BOQ procurement, verified production WhatsApp messaging, CRM automations and settlement remain **roadmap items**. B3–B6 add staging-only supplier onboarding, multi-nursery RFQs, buyer-reviewed BOQs, optional AI-assisted text intake and non-binding supplier fulfilment planning.
 
 > **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
@@ -28,6 +28,20 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## B8.2 — Meta webhook, durable outbox and tenant CRM (staging)
+
+B8.2 adds an authenticated WhatsApp Business Platform webhook, encrypted tenant-private inbox, and durable outbound queue.
+
+Webhook URL: https://YOUR-HOST/ananta/webhooks/meta/whatsapp/PHONE_NUMBER_ID.
+Meta verification uses the registered verification token. Signed POST payloads use the exact raw-body X-Hub-Signature-256 and must match the registered Meta WABA and Phone Number ID.
+Duplicates are ignored; webhooks are acknowledged only after encrypted persistence. Signed STOP/UNSUBSCRIBE text blocks outbound. No incoming message grants marketing opt-in.
+
+Platform UI: /admin/connect/inbox. Nursery UI: /supplier/connect/inbox. Only nursery owners and managers may view sensitive inbox content or enqueue approved templates.
+Sending requires administrator sender activation, ANANTA_CONNECT_ALLOW_SEND=1, purpose-specific opt-in and template:language allowlisting via ANANTA_WA_APPROVED_TEMPLATES. It is disabled by default.
+Run the worker with Cloudways CLI cron: php /path/to/private_html/ananta/src/connect_worker_cli.php 5 . This worker and the encrypted runtime database are separate from the public site.
+Provider acceptance is recorded as submitted, while sent/delivered/read require authentic provider webhooks. Unknown status receipts are retained for reconciliation. Timeout, 429, server-error and expired leases require manual review to prevent duplicate sends.
+Keep the pilot small; test real Meta credentials, approved templates, log retention, encrypted backups and restore before enabling outbound traffic.
+B8.3 follow-up assignments and automatic RFQ notifications remain pending. No production delivery is claimed.
 ## B8.1 — Ananta Connect + Discover: safe integration foundations (staging)
 
 ### Ananta Connect

@@ -75,7 +75,9 @@ function connect_account_status(array $account): array {
         'configured'=>true,'token_ready'=>is_string($token)&&strlen(trim($token))>=20,
         'app_secret_ready'=>is_string($secret)&&strlen(trim($secret))>=20,
         'verify_token_ready'=>is_string($verify)&&strlen(trim($verify))>=20,
-        'send_enabled'=>false,'connected'=>false,
+        'send_enabled'=>(bool)($account['send_enabled']??false),
+        'inbound_enabled'=>(bool)($account['enabled']??false),
+        'connected'=>false, // Local configuration never proves Meta connectivity.
     ];
 }
 function connect_sender_for_tenant(string $tenantId): ?array {
@@ -137,9 +139,48 @@ function connect_consent_status(string $tenant,string $phone,string $purpose): s
     return (string)($entry['status']??'unknown');
 }
 function connect_message_allowed(string $tenant,string $phone,string $purpose): bool {
-    // Fail closed in B8.1: provider is deliberately never enabled.
-    if(!isset(connect_store()['accounts'][$tenant]))return false;
-    return false;
+    $phone=connect_normalize_phone($phone);
+    $account=connect_store()['accounts'][$tenant]??null;
+    if(!$account||empty($account['enabled'])||empty($account['send_enabled'])
+        ||(string)getenv('ANANTA_CONNECT_ALLOW_SEND')!=='1')return false;
+    $status=connect_account_status($account);
+    if(!$status['token_ready']||!$status['app_secret_ready'])return false;
+    if(connect_consent_status($tenant,$phone,$purpose)!=='opt_in')return false;
+    // A person explicitly stopping contact in the CRM overrides older opt-ins.
+    if(function_exists('connect_runtime_store')){
+        $blocked=connect_runtime_store()['blocked_contacts'][connect_conversation_key($tenant,$phone)]??null;
+        if($blocked!==null)return false;
+    }
+    return true;
+}
+/** Admin activation is separate for inbound verification and outbound sending. */
+function connect_account_activate(string $tenant,string $direction,bool $enable): void {
+    require_admin();
+    connect_validate_tenant($tenant);
+    if(!in_array($direction,['inbound','outbound'],true))throw new InvalidArgumentException('Invalid activation direction.');
+    $existing=connect_store()['accounts'][$tenant]??null;
+    if(!$existing)throw new RuntimeException('First configure the Meta sender.');
+    $status=connect_account_status($existing);
+    if($enable&&(!$status['app_secret_ready']||!$status['verify_token_ready']))
+        throw new RuntimeException('Meta app secret and verification token are required.');
+    if($enable&&$direction==='outbound'&&(!$status['token_ready']||
+        (string)getenv('ANANTA_CONNECT_ALLOW_SEND')!=='1'))
+        throw new RuntimeException('Outbound requires an access token and the separate server kill-switch.');
+    connect_mutate(static function(array $d)use($tenant,$direction,$enable){
+        if(!isset($d['accounts'][$tenant]))throw new RuntimeException('Sender is missing.');
+        if($direction==='outbound'){
+            if($enable&&empty($d['accounts'][$tenant]['enabled']))
+                throw new RuntimeException('Enable inbound verification first.');
+            $d['accounts'][$tenant]['send_enabled']=$enable;
+        }else{
+            $d['accounts'][$tenant]['enabled']=$enable;
+            if(!$enable)$d['accounts'][$tenant]['send_enabled']=false;
+        }
+        $d['accounts'][$tenant]['updated_at']=gmdate('c');
+        return $d;
+    },'account.activation');
+    audit_event('connect.account.activation',['tenant_id'=>$tenant,
+        'direction'=>$direction,'enabled'=>$enable]);
 }
 /** HMAC helper for B8.2; no live webhook route or message writes in B8.1. */
 function connect_verify_meta_signature(string $payload,string $header,string $secret): bool {
@@ -152,5 +193,5 @@ function connect_admin_summary(): array {
     return ['accounts'=>array_map('connect_account_status',array_values($store['accounts'])),
         'consent_total'=>count($store['consents']),
         'opted_out'=>count(array_filter($store['consents'],static fn($c)=>($c['status']??'')==='opt_out')),
-        'send_enabled'=>false];
+        'send_enabled'=>count(array_filter($store['accounts'],static fn($a)=>!empty($a['send_enabled'])))];
 }

@@ -25,3 +25,19 @@
 .admin-body .ananta-b8-status.is-blocked{background:#fff4e5;color:#965c1c}
 @media(max-width:1000px){.admin-body .ananta-b8-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.admin-body .ananta-b8-form-grid{grid-template-columns:1fr}.admin-body .ananta-b8-grid{gap:12px}}
+
+
+/* B8.2 CRM · compact professional inbox */
+.admin-body .ananta-connect-item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 2px;border-bottom:1px solid #dce6df;text-decoration:none;color:inherit}
+.admin-body .ananta-connect-item strong{font-size:14px;color:#254a35}.admin-body .ananta-connect-item small{display:block;font-size:11px;color:#667f6a;margin-top:5px}
+.admin-body .ananta-connect-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:15px 0}
+.admin-body .ananta-connect-controls label,.admin-body .ananta-connect-send-form label{display:grid;gap:6px;font-size:12px;font-weight:700;color:#31553e}
+.admin-body .ananta-connect-controls :is(select,input),.admin-body .ananta-connect-send-form :is(input,select){width:100%;min-height:44px;min-width:0;background:#fff;border:1px solid #ccdfd0;border-radius:10px;padding:10px}
+.admin-body .ananta-connect-controls button{grid-column:1/-1;justify-self:start}
+.admin-body .ananta-connect-thread{display:grid;gap:12px;padding:18px;max-height:600px;overflow:auto}
+.admin-body .ananta-connect-bubble{padding:17px;border:1px solid #dce8df;border-radius:16px;background:#fafcf8;max-width:85%;overflow-wrap:anywhere}
+.admin-body .ananta-connect-bubble.outbound{justify-self:end;background:#e7f3e9}
+.admin-body .ananta-connect-bubble p{margin:9px 0;line-height:1.6}.admin-body .ananta-connect-bubble small,.admin-body .ananta-connect-bubble footer{font-size:11px;color:#68816e}
+.admin-body .ananta-connect-send-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;border-top:1px solid #dce9dd;padding:18px 0}
+.admin-body .ananta-connect-send-form :is(button,p){grid-column:1/-1;justify-self:start}
+@media(max-width:650px){.admin-body .ananta-connect-controls,.admin-body .ananta-connect-send-form{grid-template-columns:1fr}}
