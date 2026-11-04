@@ -29,6 +29,14 @@ jobs:
           extensions: mbstring, fileinfo, gd, curl, openssl, sodium, zip
           coverage: none
 
+      - name: Install optional visual-intelligence test dependency
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow for sandbox visual intelligence tests
+        run: python -m pip install --disable-pip-version-check 'Pillow>=11,<13'
+
       - name: Full regression suite
         run: bash scripts/full_regression.sh
 
