@@ -207,6 +207,14 @@ if($path==='/sourcing/boq'&&$method==='GET'){
         'suppliers'=>sourcing_verified_suppliers()]);
     exit;
 }
+if(preg_match('#^/account/sourcing/([0-9a-f-]{36})/readiness$#D',$path,$m)&&$method==='POST'){
+    require_customer('/account/sourcing');verify_csrf();
+    try{
+        sourcing_readiness_buyer_decide($m[1],$_POST);
+        flash('success','Readiness response recorded. No order, payment or stock reservation was created.');
+    }catch(Throwable $e){flash('error',$e->getMessage());}
+    redirect('/account/sourcing/'.$m[1]);
+}
 if(preg_match('#^/account/sourcing/([0-9a-f-]{36})/approve-draft$#D',$path,$m)&&$method==='POST'){
     require_customer('/account/sourcing');verify_csrf();
     try{
@@ -292,6 +300,14 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
     if($path==='/supplier/enquiries'){
         $requests=sourcing_supplier_rows($supplier['tenant_id']);
         render('supplier/enquiries',['title'=>'Supplier sourcing inbox','robots'=>'noindex,nofollow','supplier'=>$supplier,'requests'=>$requests]);exit;
+    }
+    if(preg_match('#^/supplier/enquiries/([0-9a-f-]{36})/readiness$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{
+            sourcing_readiness_supplier_submit($supplier['tenant_id'],$m[1],$_POST);
+            flash('success','Supplier-reported readiness recorded for buyer review. Stock remains unreserved.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/enquiries/'.$m[1]);
     }
     if(preg_match('#^/supplier/enquiries/([0-9a-f-]{36})/boq-quote$#D',$path,$m)&&$method==='POST'){
         verify_csrf();
