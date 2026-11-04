@@ -129,7 +129,7 @@ function growth_product_schema(array $p): array {
     if(product_has_image($p))$base['image']=[absolute_url(image_url(mediaos_primary_file($p)))];
     if($variants){
         $node=$base;$node['@type']='ProductGroup';$node['productGroupID']=$p['sku'];$node['variesBy']=['https://schema.org/size'];$node['hasVariant']=[];
-        foreach($variants as $v){$child=['@type'=>'Product','@id'=>$url.'#variant-'.rawurlencode((string)$v['sku']),'name'=>$p['name'].' · '.variant_display_label($v),'sku'=>$v['sku'],'isVariantOf'=>['@id'=>$url.'#product'],'size'=>variant_display_label($v)];if(variant_has_image($v,$p))$child['image']=[absolute_url(image_url(variant_effective_image($v,$p)))];if(variant_is_sellable($v))$child['offers']=['@type'=>'Offer','priceCurrency'=>'INR','price'=>(int)$v['price'],'availability'=>'https://schema.org/InStock','url'=>$url.'#configure'];$node['hasVariant'][]=$child;}
+        foreach($variants as $v){$child=['@type'=>'Product','@id'=>$url.'#variant-'.rawurlencode((string)$v['sku']),'name'=>$p['name'].' · '.variant_display_label($v),'sku'=>$v['sku'],'url'=>discover_variant_url($p,$v),'isVariantOf'=>['@id'=>$url.'#product'],'size'=>variant_display_label($v)];if(variant_has_image($v,$p))$child['image']=[absolute_url(image_url(variant_effective_image($v,$p)))];if(variant_is_sellable($v))$child['offers']=['@type'=>'Offer','priceCurrency'=>'INR','price'=>(int)$v['price'],'availability'=>'https://schema.org/InStock','url'=>discover_variant_url($p,$v)];$node['hasVariant'][]=$child;}
         return $node;
     }
     $node=$base;$node['@type']='Product';$node['sku']=$p['sku'];

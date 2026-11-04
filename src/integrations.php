@@ -3,19 +3,54 @@ declare(strict_types=1);
 function dto_image_absolute(array $p): ?string { return product_has_image($p)?absolute_url(image_url(mediaos_primary_file($p))):null; }
 function dto_variant(array $v,array $p): array { return ['id'=>$v['guid'],'sku'=>$v['sku'],'label'=>variant_display_label($v),'pot_size_cm'=>(float)($v['pot_size_cm']??0),'plant_height_cm'=>['min'=>(int)($v['plant_height_cm_min']??0),'max'=>(int)($v['plant_height_cm_max']??0)],'grade'=>$v['grade']??'','batch_code'=>$v['batch_code']??'','sales_mode'=>$v['sales_mode']??'enquiry','availability'=>$v['availability']??'coming_soon','stock'=>!empty($v['track_inventory'])?(int)($v['stock']??0):null,'price'=>variant_is_sellable($v)?['amount'=>(int)$v['price'],'currency'=>'INR']:null,'lead_time'=>$v['lead_time']??'','image'=>variant_has_image($v,$p)?absolute_url(image_url(variant_effective_image($v,$p))):null]; }
 function public_product_dto(array $p): array { $variants=array_map(fn($v)=>dto_variant($v,$p),variants_for_product($p,true));return ['id'=>$p['guid'],'sku'=>$p['sku'],'slug'=>$p['slug'],'name'=>$p['name'],'short'=>$p['short'],'category'=>$p['category_label'],'collection'=>$p['collection'],'sales_mode'=>product_has_sellable_variants($p)?'variant-commerce':($p['sales_mode']??'commerce'),'price'=>product_is_enquiry($p)?null:(product_variant_price_range($p)??['min'=>(int)$p['price'],'max'=>(int)$p['price'],'count'=>1]),'currency'=>'INR','price_label'=>product_price_label($p),'image'=>dto_image_absolute($p),'botanical_name'=>$p['botanical_name']??'','care_profile'=>$p['care_profile']??[],'dimensions'=>$p['dimensions'],'lead_time'=>$p['lead_time'],'variants'=>$variants,'url'=>absolute_url('/product/'.$p['slug'])]; }
-function merchant_variant_dto(array $v,array $p): array { if(!variant_is_merchant_eligible($v,$p))return [];return ['id'=>$v['sku'],'item_group_id'=>$p['sku'],'title'=>$p['name'].' · '.variant_display_label($v),'description'=>$p['short'],'link'=>absolute_url('/product/'.$p['slug'].'#configure'),'image_link'=>absolute_url(image_url(variant_effective_image($v,$p))),'availability'=>'in_stock','price'=>(int)$v['price'].' INR','brand'=>'Sanjay Nursery','condition'=>'new','google_product_category'=>'Home & Garden > Plants','size'=>variant_display_label($v),'custom_label_0'=>$p['category_label'],'custom_label_1'=>$p['collection'],'custom_label_2'=>$v['batch_code']??'']; }
-function merchant_product_dto(array $p): array { if(product_has_variants($p))return [];if(!product_is_sellable($p)||!product_has_image($p))return []; $inStock=empty($p['inventory']['track'])||!empty($p['inventory']['made_to_order'])||(int)($p['inventory']['stock']??0)>0;return ['id'=>$p['sku'],'title'=>$p['name'],'description'=>$p['short'],'link'=>absolute_url('/product/'.$p['slug']),'image_link'=>dto_image_absolute($p),'availability'=>$inStock?'in_stock':'out_of_stock','price'=>(int)$p['price'].' INR','brand'=>'Sanjay Nursery','condition'=>'new','google_product_category'=>'Home & Garden > Plants','custom_label_0'=>$p['category_label'],'custom_label_1'=>$p['collection']]; }
+function merchant_variant_dto(array $v,array $p): array {
+    if(!variant_is_merchant_eligible($v,$p))return [];
+    return [
+        'id'=>$v['sku'],'item_group_id'=>$p['sku'],
+        'title'=>$p['name'].' · '.variant_display_label($v),
+        'description'=>$p['short'],'link'=>discover_variant_url($p,$v),
+        'image_link'=>absolute_url(image_url(variant_effective_image($v,$p))),
+        'availability'=>'in_stock','price'=>(int)$v['price'].' INR',
+        'brand'=>'Sanjay Nursery','condition'=>'new',
+        'google_product_category'=>'Home & Garden > Plants',
+        'product_type'=>$p['category_label'],
+        'size'=>variant_display_label($v),'identifier_exists'=>'no',
+        'custom_label_0'=>$p['category_label'],'custom_label_1'=>$p['collection'],
+        'custom_label_2'=>$v['batch_code']??'',
+    ];
+}
+function merchant_product_dto(array $p): array {
+    if(function_exists('discover_parent_reasons')&&discover_parent_reasons($p)!==[])return [];
+    if(product_has_variants($p)||!product_is_sellable($p)||!mediaos_primary_approved($p))return [];
+    return [
+        'id'=>$p['sku'],'title'=>$p['name'],'description'=>$p['short'],
+        'link'=>absolute_url('/product/'.$p['slug']),
+        'image_link'=>dto_image_absolute($p),
+        'availability'=>'in_stock',
+        'price'=>(int)$p['price'].' INR','brand'=>'Sanjay Nursery','condition'=>'new',
+        'google_product_category'=>'Home & Garden > Plants',
+        'product_type'=>$p['category_label'],'identifier_exists'=>'no',
+        'custom_label_0'=>$p['category_label'],'custom_label_1'=>$p['collection'],
+    ];
+}
 function ai_product_dto(array $p): array { $range=product_variant_price_range($p);return ['product_id'=>$p['guid'],'name'=>$p['name'],'summary'=>$p['short'],'category'=>$p['category_label'],'collection'=>$p['collection'],'sales_mode'=>$range?'variant-commerce':($p['sales_mode']??'commerce'),'price'=>$range?['min'=>$range['min'],'max'=>$range['max'],'currency'=>'INR']:(product_is_enquiry($p)?null:['amount'=>(int)$p['price'],'currency'=>'INR']),'price_label'=>product_price_label($p),'botanical_name'=>$p['botanical_name']??'','care_profile'=>$p['care_profile']??[],'intelligence'=>$p['intelligence']??[],'lead_time'=>$p['lead_time'],'image'=>dto_image_absolute($p),'variants'=>array_map(fn($v)=>dto_variant($v,$p),variants_for_product($p,true)),'related_content'=>function_exists('ai_related_content_for_product')?ai_related_content_for_product($p):[],'canonical_url'=>absolute_url('/product/'.$p['slug'])]; }
 function agent_product_dto(array $p): array { $d=ai_product_dto($p);$d['sku']=$p['sku'];$d['care']=$p['care']??'';$d['warranty']=$p['warranty']??'';return$d; }
 function integration_public_catalog(string $q=''): array { $q=text_lower(trim($q));$rows=[];foreach(products_public() as $p){if($q!==''&&!str_contains(text_lower($p['name'].' '.$p['short'].' '.$p['category_label'].' '.implode(' ',(array)($p['tags']??[]))),$q))continue;$rows[]=public_product_dto($p);}return$rows; }
 function merchant_xml(): string {
-    $esc=fn($v)=>htmlspecialchars((string)$v,ENT_QUOTES|ENT_XML1,'UTF-8');
-    $xml='<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel>';
-    $xml.='<title>Sanjay Nursery</title><link>'.$esc(absolute_url('/')).'</link><description>Sanjay Nursery live-variant product feed</description>';
-    foreach(products_public() as $p){
-        $rows=[];foreach(variants_for_product($p,true) as $v){$d=merchant_variant_dto($v,$p);if($d)$rows[]=$d;}
-        if(!$rows){$d=merchant_product_dto($p);if($d)$rows[]=$d;}
-        foreach($rows as $d){$xml.='<item>';foreach($d as $k=>$v){if($v===null||$v==='')continue;$tag=in_array($k,['title','description','link'],true)?$k:'g:'.$k;$xml.='<'.$tag.'>'.$esc($v).'</'.$tag.'>';}$xml.='</item>';}
+    $esc=static fn($v)=>htmlspecialchars((string)$v,ENT_QUOTES|ENT_XML1,'UTF-8');
+    $xml='<?xml version="1.0" encoding="UTF-8"?>'."\n";
+    $xml.='<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel>';
+    $xml.='<title>Ananta Nursery Mall · Sanjay Nursery retail</title>';
+    $xml.='<link>'.$esc(absolute_url('/')).'</link>';
+    $xml.='<description>Verified checkout-ready retail plants from Sanjay Nursery, the founding retailer</description>';
+    foreach(discover_merchant_rows() as $row){
+        $xml.='<item>';
+        foreach($row as $key=>$value){
+            if($value===null||$value==='')continue;
+            $tag=in_array($key,['title','description','link'],true)?$key:'g:'.$key;
+            $xml.='<'.$tag.'>'.$esc($value).'</'.$tag.'>';
+        }
+        $xml.='</item>';
     }
     return $xml.'</channel></rss>';
 }

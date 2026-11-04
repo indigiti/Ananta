@@ -1,0 +1,27 @@
+/* Ananta B8.1 · restrained executive foundation dashboards */
+.admin-body .ananta-b8-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px;margin:18px 0}
+.admin-body .ananta-b8-grid>*{min-width:0;margin:0}
+.admin-body .ananta-b8-grid .panel-head{align-items:center}
+.admin-body .ananta-b8-account{display:grid;gap:8px;padding:17px 0;border-top:1px solid #dfebe2}
+.admin-body .ananta-b8-account strong{font-size:15px;color:#1e4b35}
+.admin-body .ananta-b8-account small{font-size:12px;color:#617b68;overflow-wrap:anywhere}
+.admin-body .ananta-b8-badges{display:flex;gap:7px;flex-wrap:wrap}
+.admin-body .ananta-b8-badges span{background:#e8f3ec;color:#2b6749;padding:7px 11px;border:1px solid #d4e7da;border-radius:50px;font-size:11px;font-weight:650}
+.admin-body .ananta-b8-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:16px}
+.admin-body .ananta-b8-form-grid label{display:grid;gap:7px;min-width:0;font-size:12px;color:#315640;font-weight:700}
+.admin-body .ananta-b8-form-grid :is(input,select){width:100%;min-height:43px;min-width:0;box-sizing:border-box;background:#fff;border:1px solid #cbded1;border-radius:10px;padding:10px 12px;color:#23412e;font-size:13px}
+.admin-body .ananta-b8-form-grid button{justify-self:start;align-self:end}
+.admin-body .ananta-b8-form-grid :is(input,select,button):focus-visible{outline:3px solid #9acaad;outline-offset:2px}
+.admin-body .ananta-b8-reasons{display:grid;gap:0}
+.admin-body .ananta-b8-reasons>div{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #e4ede5;padding:13px 0}
+.admin-body .ananta-b8-reasons span{font-size:13px;color:#4a6955}
+.admin-body .ananta-b8-reasons strong{font-size:14px;color:#2a5740}
+.admin-body .ananta-b8-help{font-size:12px;line-height:1.7;color:#637b68}
+.admin-body .ananta-b8-table-wrap{max-width:100%;overflow-x:auto}
+.admin-body .ananta-b8-table-wrap table{min-width:720px;width:100%}
+.admin-body .ananta-b8-table-wrap :is(td,th){padding:12px;line-height:1.5;text-align:left}
+.admin-body .ananta-b8-status{display:inline-flex;padding:6px 10px;border-radius:30px;font-size:11px;font-weight:750}
+.admin-body .ananta-b8-status.is-ready{background:#e4f2e7;color:#266641}
+.admin-body .ananta-b8-status.is-blocked{background:#fff4e5;color:#965c1c}
+@media(max-width:1000px){.admin-body .ananta-b8-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.admin-body .ananta-b8-form-grid{grid-template-columns:1fr}.admin-body .ananta-b8-grid{gap:12px}}

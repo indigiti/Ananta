@@ -790,3 +790,17 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 **Status boundary:** The parent RFQ remains `buyer_approved_draft` throughout B6. The nested readiness progression is `awaiting_supplier`, `supplier_proposed`, `buyer_changes_requested`, `buyer_acknowledged`, or `supplier_declined`. There is deliberately **no `paid`, `ordered`, `dispatched` or `delivered` transition** yet.
 
 **B7 prerequisites:** verified legal seller-of-record, tax review, supplier-accepted purchase contracts, inventory reservation under SQL transactions, shipping proof, data-backup restoration, successful live device/browser QA and genuine nursery fulfilment trials. Transactional multi-vendor checkout remains gated.
+
+---
+
+## Part XIII — B8.1 Ananta Connect and Discover foundations
+
+**Scope:** Cloudways PHP-first staging release for secure official WhatsApp provisioning plus defensible Google Merchant eligibility. Do not confuse integration readiness with Meta connectivity, Merchant Center approval or AI citations.
+
+**Connect:** `connect.php` stores one Meta sender per verified nursery (or the platform) in the encrypted private registry, holding only Meta IDs, display label and environment variable *names*. It never records credential values and keeps send_enabled false. A separate tenant/purpose scoped consent ledger records evidence and opt-outs. Only admin can provision; an owner or manager can record permission within their own supplier tenant. Signed webhook HMAC helper is included without public webhook ingestion or outbound sends. B8.2 must implement signed webhook routes, replay controls, idempotent outbox, retries, opt-out enforcement before every send, provider-delivery statuses and CRM assignment.
+
+**Discover:** `discover_merchant.php` creates a consistent local eligibility report for retail parent or variant SKUs, preventing inquiry-only/supplier-owned offers, zero/unverified stock, pickup-only SKUs, missing price, disabled Merchant flags or unapproved media from entering the first-party Google feed. Parent records require tracked positive stock. URLs use stable SKU query parameters which preselect checkout pricing and cart selection. Structured data shares the variant URLs. Feed XML remains viewable but Google Merchant API sync and external submission are disabled.
+
+**Acceptance:** B8 PHP regression tests include signed-payload verification, encrypted credential references, no-send gating, tenant-unique Meta Phone IDs, cross-tenant consent isolation, opt-out persistence, per-SKU eligibility reconciliation, well-formed Merchant XML and variant URL/structured-data checks. DigiOps package must include both modules and their dashboard assets, never private runtime data.
+
+**External gates:** Meta Business verification/phone onboarding/approved templates; Google Merchant Center identity, shop ownership, checkout compliance, shipping/returns, product images and review; Search Console and Google Rich Results validation; real mobile visual QA. Neither indexing nor messaging delivery is established by local release tests.
