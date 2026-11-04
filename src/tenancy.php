@@ -59,6 +59,8 @@ function tenant_invite_issue(string $supplierId,string $email,string $role='owne
     if(!$supplier||($supplier['status']??'')!=='verified')throw new RuntimeException('Verify the supplier before inviting team members.');
     if(!array_key_exists($role,tenant_roles()))throw new InvalidArgumentException('Invalid membership role.');
     $email=tenant_user_email($email);
+    // Existing admin-curated suppliers may predate the tenancy identity store.
+    if(!isset(tenant_store()['tenants'][$supplierId]))tenant_sync_supplier($supplierId,'verified');
     $token=bin2hex(random_bytes(32));
     $digest=hash('sha256',$token);
     tenant_mutate(static function(array $d)use($supplierId,$email,$role,$digest){
@@ -149,7 +151,11 @@ function tenant_identity(): ?array {
     $m=$d['memberships'][$session['tenant_id'].':'.$session['user_id']]??null;
     $t=$d['tenants'][$session['tenant_id']]??null;
     $s=marketplace_supplier_by_id($session['tenant_id']);
-    if(!$u||!($u['active']??false)||!$m||!($m['active']??false)||!$t||($t['status']??'')!=='active'||!$s||($s['status']??'')!=='verified')return null;
+    if(!$u||!($u['active']??false)||!$m||!($m['active']??false)||!$t||($t['status']??'')!=='active'||!$s||($s['status']??'')!=='verified'){
+        // Do not let an old session regain access after later reactivation.
+        unset($_SESSION['supplier_user']);
+        return null;
+    }
     if(!isset(tenant_roles()[$m['role']??'']))return null;
     return ['id'=>$u['id'],'email'=>$u['email'],'name'=>$u['name'],'tenant_id'=>$s['id'],
         'supplier_name'=>$s['name'],'role'=>$m['role']];

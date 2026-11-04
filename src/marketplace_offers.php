@@ -112,6 +112,11 @@ function marketplace_offer_save(array $input): string {
     $now=gmdate('c');
     marketplace_ensure_dir();
     foundation_json_mutate(marketplace_registry_file(),function(array $raw)use($savedId,$id,$supplierId,$product,$label,$status,$availability,$price,$quantity,$evidence,$now,$platformAdmin) {
+        if(!$platformAdmin){
+            $stillVerified=false;
+            foreach($raw['suppliers']??[] as $row)if(($row['id']??'')===$supplierId&&($row['status']??'')==='verified'){$stillVerified=true;break;}
+            if(!$stillVerified)throw new RuntimeException('Supplier is not verified.');
+        }
         $offers=array_values((array)($raw['offers']??[]));$found=false;
         $row=['id'=>$savedId,'supplier_id'=>$supplierId,'product_guid'=>(string)$product['guid'],
             'label'=>$label,'status'=>$status,'availability'=>$availability,'price_inr'=>$price,
@@ -195,6 +200,9 @@ function marketplace_offer_report(string $offerId,string $supplierId,string $ava
     if($quantity!==null&&($quantity<0||$quantity>1000000))throw new InvalidArgumentException('Quantity outside supported range.');
     marketplace_ensure_dir();
     foundation_json_mutate(marketplace_registry_file(),static function(array $raw)use($offerId,$supplierId,$availability,$quantity){
+        $verified=false;
+        foreach($raw['suppliers']??[] as $row)if(($row['id']??'')===$supplierId&&($row['status']??'')==='verified'){$verified=true;break;}
+        if(!$verified)throw new RuntimeException('Supplier is not verified.');
         $found=false;
         $offers=array_values((array)($raw['offers']??[]));
         foreach($offers as &$offer){
