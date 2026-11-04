@@ -86,6 +86,8 @@ $_SESSION['_last_activity'] = $now;
 
 foundation_ensure_dirs();
 ensure_storage_dirs();
+require_once $root . '/src/digiops_seed.php';
+ananta_seed_missing_public_data($root);
 
 $catalogPath = $root . '/storage/public-domain/catalog/products.json';
 $products = foundation_json_read($catalogPath, []);

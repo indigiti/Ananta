@@ -1,0 +1,54 @@
+name: DigiOps Release - Ananta
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ananta-digiops-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Validate and package /ananta/
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout exact source revision
+        uses: actions/checkout@v4
+
+      - name: Set up PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, fileinfo, gd, curl, openssl, sodium, zip
+          coverage: none
+
+      - name: Full regression suite
+        run: bash scripts/full_regression.sh
+
+      - name: Restore committed public-domain seed after mutable regression fixtures
+        run: git restore --source=HEAD --worktree -- storage/public-domain/
+
+      - name: Build DigiOps split public/private artifact
+        run: php tools/package-digiops-release.php
+
+      - name: Verify artifact contents and privacy boundary
+        run: php tools/check-digiops-release.php
+
+      - name: Smoke test Cloudways sibling-path installation
+        run: bash tools/smoke-digiops-layout.sh
+
+      - name: Upload DigiOps release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: digiops-release
+          path: release/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

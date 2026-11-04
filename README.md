@@ -28,6 +28,26 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## DigiOps release for Cloudways /ananta/
+
+DigiOps is configured to deploy **`indigiti/Ananta` → `main`** to **`/ananta/`**, with public files at `public_html/ananta/` and private PHP code at `private_html/ananta/`. It searches GitHub Actions for a **successful run** containing the artifact named **`digiops-release`**. This is an artifact name, **not a Git branch**.
+
+The workflow [`.github/workflows/digiops-release.yml`](.github/workflows/digiops-release.yml) runs PHP 8.4 regressions, creates the split payload with `php tools/package-digiops-release.php`, validates it, performs an isolated /ananta/ layout smoke test, and publishes the artifact only if every step succeeds. Use DigiOps **Check update**, verify the run/commit/artifact, and only then click **Deploy**. Opening DigiOps does not automatically query GitHub.
+
+Package contract:
+
+| Artifact directory | DigiOps target | Content |
+| --- | --- | --- |
+| `release/public/` | `public_html/ananta/` | Thin `index.php`, `/ananta/` rewrite and static assets |
+| `release/private/` | `private_html/ananta/` | PHP application, templates, config, resources and immutable first-install seed |
+| `release/RELEASE.json` | Release metadata | Source commit, branch, CI run and target paths |
+
+**Important:** The public PHP entry point loads `private_html/ananta/public/index.php` from the same Cloudways application home. This relies on the sibling `public_html/` and `private_html/` layout shown in DigiOps. The first installation copies a small allowlist of committed **public-domain catalogue/configuration seed JSON** into missing private `storage/` files; later releases **never** ship or overwrite live storage, user records, audit journals, admin keys or supplier offers. Catalogue updates after first install require a separate reviewed data migration, not an artifact overwrite.
+
+This remains a **staging-only/file-first release**. `APP_ENV=production` is intentionally blocked. Before exposing real customers or accepting real payments, complete P0 tenant isolation, data/secret remediation, backup restore tests and a persistence design for media uploads: files written into the replaceable public assets tree will not survive an atomic public-directory swap unless stored and served from persistent private storage.
+
+Local validation: `php tools/package-digiops-release.php && php tools/check-digiops-release.php && bash tools/smoke-digiops-layout.sh`. Do not configure both Cloudways Git Pull and DigiOps to write the same `/ananta/` paths.
+
 ## Installation (staging / Cloudways)
 
 1. Upload or deploy this repository to a PHP 8.4-compatible staging application.
