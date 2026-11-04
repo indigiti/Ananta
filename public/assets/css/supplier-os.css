@@ -104,3 +104,13 @@ html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-contact{backgrou
 html[data-theme=dark] .ananta-supplier-surface .ananta-readiness-panel{background:#223c2d}
 html[data-theme=dark] .ananta-supplier-surface .ananta-readiness-timeline strong{color:#d4ecd4}
 @media(max-width:620px){.ananta-supplier-surface .ananta-readiness-panel .ananta-boq-table{min-width:470px}}
+
+
+/* B8.1 sender status entry */
+.ananta-supplier-surface .ananta-connect-quick-link{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 18px;align-items:center;background:linear-gradient(105deg,#e7f2e9,#f8fbf6);padding:20px 23px;border-radius:18px;border:1px solid #d1e5d6;margin:18px 0}
+.ananta-supplier-surface .ananta-connect-quick-link strong{font-size:15px;color:#20553b}
+.ananta-supplier-surface .ananta-connect-quick-link p{font-size:12px;line-height:1.5;color:#52705a;margin:0}
+.ananta-supplier-surface .ananta-connect-quick-link>a{grid-column:2;grid-row:1/span 2}
+html[data-theme=dark] .ananta-supplier-surface .ananta-connect-quick-link{background:#274632;border-color:#426d4c}
+html[data-theme=dark] .ananta-supplier-surface .ananta-connect-quick-link :is(strong,p){color:#e1efdf}
+@media(max-width:680px){.ananta-supplier-surface .ananta-connect-quick-link{grid-template-columns:1fr}.ananta-supplier-surface .ananta-connect-quick-link>a{grid-column:1;grid-row:auto}}

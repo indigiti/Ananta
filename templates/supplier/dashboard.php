@@ -20,6 +20,7 @@ $rfqCount=tenant_can('rfq.read',$tenantId)?count(sourcing_supplier_rows($tenantI
     </div>
     <form action="<?=e(url('/supplier/logout'))?>" method="post"><?=csrf_field()?><button type="submit" class="btn outline">Sign out</button></form>
   </div>
+  <div class="ananta-connect-quick-link"><strong>WhatsApp Connect · B8.1</strong><p>View sender provisioning and record verified messaging consent without enabling sends.</p><a class="ananta-seller-cta" href="<?=e(url('/supplier/connect'))?>">Messaging readiness <?=ui_icon('chevron-right')?></a></div>
   <div class="ananta-sourcing-quick-link"><div><strong>New · Buyer sourcing</strong><p>Manage nursery invitations and send indicative quotations. Every RFQ is private to your supplier membership.</p></div><a class="btn dark" href="<?=e(url('/supplier/enquiries'))?>">View <?=$rfqCount?> sourcing requests <?=ui_icon('chevron-right')?></a></div>
   <div class="ananta-supplier-stats" aria-label="Supplier summary">
     <article><small>Branches</small><strong><?=count($branches)?></strong><span><?=count($approvedBranches)?> approved</span></article>

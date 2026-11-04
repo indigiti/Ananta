@@ -76,7 +76,7 @@ function variant_effective_image(array $v,?array $p=null): string {
 
 function variant_has_image(array $v,?array $p=null): bool {
     $file=variant_effective_image($v,$p);
-    return $file!=='' && is_file(dirname(__DIR__).'/public/assets/images/products/'.basename($file));
+    return $file!=='' && function_exists('media_existing_path') && media_existing_path(basename($file))!==null;
 }
 
 function variant_is_merchant_eligible(array $v,?array $p=null): bool {

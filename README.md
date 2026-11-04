@@ -2,7 +2,7 @@
 
 **AI-ready nursery discovery and commerce, built PHP-first.**
 
-Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, fully autonomous AI BOQ procurement, WhatsApp integrations and transactional multi-vendor checkout remain **roadmap items**. B3–B6 add staging-only supplier onboarding, multi-nursery RFQs, buyer-reviewed BOQs, optional AI-assisted text intake and non-binding supplier fulfilment planning.
+Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its transaction-ready multi-seller marketplace, fully autonomous AI BOQ procurement, live WhatsApp messaging and settlement remain **roadmap items**. B3–B6 add staging-only supplier onboarding, multi-nursery RFQs, buyer-reviewed BOQs, optional AI-assisted text intake and non-binding supplier fulfilment planning.
 
 > **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
@@ -28,6 +28,26 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## B8.1 — Ananta Connect + Discover: safe integration foundations (staging)
+
+### Ananta Connect
+
+- **No messages are sent by this release.** The provider registry, consent evidence and webhook signature verifier are infrastructure for B8.2, not a functional Meta inbox, delivery receipt system or broadcast tool.
+- Platform admins can register a WhatsApp Business Account ID and Meta Phone Number ID mapped to exactly one `platform` or verified supplier tenant from `/admin/connect`. Access token, Meta app secret and webhook challenge verification tokens must be placed in Cloudways environment variables using `ANANTA_WA_TOKEN_*`, `ANANTA_WA_SECRET_*` and `ANANTA_WA_VERIFY_*` references. The UI neither stores nor echoes secret values.
+- Connections default to disabled and have no outbound transport. Environment secret readiness is labelled local configuration only—not a successful Meta Business registration or webhook connection.
+- Platform staff and verified nursery owners/managers can record purpose-specific phone consent or opt-outs with a documentary reference. Encrypted at rest with `SANJAY_DATA_KEY`, hashed identifiers in audit logs, single-writer mutations, tenant isolation and capacity guards.
+- The signature-verification helper rejects invalid `X-Hub-Signature-256` values, but no inbound webhook ingestion or outbound Graph API call is exposed until B8.2 is implemented and secured.
+
+### Ananta Discover
+
+- `/admin/discover/merchant` provides a local per-SKU eligibility dashboard with reason codes such as `enquiry_only`, `missing_price`, `merchant_disabled`, `zero_stock`, `pickup_only`, `unapproved_parent_image`, and `unverified_inventory`. A separate AI readiness summary audits published product metadata without guaranteeing AI citations.
+- `/feeds/google-merchant.xml` uses one shared readiness filter and only includes checkout-ready founding-nursery products/SKUs with rights-cleared media. Supplier RFQ offers remain excluded. No Google Merchant Center account is connected or receiving submissions in B8.1.
+- Variant feed links use crawlable `?variant=<SKU>` URLs rather than `#configure`, product pages preselect the SKU for price and cart, and `ProductGroup` schema references the same variant URL. Persistent approved media are supported in image eligibility checks.
+- Merchant XML has well-formed headers, deterministic IDs, and truthful founding retailer branding. Shipping, returns, tax, seller-of-record, Merchant approval and external indexing must be confirmed independently before any feed submission.
+
+### Acceptance and constraints
+
+Run `php tests/b8_foundation.php` and `bash scripts/full_regression.sh`, then DigiOps packaging and the `/ananta/` split-layout smoke suite. Inspect both admin dashboards at phone/tablet/desktop resolutions on Cloudways. **B8.2 (signed inbound webhooks, durable outbound queue, CRM conversations, provider delivery receipts) is not part of B8.1.** This milestone does not connect Meta or submit products to Google.
 ## Release B6 — Supplier fulfilment readiness and buyer planning acknowledgement (staging)
 
 This milestone adds a **non-binding purchasing readiness workflow** to B4 buyer-selected BOQ drafts. It does **not** legally issue or accept a purchase order, verify or reserve stock, invoice GST, collect payment, or trigger shipping.

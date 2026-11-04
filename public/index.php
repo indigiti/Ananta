@@ -297,6 +297,21 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
     $supplier=tenant_identity();
     if(!$supplier){flash('error','Supplier authentication is required.');redirect('/supplier/login');}
     if($path==='/supplier'){render('supplier/dashboard',['title'=>'Supplier workspace','supplier'=>$supplier,'robots'=>'noindex,nofollow']);exit;}
+    if($path==='/supplier/connect'){
+        $sender=connect_sender_for_tenant($supplier['tenant_id']);
+        render('supplier/connect',['title'=>'WhatsApp business readiness','robots'=>'noindex,nofollow',
+            'supplier'=>$supplier,'sender'=>$sender]);exit;
+    }
+    if($path==='/supplier/connect/consent'&&$method==='POST'){
+        verify_csrf();
+        try{
+            connect_consent_record($supplier['tenant_id'],(string)($_POST['phone']??''),
+                (string)($_POST['purpose']??''),(string)($_POST['decision']??''),
+                (string)($_POST['source']??''),(string)($_POST['evidence']??''));
+            flash('success','Messaging consent evidence recorded. Outbound messaging remains disabled.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/connect');
+    }
     if($path==='/supplier/enquiries'){
         $requests=sourcing_supplier_rows($supplier['tenant_id']);
         render('supplier/enquiries',['title'=>'Supplier sourcing inbox','robots'=>'noindex,nofollow','supplier'=>$supplier,'requests'=>$requests]);exit;
@@ -412,6 +427,31 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
     if ($path === '/admin/system/scan' && $method==='POST') { verify_csrf();$h=monitor_run_health_scan(true);flash($h['status']==='HEALTHY'?'success':'error','Health scan completed: '.$h['status'].' · '.$h['checks_failed'].' failed check(s).');redirect('/admin/system'); }
     if ($path === '/admin/errors') { $status=trim((string)($_GET['status']??''));$severity=trim((string)($_GET['severity']??''));$source=trim((string)($_GET['source']??''));$q=trim((string)($_GET['q']??''));render_admin('errors',['title'=>'Error Monitor','incidents'=>monitor_list_incidents($status,$severity,$source,$q),'status'=>$status,'severity'=>$severity,'source'=>$source,'q'=>$q,'health'=>$adminHealth]);exit; }
     if ($path === '/admin/errors/cleanup' && $method==='POST') { verify_csrf();$r=monitor_cleanup(true);flash('success','Retention cleanup completed. '.$r['removed'].' non-critical resolved incident(s) removed; critical incidents retained.');redirect('/admin/errors'); }
+    if ($path === '/admin/connect') {
+        render_admin('connect',['title'=>'Ananta Connect · WhatsApp',
+            'summary'=>connect_admin_summary(),
+            'suppliers'=>marketplace_offers_store()['suppliers']]);exit;
+    }
+    if ($path === '/admin/connect/account'&&$method==='POST'){
+        verify_csrf();
+        try{connect_account_save($_POST);flash('success','Sender configured in disabled mode. Meta connectivity and sending are not active.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/connect');
+    }
+    if ($path === '/admin/connect/consent'&&$method==='POST'){
+        verify_csrf();
+        try{
+            connect_consent_record((string)($_POST['tenant_id']??''),(string)($_POST['phone']??''),
+                (string)($_POST['purpose']??''),(string)($_POST['decision']??''),
+                (string)($_POST['source']??''),(string)($_POST['evidence']??''));
+            flash('success','Consent evidence saved in encrypted tenant-scoped registry.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/connect');
+    }
+    if ($path === '/admin/discover/merchant'){
+        render_admin('discover-merchant',['title'=>'Ananta Discover · Merchant Readiness',
+            'report'=>discover_merchant_report(),'ai'=>discover_ai_readiness()]);exit;
+    }
     if ($path === '/admin/marketplace') { render_admin('marketplace',['title'=>'Nurseries and seller offers','store'=>marketplace_offers_store()]); exit; }
     if ($path === '/admin/marketplace/invite' && $method==='POST') {
         verify_csrf();
