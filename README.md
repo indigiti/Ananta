@@ -28,6 +28,12 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## Release A supplier security pilot
+
+The planned tenant-security implementation adds invitation-only supplier accounts at `/supplier/login`, a tenant-scoped workspace at `/supplier`, and one-time platform-issued invitations in `/admin/marketplace`. Supplier staff can propose drafts and report stock but **cannot** publish, verify stock, or enter multi-seller checkout.
+
+Treat this as a limited staging pilot: no public self-registration, no external supplier payments, and no acceptance of private data from real suppliers until the P0 security gates, encrypted backups, real-device QA and credential exposure review are complete. The current Git tree excludes mutable operational records; **old Git commits may still contain them**, so affected live secrets must be rotated. See [the consolidated blueprint](docs/ANANTA_BLUEPRINT.md#part-v-release-a--tenant-identity-and-repository-containment-implementation).
+
 ## DigiOps release for Cloudways /ananta/
 
 DigiOps is configured to deploy **`indigiti/Ananta` → `main`** to **`/ananta/`**, with public files at `public_html/ananta/` and private PHP code at `private_html/ananta/`. It searches GitHub Actions for a **successful run** containing the artifact named **`digiops-release`**. This is an artifact name, **not a Git branch**.

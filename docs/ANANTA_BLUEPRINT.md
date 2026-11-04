@@ -8,6 +8,7 @@
 - [Part II: File-first pilot architecture](#part-ii-file-first-pilot-architecture)
 - [Part III: Implementation backlog](#part-iii-implementation-backlog)
 - [Part IV: Implemented Ananta storefront and seller-offer pilot](#part-iv-implemented-ananta-storefront-and-seller-offer-pilot)
+- [Part V: Release A — tenant identity and repository containment](#part-v-release-a--tenant-identity-and-repository-containment-implementation)
 
 ---
 
@@ -606,3 +607,23 @@ Starting hypotheses only: 100 verified supplier profiles, 40 complete listings s
 
 ## Verification
 Run `php tests/marketplace_offers.php` and the existing `bash scripts/full_regression.sh` on an isolated working copy. Perform responsive/manual checks at widths 320, 390, 768, 1024 and 1440px. Use two real verified supplier records and test draft/published/withdrawn, confirmed/expired availability, visibility, links and authorization. No P0 security or live deployment claim is made by this feature change.
+
+---
+
+## Part V: Release A — tenant identity and repository containment (implementation)
+
+**Status:** Tenant foundation implementation pending CI/pilot acceptance; **not** full P0 sign-off, not the P2–P5 product. Intended staging-only and single writable host.
+
+- Platform admins manage registered suppliers in \`/admin/marketplace\`, verify them and issue 24-hour, one-time supplier invitations.
+- \`/supplier/accept\`, \`/supplier/login\`, \`/supplier\` support supplier users with their own credentials and independent tenant contexts.
+- New encrypted, file-first identity store holds \`tenants\`, \`users\`, \`memberships\` and hashed invitation tokens under \`storage/private-domain/tenancy/identity.json\`.
+- Roles: owner, manager, inventory and viewer. Every request loads fresh membership state, so suspension and revocation take effect without trusting old session roles.
+- Supplier accounts can propose **draft** plant offers; platform admins alone publish. Supplier staff may report stock as \`reported\` / \`unknown\` / \`unavailable\`, never verify inventory or charge buyers.
+- Cross-tenant edits and report operations are checked **inside** locked write callbacks. Existing offer ownership is immutable; no cross-tenant checkout is enabled.
+- The original Sanjay Nursery checkout and admin routes remain intact.
+- Committed operational-looking \`storage/private-domain\`, \`storage/journals\`, \`storage/locks\` and \`storage/indexes\` records are removed from the HEAD tree. Curated \`storage/public-domain\` seeds stay to support clean file-first installation. Historical Git objects remain until a separately approved history remediation.
+- Security tests must establish two independently authenticated tenants, denial of cross-tenant edits, one-time invitation replay protection, membership revocation and supplier suspension.
+
+**Incomplete security controls:** real-world supplier identity/document verification, email delivery and recovery, MFA, backups plus restoration drills, external penetration review, encrypted seller-offer registry, persistent media uploads, and real Cloudways browser QA. Do not onboard real suppliers or claim full production readiness before these gates close.
+
+**Acceptance:** \`php tests/tenancy.php\`, \`bash scripts/full_regression.sh\`, release packaging/boot smoke, and repository-hygiene CI must pass. The workflow returning success only validates the automated subset—not real-world security or deployment.

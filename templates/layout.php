@@ -73,6 +73,7 @@ $currentPath=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
         <a href="<?= e(url('/collections/gardening-essentials')) ?>">Gardening Essentials</a>
         <a href="<?= e(url('/plant-finder')) ?>">Plant Finder</a>
         <a href="<?= e(url('/nurseries')) ?>">Nurseries</a>
+        <a href="<?= e(url('/supplier/login')) ?>">For Nurseries</a>
         <a href="<?= e(url('/contact#bulk')) ?>">Corporate Gifting</a>
         <a href="<?= e(url('/materials')) ?>">Plant Care</a>
         <a href="<?= e(url('/about')) ?>">Our Story</a>
