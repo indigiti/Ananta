@@ -83,3 +83,7 @@
 <section class="admin-panel"><h2>Release acceptance and recovery</h2>
 <p>Local catalogue and schema checks are not evidence of Merchant Center approval or live product indexing.</p>
 <a class="btn outline" href="<?=e(url('/admin/b8/acceptance'))?>">View B8.5 field acceptance checklist</a></section>
+<section class="admin-panel"><h2>B8-G Completion · Live catalogue and Google processing</h2>
+<p>Compare the runtime inventory with the immutable 376-SKU baseline, review SKU and seller evidence, export discrepancies and read actual Google processed-product issues when credentials are provided. No product submissions are performed automatically.</p>
+<a class="btn primary" href="<?=e(url('/admin/discover/completion'))?>">Open catalogue reconciliation and Google status</a>
+</section>

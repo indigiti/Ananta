@@ -28,6 +28,13 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## B8-G Completion — Live catalogue reconciliation and Google item-status diagnostics
+
+- Read-only runtime comparison of the immutable 376-product GitHub baseline with Cloudways pricing, stock, variants and rights-cleared photos in /admin/discover/completion.
+- Per-SKU evidence and seller, checkout, shipping and returns gates suppress unverified items from the hosted Merchant XML.
+- Google Merchant API processed-product read-only sync (optional OAuth) reports provider status for India and exact offer ID mismatches; no provider result means unverified.
+- Admin CSV exports: all baseline/live discrepancies and OpenAI-compatible eligible-purchasable-only partner preview. No live Google or OpenAI submissions.
+- Cloudways CLI: src/merchant_completion_cli.php status, catalogue-csv or google-readonly. Operational instructions in docs/B8G_COMPLETION.md.
 ## B8.5 — Staging pilot acceptance, recovery and monitoring
 
 - Admin console: `/admin/b8/acceptance` shows local source-of-truth health checks, encrypted message queue reconciliation, CRM capacity, eligible Merchant SKUs, feed audit timing and storage use.

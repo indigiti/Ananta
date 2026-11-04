@@ -52,6 +52,8 @@ function b8_acceptance_backup_sources(): array {
         'message-runtime.json'=>[connect_runtime_file(),'ananta:connect:runtime:v1'],
         'crm-ledger.json'=>[connect_crm_file(),'ananta:connect:crm:v1'],
         'distribution-audit.json'=>[discover_distribution_file(),'ananta:discover:distribution:v1'],
+        'merchant-evidence.json'=>[merchant_completion_reviews_file(),'ananta:discover:merchant-evidence:v1'],
+        'google-product-status.json'=>[merchant_google_file(),'ananta:discover:google-status:v1'],
         'pilot-evidence.json'=>[b8_acceptance_file(),'ananta:b8:acceptance:v1'],
     ];
 }

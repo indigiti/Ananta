@@ -841,3 +841,10 @@ The initial Google integration uses a hosted scheduled XML data source, not Merc
 - The pilot stays PHP-first and staging-only. Before substantial traffic, move queue and notification projection into an SQL transactional outbox, add retention and supervised workers, and validate rate limits and recovery during realistic load.
 
 **Acceptance boundary:** all workstream code can be fully CI tested, but B8.5 field pilot cannot be declared completed until independent evidence has been collected and verified. Backup location must be transferred off-server with a secrets-free retention policy; a decryption drill is not an entire host/DB restore.
+
+
+---
+
+## B8-G Completion (November 2026)
+
+An immutable 376-SKU enquiry baseline supports read-only reconciliation with private runtime inventory. Merchant XML requires tracked real inventory, price, approved media, seller, checkout/shipping/returns sign-off and recent SKU identifier/stock evidence. Google Merchant API products.list is read-only, and actual provider statuses and missing offer IDs are distinguished from local readiness. The separate admin-only OpenAI-compatible CSV is a partner preview and cannot be published without actual eligibility and approved onboarding. No automatic product writes, Google upload, Merchant approval or AI citation claims. See docs/B8G_COMPLETION.md.
