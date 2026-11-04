@@ -1,0 +1,2 @@
+nginx: the configuration file /tmp/sanjay-nginx-test.conf syntax is ok
+nginx: configuration file /tmp/sanjay-nginx-test.conf test is successful

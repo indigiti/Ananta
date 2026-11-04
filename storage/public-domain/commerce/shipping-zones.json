@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pune-urban",
+    "name": "Pune Urban",
+    "patterns": ["411"],
+    "serviceable": true,
+    "small_parcel": 149,
+    "furniture_delivery": 699,
+    "installation": true,
+    "installation_fee": 599,
+    "free_small_parcel_above": 3999,
+    "eta": "2–5 business days"
+  },
+  {
+    "id": "maharashtra",
+    "name": "Maharashtra",
+    "patterns": ["40", "41", "42", "43", "44"],
+    "serviceable": true,
+    "small_parcel": 249,
+    "furniture_delivery": 1199,
+    "installation": false,
+    "installation_fee": 0,
+    "free_small_parcel_above": 5999,
+    "eta": "4–8 business days"
+  },
+  {
+    "id": "india-standard",
+    "name": "India Standard",
+    "patterns": [],
+    "serviceable": true,
+    "small_parcel": 349,
+    "furniture_delivery": 1699,
+    "installation": false,
+    "installation_fee": 0,
+    "free_small_parcel_above": 7999,
+    "eta": "6–12 business days"
+  }
+]

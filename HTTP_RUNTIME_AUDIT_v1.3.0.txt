@@ -1,0 +1,21 @@
+Sanjay Nursery v1.3.0 Growth Foundation runtime audit
+Generated: 2026-09-16T04:09:27.153135+00:00
+
+PASS 200 /
+PASS 200 /shop
+PASS 200 /collections/indoor-plants
+PASS 200 /collections/aglaonema
+PASS 200 /product/aglaonema-bai-kaw
+PASS 200 /materials
+PASS 200 /about
+PASS 200 /contact
+PASS 200 /shop?q=aglaonema — filtered discovery noindex
+PASS 200 collection canonical/indexability
+PASS 200 PDP — no fake price/Offer; view_item marker present
+PASS 200 /sitemap.xml — urls=204, products=174, collections=24
+PASS 200 /feeds/google-merchant.xml — items=0 (enquiry-only baseline)
+PASS 200 /health — products=174, version=1.3.0
+PASS 200 /ready — ok=True, growth_checks=6
+PASS 200 /admin/growth — admin protected
+PASS 404 unknown URL — migration 404 path
+PASS 404 migration journal capture — tracked_paths=2

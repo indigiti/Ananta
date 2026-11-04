@@ -1,0 +1,16 @@
+/                                                       200
+/shop                                                   200
+/collections/aglaonema                                  200
+/product/aglaonema-bai-kaw                              200
+/privacy/preferences                                    200
+/health                                                 200
+/ready                                                  200
+/api/intelligence/search-suggestions?q=agla             200
+health.version= 1.5.0
+health.products= 174
+health.variants= 0
+health.shopping_intelligence= {"profiles":0,"personalised_profiles":0,"personalised_sessions":0,"live_visitors":0,"events_30d":0,"recommendation_impressions":0,"recommendation_ctr":0,"recommendation_add_rate":0,"recommendation_revenue":0,"cart_booster_revenue":0,"cart_adds":0,"checkouts":0,"purchases":0,"average_order_value":0,"cart_completion_rate":0,"cart_abandonment_rate":0,"search_conversion_rate":0,"minimum_order_completion_rate":0,"zero_result_searches":0}
+ready.ok= True
+ready.checks= 96
+ready.failed= 0
+intelligence_checks= 8

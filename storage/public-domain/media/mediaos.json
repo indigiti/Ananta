@@ -1,0 +1,2262 @@
+{
+  "version": 1,
+  "products": {
+    "75d3d7fb-963e-4546-bb2f-cf8d60299638": {
+      "product_guid": "75d3d7fb-963e-4546-bb2f-cf8d60299638",
+      "slug": "aglaonema-bai-kaw",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "8a87ef0a-8163-435d-8c4c-a004c5b58233": {
+      "product_guid": "8a87ef0a-8163-435d-8c4c-a004c5b58233",
+      "slug": "aglaonema-beauty",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c7ba1cc1-73cc-4cc4-b47d-15ed53aeb303": {
+      "product_guid": "c7ba1cc1-73cc-4cc4-b47d-15ed53aeb303",
+      "slug": "aglaonema-black-new",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "067a3985-d267-4570-bf99-ca5c6cd1d8a3": {
+      "product_guid": "067a3985-d267-4570-bf99-ca5c6cd1d8a3",
+      "slug": "aglaonema-star-dust-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "4f1f7f35-3992-4c47-a3c5-348a49a3ccd2": {
+      "product_guid": "4f1f7f35-3992-4c47-a3c5-348a49a3ccd2",
+      "slug": "aglaonema-white-anjuman",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e14bc367-2d6a-4887-b209-470bc874bbec": {
+      "product_guid": "e14bc367-2d6a-4887-b209-470bc874bbec",
+      "slug": "aglaonema-red-vein",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "0ea3a087-402c-4046-8192-b78f27ef30cb": {
+      "product_guid": "0ea3a087-402c-4046-8192-b78f27ef30cb",
+      "slug": "aglaonema-anjuman",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5efc8445-e8f4-442a-9eaf-fd343b038ca3": {
+      "product_guid": "5efc8445-e8f4-442a-9eaf-fd343b038ca3",
+      "slug": "aglaonema-white-vein",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "43667686-822e-4647-a78c-2d77240cbfb0": {
+      "product_guid": "43667686-822e-4647-a78c-2d77240cbfb0",
+      "slug": "aglaonema-peach-cochin",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e583694e-3f80-4b8d-ba42-8419214a5d3c": {
+      "product_guid": "e583694e-3f80-4b8d-ba42-8419214a5d3c",
+      "slug": "aglaonema-pink-khanza",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "ce71a050-1a19-4dd2-a108-48c2fa9df4da": {
+      "product_guid": "ce71a050-1a19-4dd2-a108-48c2fa9df4da",
+      "slug": "aglaonema-happiness",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "031a9833-4a4a-4b87-a370-bf9280dc4ea1": {
+      "product_guid": "031a9833-4a4a-4b87-a370-bf9280dc4ea1",
+      "slug": "aglaonema-red-lipstick",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d62ddb97-43e9-4916-a28f-83566aa707ec": {
+      "product_guid": "d62ddb97-43e9-4916-a28f-83566aa707ec",
+      "slug": "aglaonema-new-pink",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "1bada7be-9e8b-40be-a40b-331e39520637": {
+      "product_guid": "1bada7be-9e8b-40be-a40b-331e39520637",
+      "slug": "aglaonema-china-red",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "18873fd7-d5cb-4329-9c26-a682414221ec": {
+      "product_guid": "18873fd7-d5cb-4329-9c26-a682414221ec",
+      "slug": "aglaonema-diamond-red",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "367ff9c5-72fd-420d-afd4-2e52b22f05f2": {
+      "product_guid": "367ff9c5-72fd-420d-afd4-2e52b22f05f2",
+      "slug": "aglaonema-firework",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "fb16feeb-1dbb-4886-881b-925b6f40fc61": {
+      "product_guid": "fb16feeb-1dbb-4886-881b-925b6f40fc61",
+      "slug": "aglaonema-rui",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "b9155471-2254-4345-9c64-b02d8fb355a0": {
+      "product_guid": "b9155471-2254-4345-9c64-b02d8fb355a0",
+      "slug": "aglaonema-green-rosy",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "361cb258-22c4-4250-b33e-b4fc65c77c16": {
+      "product_guid": "361cb258-22c4-4250-b33e-b4fc65c77c16",
+      "slug": "aglaonema-angel",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "9b44c254-d5e0-462b-9d4e-a1b6422c8f3c": {
+      "product_guid": "9b44c254-d5e0-462b-9d4e-a1b6422c8f3c",
+      "slug": "alocasia-azlanii",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f29365e3-b1a9-4aa1-a818-270ef1c620ac": {
+      "product_guid": "f29365e3-b1a9-4aa1-a818-270ef1c620ac",
+      "slug": "alocasia-bambino",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "85004aea-7163-4a25-9d49-1a5aa07ce827": {
+      "product_guid": "85004aea-7163-4a25-9d49-1a5aa07ce827",
+      "slug": "alocasia-parasol",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "34e63f8d-5bf8-4b8c-ab72-e06216b4f24c": {
+      "product_guid": "34e63f8d-5bf8-4b8c-ab72-e06216b4f24c",
+      "slug": "alocasia-melo",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "31e2c161-6042-4f6c-92a5-27e03d6067fe": {
+      "product_guid": "31e2c161-6042-4f6c-92a5-27e03d6067fe",
+      "slug": "alocasia-lauterbachiana",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "82da7021-53af-4068-b6bb-2e7e0cd3155d": {
+      "product_guid": "82da7021-53af-4068-b6bb-2e7e0cd3155d",
+      "slug": "alocasia-silver-dragon",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "301dfbbd-1b2d-4988-ae7f-0b3d31bdb11b": {
+      "product_guid": "301dfbbd-1b2d-4988-ae7f-0b3d31bdb11b",
+      "slug": "alocasia-cuprea-red-secret",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2ed787aa-332c-4a9e-82c5-7da2cea73b4b": {
+      "product_guid": "2ed787aa-332c-4a9e-82c5-7da2cea73b4b",
+      "slug": "alocasia-jacklyn",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "fffc52a9-ba5b-4644-a1c6-7349bcf6f3cd": {
+      "product_guid": "fffc52a9-ba5b-4644-a1c6-7349bcf6f3cd",
+      "slug": "alocasia-polly",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "6837af8c-6600-4eba-a888-3b099c1d5971": {
+      "product_guid": "6837af8c-6600-4eba-a888-3b099c1d5971",
+      "slug": "alocasia-pink-dragon",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c1da8f4d-27fe-40d2-a500-07f6e722ea90": {
+      "product_guid": "c1da8f4d-27fe-40d2-a500-07f6e722ea90",
+      "slug": "alocasia-sarian",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c96b41df-1751-4008-bd81-527cf6cf4e5b": {
+      "product_guid": "c96b41df-1751-4008-bd81-527cf6cf4e5b",
+      "slug": "alocasia-wentii-ruby",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "68a24a44-df03-4a75-bd4a-128ce9cf6430": {
+      "product_guid": "68a24a44-df03-4a75-bd4a-128ce9cf6430",
+      "slug": "alocasia-watsoniana",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d1a847cb-7528-4952-b455-cb2185381083": {
+      "product_guid": "d1a847cb-7528-4952-b455-cb2185381083",
+      "slug": "alocasia-black-velvet",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "b36b2659-8455-427a-a6c8-ebf82923e7c5": {
+      "product_guid": "b36b2659-8455-427a-a6c8-ebf82923e7c5",
+      "slug": "alocasia-dragon",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c4aa78aa-c2c8-4fbc-ab4a-5f4d9c3692b8": {
+      "product_guid": "c4aa78aa-c2c8-4fbc-ab4a-5f4d9c3692b8",
+      "slug": "alocasia-sinuata",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5492cf0b-490d-4818-bb67-e8873343d183": {
+      "product_guid": "5492cf0b-490d-4818-bb67-e8873343d183",
+      "slug": "alocasia-green-shield",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7ae7ef06-92fb-4e60-a917-478d9cf50104": {
+      "product_guid": "7ae7ef06-92fb-4e60-a917-478d9cf50104",
+      "slug": "alocasia-cucullata-variegata",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e5a6b1d3-cacc-40b4-a9d8-c43af8b6a47b": {
+      "product_guid": "e5a6b1d3-cacc-40b4-a9d8-c43af8b6a47b",
+      "slug": "colocasia-gold-ginger",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e3916b71-f748-4716-a71d-a69086fea8ec": {
+      "product_guid": "e3916b71-f748-4716-a71d-a69086fea8ec",
+      "slug": "asplenium-cobra",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "01dbb036-ce90-47ec-a7fe-93501d54dd38": {
+      "product_guid": "01dbb036-ce90-47ec-a7fe-93501d54dd38",
+      "slug": "asplenium-nidus",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "fd276a20-e578-4738-b80a-0e14fecb60ad": {
+      "product_guid": "fd276a20-e578-4738-b80a-0e14fecb60ad",
+      "slug": "asplenium-crispy-wave",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "3f4ad502-ed2f-4d9d-a781-e3bb3af21ad6": {
+      "product_guid": "3f4ad502-ed2f-4d9d-a781-e3bb3af21ad6",
+      "slug": "asplenium-nidus-crispy-wave",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "4fb15403-34b8-4c7c-8274-36c01c1993cd": {
+      "product_guid": "4fb15403-34b8-4c7c-8274-36c01c1993cd",
+      "slug": "asplenium-nidus-osaka",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "9a0bd008-06a7-4ff6-99c5-838d3552890e": {
+      "product_guid": "9a0bd008-06a7-4ff6-99c5-838d3552890e",
+      "slug": "asplenium-nidus-variegated",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "217895d4-b6db-4d24-93aa-8eaef0c24e73": {
+      "product_guid": "217895d4-b6db-4d24-93aa-8eaef0c24e73",
+      "slug": "asplenium-leslie",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5ba01953-7bc3-4a53-bb82-eff5e655e5b9": {
+      "product_guid": "5ba01953-7bc3-4a53-bb82-eff5e655e5b9",
+      "slug": "asplenium-antiquum-osaka",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "138e1bfa-76de-47f6-b57a-6a692a8163cc": {
+      "product_guid": "138e1bfa-76de-47f6-b57a-6a692a8163cc",
+      "slug": "asplenium-silver-wing",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "0b7ae988-c40b-4dd4-8d41-625475e52259": {
+      "product_guid": "0b7ae988-c40b-4dd4-8d41-625475e52259",
+      "slug": "asplenium-lemkasii",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "feb71104-f9aa-4203-b559-5e6d0052de97": {
+      "product_guid": "feb71104-f9aa-4203-b559-5e6d0052de97",
+      "slug": "asplenium-manila",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "6e55ee7e-0551-4c12-95dc-2b256256979e": {
+      "product_guid": "6e55ee7e-0551-4c12-95dc-2b256256979e",
+      "slug": "asplenium-venus",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d0531ebe-d79d-4c2f-8669-2f8c17df0e31": {
+      "product_guid": "d0531ebe-d79d-4c2f-8669-2f8c17df0e31",
+      "slug": "asplenium-crissie",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "780f261c-1668-4a54-96c4-13931b6c434a": {
+      "product_guid": "780f261c-1668-4a54-96c4-13931b6c434a",
+      "slug": "asplenium-scolopendrium",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "3c2eb324-2d71-4278-bb7e-e4b71cdbb75e": {
+      "product_guid": "3c2eb324-2d71-4278-bb7e-e4b71cdbb75e",
+      "slug": "asplenium-staghorn",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f14a02e2-ea5b-44a4-8d8e-3754085618ce": {
+      "product_guid": "f14a02e2-ea5b-44a4-8d8e-3754085618ce",
+      "slug": "asplenium-antiquum",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "92c485ca-1311-4702-bcf9-fc6c5f9c2414": {
+      "product_guid": "92c485ca-1311-4702-bcf9-fc6c5f9c2414",
+      "slug": "platycerium-wandae",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "16c36ea8-8903-4d4e-a45a-056927b1aa0c": {
+      "product_guid": "16c36ea8-8903-4d4e-a45a-056927b1aa0c",
+      "slug": "microsorum-fern",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f00014c9-1592-496d-ba17-741f14aa1dd1": {
+      "product_guid": "f00014c9-1592-496d-ba17-741f14aa1dd1",
+      "slug": "fern",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "821178b9-5ddb-461d-a25f-58e294e9ba68": {
+      "product_guid": "821178b9-5ddb-461d-a25f-58e294e9ba68",
+      "slug": "fittonia-pink",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5e49fc7d-e463-42f3-a8e4-8df48567a8e6": {
+      "product_guid": "5e49fc7d-e463-42f3-a8e4-8df48567a8e6",
+      "slug": "fittonia-red-vein",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "22364b05-c5cc-487e-9872-45a005d09daa": {
+      "product_guid": "22364b05-c5cc-487e-9872-45a005d09daa",
+      "slug": "fittonia-white-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "8c30909a-314e-4da8-9103-065984b8210d": {
+      "product_guid": "8c30909a-314e-4da8-9103-065984b8210d",
+      "slug": "fittonia-red",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "cc345c93-de90-4a54-9e7a-e6677deb1da5": {
+      "product_guid": "cc345c93-de90-4a54-9e7a-e6677deb1da5",
+      "slug": "fittonia-root-bridges-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "182922bd-7e57-40a9-b5a3-ab2c33221399": {
+      "product_guid": "182922bd-7e57-40a9-b5a3-ab2c33221399",
+      "slug": "fittonia-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "9f648c00-1ad0-4a50-a23c-be9bdc4a4815": {
+      "product_guid": "9f648c00-1ad0-4a50-a23c-be9bdc4a4815",
+      "slug": "fittonia-yellow-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d2465173-917e-4e4d-bec5-55173bd95119": {
+      "product_guid": "d2465173-917e-4e4d-bec5-55173bd95119",
+      "slug": "fittonia-forest-flame",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d4f98dbf-3138-4aac-b218-2d6fe248c974": {
+      "product_guid": "d4f98dbf-3138-4aac-b218-2d6fe248c974",
+      "slug": "fittonia-red-cloud",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "cbfa9951-0075-46b7-b1dc-2a8bad390c8e": {
+      "product_guid": "cbfa9951-0075-46b7-b1dc-2a8bad390c8e",
+      "slug": "fittonia-albivenis-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "41e24d81-b94b-476e-8946-a5cd74d00a41": {
+      "product_guid": "41e24d81-b94b-476e-8946-a5cd74d00a41",
+      "slug": "fittonia-pink-forest-flame",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "05b19fb1-c352-4771-86d2-386a979a4550": {
+      "product_guid": "05b19fb1-c352-4771-86d2-386a979a4550",
+      "slug": "fittonia-white",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f1cbc2a3-fce5-481e-a7ba-f9d44038bbdc": {
+      "product_guid": "f1cbc2a3-fce5-481e-a7ba-f9d44038bbdc",
+      "slug": "fittonia-red-nerve",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2895af11-4bdc-4a63-8642-200a45c0e113": {
+      "product_guid": "2895af11-4bdc-4a63-8642-200a45c0e113",
+      "slug": "fittonia-mini-white",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "59848ef1-5eff-4a25-a567-099864aef1cd": {
+      "product_guid": "59848ef1-5eff-4a25-a567-099864aef1cd",
+      "slug": "zz-plant-zamioculcas-zamiifolia",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2b46e2f5-d034-4467-b68e-d2195f12f808": {
+      "product_guid": "2b46e2f5-d034-4467-b68e-d2195f12f808",
+      "slug": "zenzi-dwarf-zz",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5220be93-119c-4c8e-b36a-0cb09797a3f0": {
+      "product_guid": "5220be93-119c-4c8e-b36a-0cb09797a3f0",
+      "slug": "raven-black-zz",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "1e028bf1-0836-4ad7-87f4-8a84fce1e75a": {
+      "product_guid": "1e028bf1-0836-4ad7-87f4-8a84fce1e75a",
+      "slug": "mini-zz",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "73914b3b-6b77-4d1e-b1f0-8095c6979160": {
+      "product_guid": "73914b3b-6b77-4d1e-b1f0-8095c6979160",
+      "slug": "variegated-zz",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5c89c9cf-4ad1-440f-88b9-78a8dc1b453b": {
+      "product_guid": "5c89c9cf-4ad1-440f-88b9-78a8dc1b453b",
+      "slug": "zamicro-mini",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "50960278-af0e-4eb1-81f0-c3c658ad04c9": {
+      "product_guid": "50960278-af0e-4eb1-81f0-c3c658ad04c9",
+      "slug": "zamia-variegata",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c5693d05-8fd8-4152-9485-2fc03ae34968": {
+      "product_guid": "c5693d05-8fd8-4152-9485-2fc03ae34968",
+      "slug": "haworthia-aloe-flow",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c8d2a289-52d5-4ba6-8c05-bb1896ecf1f2": {
+      "product_guid": "c8d2a289-52d5-4ba6-8c05-bb1896ecf1f2",
+      "slug": "haworthia-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "dab3a0db-9e43-43d9-97a8-4ace4f3b65b6": {
+      "product_guid": "dab3a0db-9e43-43d9-97a8-4ace4f3b65b6",
+      "slug": "haworthia-maculata",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "97dfd539-0729-465e-af2d-7a8f1553b66e": {
+      "product_guid": "97dfd539-0729-465e-af2d-7a8f1553b66e",
+      "slug": "haworthia-star",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d0436cf5-84b6-4e78-be37-cbf79328f90d": {
+      "product_guid": "d0436cf5-84b6-4e78-be37-cbf79328f90d",
+      "slug": "haworthia-magnifica",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "a7aff249-ed39-49da-8b4f-c477a1b1d4ff": {
+      "product_guid": "a7aff249-ed39-49da-8b4f-c477a1b1d4ff",
+      "slug": "haworthia-angustifolia-baylissii",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f7cd415f-997f-41fa-a55c-377f59d0a6a0": {
+      "product_guid": "f7cd415f-997f-41fa-a55c-377f59d0a6a0",
+      "slug": "haworthia-gasteraloe-hybrida-d-tigar",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "0f5ee003-229a-438c-9413-20d8a7cd2d16": {
+      "product_guid": "0f5ee003-229a-438c-9413-20d8a7cd2d16",
+      "slug": "haworthia-aloe-tiki",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7d5313ed-370a-4be0-bb86-5f3ef440f030": {
+      "product_guid": "7d5313ed-370a-4be0-bb86-5f3ef440f030",
+      "slug": "haworthia-zebra",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "21693012-64db-418c-bcc3-4d86078b4002": {
+      "product_guid": "21693012-64db-418c-bcc3-4d86078b4002",
+      "slug": "haworthia-limifolia-spider-white",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "14ce56f0-6bcf-4473-9812-7321f5d8342f": {
+      "product_guid": "14ce56f0-6bcf-4473-9812-7321f5d8342f",
+      "slug": "haworthia-aloe-rauhii-reynolds",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "99478a60-9d01-42db-8293-22c56763bb9d": {
+      "product_guid": "99478a60-9d01-42db-8293-22c56763bb9d",
+      "slug": "peperomia-orba-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "b8c6e6d6-e252-4ded-b501-366c05b590be": {
+      "product_guid": "b8c6e6d6-e252-4ded-b501-366c05b590be",
+      "slug": "peperomia-buenos-aires",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5ddda047-7a82-472f-a08d-b190f9d22f29": {
+      "product_guid": "5ddda047-7a82-472f-a08d-b190f9d22f29",
+      "slug": "peperomia-brasilia",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "6fe47be8-c3ce-4c3b-88ab-05fb457a8786": {
+      "product_guid": "6fe47be8-c3ce-4c3b-88ab-05fb457a8786",
+      "slug": "peperomia-brasilia-hanging",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "97a54c47-da64-4e25-8cfd-9590af25b325": {
+      "product_guid": "97a54c47-da64-4e25-8cfd-9590af25b325",
+      "slug": "peperomia-caperata",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "faafdea3-f14e-468d-9e0b-07c71e8f1262": {
+      "product_guid": "faafdea3-f14e-468d-9e0b-07c71e8f1262",
+      "slug": "peperomia-hope",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "af45e1ee-16b8-44d7-9c8d-87374a0b193e": {
+      "product_guid": "af45e1ee-16b8-44d7-9c8d-87374a0b193e",
+      "slug": "peperomia-red-luna",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "16c466be-3f43-4377-8301-f797ca0182ab": {
+      "product_guid": "16c466be-3f43-4377-8301-f797ca0182ab",
+      "slug": "peperomia-moonlight",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "12905063-de95-4d30-9415-0dc0826b3c53": {
+      "product_guid": "12905063-de95-4d30-9415-0dc0826b3c53",
+      "slug": "peperomia-rosso",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "051cc6d7-1f49-4aac-9133-0390a5da5a16": {
+      "product_guid": "051cc6d7-1f49-4aac-9133-0390a5da5a16",
+      "slug": "peperomia-clusiifolia-jelly-pink",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "ad1709fe-45ba-4bce-a109-583e310244dc": {
+      "product_guid": "ad1709fe-45ba-4bce-a109-583e310244dc",
+      "slug": "dieffenbachia-star-bright",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "4b03553d-fe22-4c50-bfcb-2eeea029e218": {
+      "product_guid": "4b03553d-fe22-4c50-bfcb-2eeea029e218",
+      "slug": "dieffenbachia-milky-way",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "46d8e145-26f6-4c5d-a8c7-339c1080fc3b": {
+      "product_guid": "46d8e145-26f6-4c5d-a8c7-339c1080fc3b",
+      "slug": "dieffenbachia-white-flame",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c0abe75e-30da-42a9-953b-9c46c563c34b": {
+      "product_guid": "c0abe75e-30da-42a9-953b-9c46c563c34b",
+      "slug": "dieffenbachia-delilah",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7db988cf-a6a9-4802-83be-87aee04228b8": {
+      "product_guid": "7db988cf-a6a9-4802-83be-87aee04228b8",
+      "slug": "dieffenbachia-green-magic",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e7e60db5-06f7-470d-8a9d-a508e3e20379": {
+      "product_guid": "e7e60db5-06f7-470d-8a9d-a508e3e20379",
+      "slug": "dieffenbachia-chinese-evergreen",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "78479d3e-d666-4b0a-82fc-c69db95a983a": {
+      "product_guid": "78479d3e-d666-4b0a-82fc-c69db95a983a",
+      "slug": "dieffenbachia-vesuvius",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "670f6293-212f-4f97-a7bb-b2391c47814c": {
+      "product_guid": "670f6293-212f-4f97-a7bb-b2391c47814c",
+      "slug": "philodendron-white-wizard",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e24b7f15-0acf-4456-b16d-bf3ddfab075d": {
+      "product_guid": "e24b7f15-0acf-4456-b16d-bf3ddfab075d",
+      "slug": "philodendron-white-wizard-seedling",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "6270adc2-db54-4f88-bc38-e84b642c2e5b": {
+      "product_guid": "6270adc2-db54-4f88-bc38-e84b642c2e5b",
+      "slug": "philodendron-bird-of-paradise-yellow",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2579db9a-f581-4bfd-876f-d05752cf7845": {
+      "product_guid": "2579db9a-f581-4bfd-876f-d05752cf7845",
+      "slug": "philodendron-golden-saw",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2af61962-ccb9-4d4d-b933-8f10103b55e6": {
+      "product_guid": "2af61962-ccb9-4d4d-b933-8f10103b55e6",
+      "slug": "philodendron-brandtianum",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "27f39fa9-ec77-49a3-bda1-382081ab1860": {
+      "product_guid": "27f39fa9-ec77-49a3-bda1-382081ab1860",
+      "slug": "philodendron-goeldii",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "918397fa-999e-4c39-81a6-c589bc08c415": {
+      "product_guid": "918397fa-999e-4c39-81a6-c589bc08c415",
+      "slug": "sansevieria-black-gold",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "cbc5fe48-23bd-4aa1-affd-dddf10204ca6": {
+      "product_guid": "cbc5fe48-23bd-4aa1-affd-dddf10204ca6",
+      "slug": "sansevieria-trifasciata-tornado",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "eab26f86-1d26-4060-8639-fdf7a61e96ba": {
+      "product_guid": "eab26f86-1d26-4060-8639-fdf7a61e96ba",
+      "slug": "sansevieria-trifasciata-hahnii-silver-zebra",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "b55dd19b-9de7-4c8f-8a9c-c315bb963810": {
+      "product_guid": "b55dd19b-9de7-4c8f-8a9c-c315bb963810",
+      "slug": "sansevieria-l-crooked",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "ece7470b-3216-444b-a4ea-672feb2121fe": {
+      "product_guid": "ece7470b-3216-444b-a4ea-672feb2121fe",
+      "slug": "sansevieria-trifasciata-dwarf-laurentii",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "4184081d-ee40-40ba-a71f-40900d6e6183": {
+      "product_guid": "4184081d-ee40-40ba-a71f-40900d6e6183",
+      "slug": "sansevieria-mikado",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "6239933e-13b3-4747-bd26-8fc593caf05b": {
+      "product_guid": "6239933e-13b3-4747-bd26-8fc593caf05b",
+      "slug": "sansevieria-star-and-stripes",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "29ee7ff0-631d-4c98-9eab-c859b6d3b44f": {
+      "product_guid": "29ee7ff0-631d-4c98-9eab-c859b6d3b44f",
+      "slug": "sansevieria-mikado-liliput",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "1e828ef3-7265-4d33-b46f-b724b1a74579": {
+      "product_guid": "1e828ef3-7265-4d33-b46f-b724b1a74579",
+      "slug": "sansevieria-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "22fd0595-931c-4532-9795-879fbadf1c17": {
+      "product_guid": "22fd0595-931c-4532-9795-879fbadf1c17",
+      "slug": "sansevieria-green-dwarf",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "86849b43-acc8-4bf0-80e8-d28219d54658": {
+      "product_guid": "86849b43-acc8-4bf0-80e8-d28219d54658",
+      "slug": "syngonium-light-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c4b95a09-5462-41f0-a094-72c42e89dc43": {
+      "product_guid": "c4b95a09-5462-41f0-a094-72c42e89dc43",
+      "slug": "syngonium-red-heart",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7c2b8043-8c11-44ab-96fe-a0061be3313c": {
+      "product_guid": "7c2b8043-8c11-44ab-96fe-a0061be3313c",
+      "slug": "syngonium-white-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "71220d4f-36a4-4fff-86fe-315d1ba60b64": {
+      "product_guid": "71220d4f-36a4-4fff-86fe-315d1ba60b64",
+      "slug": "syngonium-green-syngonium",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "9142c48b-9194-40ef-8084-c0ab8542c8e5": {
+      "product_guid": "9142c48b-9194-40ef-8084-c0ab8542c8e5",
+      "slug": "caladium-colors-and-varieties",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "cf1424a8-6983-4078-b436-5a2637226d68": {
+      "product_guid": "cf1424a8-6983-4078-b436-5a2637226d68",
+      "slug": "caladium-viola",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d5436f1c-086b-4cd6-8fb5-57bc5f231ccc": {
+      "product_guid": "d5436f1c-086b-4cd6-8fb5-57bc5f231ccc",
+      "slug": "caladium-green-spider",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "3490234c-7a1a-48e7-a1d5-f9695a0d38e8": {
+      "product_guid": "3490234c-7a1a-48e7-a1d5-f9695a0d38e8",
+      "slug": "xanthosoma",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2e32b1d9-3ab2-40a6-b3bd-e478aaf7ee70": {
+      "product_guid": "2e32b1d9-3ab2-40a6-b3bd-e478aaf7ee70",
+      "slug": "caladium-pink-green",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "a2b2a0e1-b540-4d83-b734-5102f513ba12": {
+      "product_guid": "a2b2a0e1-b540-4d83-b734-5102f513ba12",
+      "slug": "pothos-njoy-golden-variegated",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "a7e9f3b7-4fe7-4d98-adf0-3fa68fc18c0b": {
+      "product_guid": "a7e9f3b7-4fe7-4d98-adf0-3fa68fc18c0b",
+      "slug": "marble-money-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d294acf5-535d-43fd-a5aa-dc0b14c897bf": {
+      "product_guid": "d294acf5-535d-43fd-a5aa-dc0b14c897bf",
+      "slug": "green-money-plant-variegated",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "06c872f8-19de-422c-9e8a-2eea21b90dea": {
+      "product_guid": "06c872f8-19de-422c-9e8a-2eea21b90dea",
+      "slug": "golden-money-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "abf28847-e10e-44d1-8596-7f58c6a1a902": {
+      "product_guid": "abf28847-e10e-44d1-8596-7f58c6a1a902",
+      "slug": "njoy-scindapsus-money-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "1d9de03e-7056-48bc-9f1e-bd62115f5167": {
+      "product_guid": "1d9de03e-7056-48bc-9f1e-bd62115f5167",
+      "slug": "green-money-water-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "24783f7b-fdf8-4dcc-ab89-76784f537314": {
+      "product_guid": "24783f7b-fdf8-4dcc-ab89-76784f537314",
+      "slug": "scindapsus-water-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "437d4684-a3be-49eb-bcf3-fab9726ebbb0": {
+      "product_guid": "437d4684-a3be-49eb-bcf3-fab9726ebbb0",
+      "slug": "monstera-burle-marx-flame",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "67bab0cf-3e84-4b0a-b19b-8efa3a1702a8": {
+      "product_guid": "67bab0cf-3e84-4b0a-b19b-8efa3a1702a8",
+      "slug": "monstera-peru",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7965c40d-9a04-4ee2-aaf9-eed573aeb28d": {
+      "product_guid": "7965c40d-9a04-4ee2-aaf9-eed573aeb28d",
+      "slug": "ficus-aspera-variegated",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5a6fc44f-4e48-48ac-9908-d8ad3714b374": {
+      "product_guid": "5a6fc44f-4e48-48ac-9908-d8ad3714b374",
+      "slug": "ficus-altissima-yellow-gem",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2a0770fd-7aa3-4d35-b506-a823231b6ee7": {
+      "product_guid": "2a0770fd-7aa3-4d35-b506-a823231b6ee7",
+      "slug": "ficus-bonsai-bonzii",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e89a6544-49fa-46e1-8f3c-106e614d554c": {
+      "product_guid": "e89a6544-49fa-46e1-8f3c-106e614d554c",
+      "slug": "ficus-bonsai",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f0f80524-6c0f-4118-9ce0-9309162245c0": {
+      "product_guid": "f0f80524-6c0f-4118-9ce0-9309162245c0",
+      "slug": "bonsai-ficus-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "ea905dd3-2b20-46aa-9205-d5fc74ef68c4": {
+      "product_guid": "ea905dd3-2b20-46aa-9205-d5fc74ef68c4",
+      "slug": "bonsai-plants",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "a4f11f3b-a1fe-49ac-b356-663b7d13882f": {
+      "product_guid": "a4f11f3b-a1fe-49ac-b356-663b7d13882f",
+      "slug": "calla-lily",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "053937f9-624e-4728-bd20-e7e916a6e063": {
+      "product_guid": "053937f9-624e-4728-bd20-e7e916a6e063",
+      "slug": "yellow-calla-lily",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2b85cc42-7494-4cc1-bfb7-64574e333d11": {
+      "product_guid": "2b85cc42-7494-4cc1-bfb7-64574e333d11",
+      "slug": "mandevilla-white",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e98de026-e542-43dd-8002-2f42fc5c7109": {
+      "product_guid": "e98de026-e542-43dd-8002-2f42fc5c7109",
+      "slug": "adenium",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "4ab84a4d-2ae6-4932-bc2d-b02f7abc98e7": {
+      "product_guid": "4ab84a4d-2ae6-4932-bc2d-b02f7abc98e7",
+      "slug": "anthurium-blood-red-flamingo",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "80779887-f8a8-4459-adcd-8b43ed36df9a": {
+      "product_guid": "80779887-f8a8-4459-adcd-8b43ed36df9a",
+      "slug": "doritaenopsis-orchid",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "18623bb4-1fbf-4ec6-809c-34a1928e3ad3": {
+      "product_guid": "18623bb4-1fbf-4ec6-809c-34a1928e3ad3",
+      "slug": "spathiphyllum",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "c8619a05-49b3-4cc3-8e58-d24814b398ec": {
+      "product_guid": "c8619a05-49b3-4cc3-8e58-d24814b398ec",
+      "slug": "spathiphyllum-silver-streak",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e3f4c60d-c3d9-43f1-af51-28b7f42ac368": {
+      "product_guid": "e3f4c60d-c3d9-43f1-af51-28b7f42ac368",
+      "slug": "spathiphyllum-crown",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "ac62c4c2-c283-4dc3-b9a9-7bdb8e95119f": {
+      "product_guid": "ac62c4c2-c283-4dc3-b9a9-7bdb8e95119f",
+      "slug": "bamboo-palm",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "75675b65-2313-4e64-833c-4ddea31d5d0f": {
+      "product_guid": "75675b65-2313-4e64-833c-4ddea31d5d0f",
+      "slug": "areca-palm",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "2e905447-0815-4e63-820f-ddc389d17a9c": {
+      "product_guid": "2e905447-0815-4e63-820f-ddc389d17a9c",
+      "slug": "pachira-aquatica-braided-thin",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "e64f70c2-bdaf-4d1c-9182-0f4141aec07b": {
+      "product_guid": "e64f70c2-bdaf-4d1c-9182-0f4141aec07b",
+      "slug": "pachira-money-plant-tree",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7cce02b8-eed9-4440-95c0-58a0f7b8acdf": {
+      "product_guid": "7cce02b8-eed9-4440-95c0-58a0f7b8acdf",
+      "slug": "dracaena",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "4a8882f2-6125-44b7-ac18-513818c5e12a": {
+      "product_guid": "4a8882f2-6125-44b7-ac18-513818c5e12a",
+      "slug": "lucky-bamboo",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "5fb31437-3a08-41b6-a3aa-0b83d17faf52": {
+      "product_guid": "5fb31437-3a08-41b6-a3aa-0b83d17faf52",
+      "slug": "schefflera-variegated",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "826fbae4-d2ff-48f2-a815-ad0628f54ed6": {
+      "product_guid": "826fbae4-d2ff-48f2-a815-ad0628f54ed6",
+      "slug": "calathea-freddie",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "535a9e40-e872-4a46-a54b-0e3d9e47c249": {
+      "product_guid": "535a9e40-e872-4a46-a54b-0e3d9e47c249",
+      "slug": "calathea-makoyana",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f95623ba-251e-4d80-b3dc-43dd9c0991c8": {
+      "product_guid": "f95623ba-251e-4d80-b3dc-43dd9c0991c8",
+      "slug": "calathea-insignis",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "afecdb13-7a3b-4a12-8304-8d0a1b80646c": {
+      "product_guid": "afecdb13-7a3b-4a12-8304-8d0a1b80646c",
+      "slug": "oxycardium-red",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "f2c6c8bb-85dd-44a9-bc4e-f712e4ce34ae": {
+      "product_guid": "f2c6c8bb-85dd-44a9-bc4e-f712e4ce34ae",
+      "slug": "snake-plant",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "3dc60fcc-0792-4717-974b-aab750c90b99": {
+      "product_guid": "3dc60fcc-0792-4717-974b-aab750c90b99",
+      "slug": "tillandsia-cotton-candy",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "0c57da43-a97a-4442-9405-edd7156c87ae": {
+      "product_guid": "0c57da43-a97a-4442-9405-edd7156c87ae",
+      "slug": "tillandsia-paucifolia-red-hybrid",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "0543e93d-6a61-43b2-9588-97cf91643654": {
+      "product_guid": "0543e93d-6a61-43b2-9588-97cf91643654",
+      "slug": "gymnocalycium-orange-moon-cactus",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "8cadbce8-a11c-4081-ab0d-2d0d56845092": {
+      "product_guid": "8cadbce8-a11c-4081-ab0d-2d0d56845092",
+      "slug": "gymnocalycium-red-moon-cactus",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7c435f84-fb7b-4332-ab53-aba5943fb208": {
+      "product_guid": "7c435f84-fb7b-4332-ab53-aba5943fb208",
+      "slug": "gymnocalycium-orange-and-yellow-moon-cactus",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "d0090515-45d6-444d-97fe-de477542798d": {
+      "product_guid": "d0090515-45d6-444d-97fe-de477542798d",
+      "slug": "parodia-magnifica",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7578a61f-a3f8-4356-a30d-78e4f8718123": {
+      "product_guid": "7578a61f-a3f8-4356-a30d-78e4f8718123",
+      "slug": "aurum-succulent",
+      "roles": {},
+      "updated_at": "2026-09-14T14:49:01.740441+00:00"
+    },
+    "7005f670-c7d1-41a8-8623-63f2a1a66805": {
+      "product_guid": "7005f670-c7d1-41a8-8623-63f2a1a66805",
+      "slug": "ficus-lyrata-fiddle-leaf-fig",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2f72f63a-bb62-4739-acd5-386415df875a": {
+      "product_guid": "2f72f63a-bb62-4739-acd5-386415df875a",
+      "slug": "ficus-lyrata-bambino",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "bc67c95b-b87e-477a-a84a-5a3461696a9b": {
+      "product_guid": "bc67c95b-b87e-477a-a84a-5a3461696a9b",
+      "slug": "ficus-elastica-green",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "f05e0063-7904-4332-8bd5-638ef1d90c8f": {
+      "product_guid": "f05e0063-7904-4332-8bd5-638ef1d90c8f",
+      "slug": "ficus-elastica-burgundy",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "82d4706f-d9d3-4456-9d2d-ba447c98e13b": {
+      "product_guid": "82d4706f-d9d3-4456-9d2d-ba447c98e13b",
+      "slug": "ficus-elastica-tineke",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "765648f8-76a6-496a-8471-167b6f05092c": {
+      "product_guid": "765648f8-76a6-496a-8471-167b6f05092c",
+      "slug": "ficus-elastica-ruby",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "19ea9f04-bb9b-4580-b65a-a62ee4ff8ca6": {
+      "product_guid": "19ea9f04-bb9b-4580-b65a-a62ee4ff8ca6",
+      "slug": "ficus-benjamina-green",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "6848c199-453e-485f-9e4c-eef167687a28": {
+      "product_guid": "6848c199-453e-485f-9e4c-eef167687a28",
+      "slug": "ficus-benjamina-starlight",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "cdc26d77-66a4-4324-84fc-6580035cd278": {
+      "product_guid": "cdc26d77-66a4-4324-84fc-6580035cd278",
+      "slug": "ficus-benjamina-golden-king",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "8a93d506-849f-47b1-b913-9f4cf723e2f2": {
+      "product_guid": "8a93d506-849f-47b1-b913-9f4cf723e2f2",
+      "slug": "ficus-alii",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c9e616cb-bac9-4d9e-8a2d-175daa98ecd4": {
+      "product_guid": "c9e616cb-bac9-4d9e-8a2d-175daa98ecd4",
+      "slug": "ficus-audrey",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "25d50a40-81a8-4f6b-bd18-e48f2a4b7336": {
+      "product_guid": "25d50a40-81a8-4f6b-bd18-e48f2a4b7336",
+      "slug": "ficus-deltoidea-golden",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "35f35ca3-5bb3-4187-a8f3-1c75dbe6f34c": {
+      "product_guid": "35f35ca3-5bb3-4187-a8f3-1c75dbe6f34c",
+      "slug": "monstera-deliciosa",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "83ccec73-4334-48a9-ae05-f9d2a2925b59": {
+      "product_guid": "83ccec73-4334-48a9-ae05-f9d2a2925b59",
+      "slug": "monstera-adansonii",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "44186fbf-b177-414f-a399-7118e67e6a20": {
+      "product_guid": "44186fbf-b177-414f-a399-7118e67e6a20",
+      "slug": "monstera-thai-constellation",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "11cf1a58-6bbc-41cb-abc4-c8bdc07a17fd": {
+      "product_guid": "11cf1a58-6bbc-41cb-abc4-c8bdc07a17fd",
+      "slug": "monstera-albo-variegata",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "fd1addab-8525-4205-a027-490a94b5c26f": {
+      "product_guid": "fd1addab-8525-4205-a027-490a94b5c26f",
+      "slug": "monstera-siltepecana",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "edb12153-f47f-4776-8805-9add2dbe53b5": {
+      "product_guid": "edb12153-f47f-4776-8805-9add2dbe53b5",
+      "slug": "philodendron-birkin",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9ac10803-df47-456d-8f79-db4ea7d8c69d": {
+      "product_guid": "9ac10803-df47-456d-8f79-db4ea7d8c69d",
+      "slug": "philodendron-pink-princess",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9d59c253-f5d5-406b-9cb9-b16afef00251": {
+      "product_guid": "9d59c253-f5d5-406b-9cb9-b16afef00251",
+      "slug": "philodendron-prince-of-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "8d345d19-a0ea-4a20-bca2-25a03593a78a": {
+      "product_guid": "8d345d19-a0ea-4a20-bca2-25a03593a78a",
+      "slug": "philodendron-moonlight",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e149c318-feb3-4773-af06-19b84713abbc": {
+      "product_guid": "e149c318-feb3-4773-af06-19b84713abbc",
+      "slug": "philodendron-imperial-green",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5ed68b8f-8a8c-4b7a-bae1-fa3c9b66b863": {
+      "product_guid": "5ed68b8f-8a8c-4b7a-bae1-fa3c9b66b863",
+      "slug": "philodendron-imperial-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9c3fb5ff-ce17-47fd-bca6-068ca2f8fea7": {
+      "product_guid": "9c3fb5ff-ce17-47fd-bca6-068ca2f8fea7",
+      "slug": "philodendron-congo-green",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0ef82e07-4a50-48bc-ac95-ad0295717e24": {
+      "product_guid": "0ef82e07-4a50-48bc-ac95-ad0295717e24",
+      "slug": "philodendron-congo-rojo",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c73526cd-b831-44e9-befa-0f7781d36eed": {
+      "product_guid": "c73526cd-b831-44e9-befa-0f7781d36eed",
+      "slug": "philodendron-xanadu",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7b2a2186-d154-4d60-a1a3-4107d52efca1": {
+      "product_guid": "7b2a2186-d154-4d60-a1a3-4107d52efca1",
+      "slug": "philodendron-selloum-hope",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "107f380d-11de-47ec-a23e-b81e423571f9": {
+      "product_guid": "107f380d-11de-47ec-a23e-b81e423571f9",
+      "slug": "philodendron-brasil",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "717ece97-0adc-451a-9a51-3cd1dac8af6d": {
+      "product_guid": "717ece97-0adc-451a-9a51-3cd1dac8af6d",
+      "slug": "philodendron-micans",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "4a701389-72da-408a-84e7-72412d543a76": {
+      "product_guid": "4a701389-72da-408a-84e7-72412d543a76",
+      "slug": "philodendron-heartleaf",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "223f61b3-75cb-49de-9573-cdad31bf4349": {
+      "product_guid": "223f61b3-75cb-49de-9573-cdad31bf4349",
+      "slug": "philodendron-lemon-lime",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a11f52ef-606f-4c1e-9852-e7cc786afa04": {
+      "product_guid": "a11f52ef-606f-4c1e-9852-e7cc786afa04",
+      "slug": "philodendron-gloriosum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ee07f51b-b8db-402f-af4a-878f79dc9047": {
+      "product_guid": "ee07f51b-b8db-402f-af4a-878f79dc9047",
+      "slug": "philodendron-melanochrysum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b7edf74c-2c61-488f-993c-fcdf574a65a9": {
+      "product_guid": "b7edf74c-2c61-488f-993c-fcdf574a65a9",
+      "slug": "calathea-orbifolia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a46094ee-f7f5-4bc1-8ea9-26b4ac0f143d": {
+      "product_guid": "a46094ee-f7f5-4bc1-8ea9-26b4ac0f143d",
+      "slug": "calathea-medallion",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "fb90d1fd-8ff5-4378-8447-300a61aade26": {
+      "product_guid": "fb90d1fd-8ff5-4378-8447-300a61aade26",
+      "slug": "calathea-beauty-star",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "44b10f6e-e8d1-48cc-8d17-ebd7ea6d8853": {
+      "product_guid": "44b10f6e-e8d1-48cc-8d17-ebd7ea6d8853",
+      "slug": "calathea-white-fusion",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d556f37f-5d46-48f6-8380-57745e59cecf": {
+      "product_guid": "d556f37f-5d46-48f6-8380-57745e59cecf",
+      "slug": "calathea-roseopicta",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d554c9c5-f773-49f2-9367-53db83c1a130": {
+      "product_guid": "d554c9c5-f773-49f2-9367-53db83c1a130",
+      "slug": "calathea-dottie",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "be6dea89-3c0f-492b-b84d-5015c03b14b5": {
+      "product_guid": "be6dea89-3c0f-492b-b84d-5015c03b14b5",
+      "slug": "calathea-zebrina",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "97171d5f-90d9-4651-ab15-89e53087711c": {
+      "product_guid": "97171d5f-90d9-4651-ab15-89e53087711c",
+      "slug": "calathea-rufibarba",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "41600131-4860-4c8b-bed3-914ba7b09c94": {
+      "product_guid": "41600131-4860-4c8b-bed3-914ba7b09c94",
+      "slug": "maranta-red-prayer-plant",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7fdc1cd5-58ed-4a85-a9c2-673b54e2eeef": {
+      "product_guid": "7fdc1cd5-58ed-4a85-a9c2-673b54e2eeef",
+      "slug": "maranta-lemon-lime",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b5862517-dd9e-49e5-8efa-92ff35a2908a": {
+      "product_guid": "b5862517-dd9e-49e5-8efa-92ff35a2908a",
+      "slug": "stromanthe-triostar",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "f54297ce-6eaf-48e2-a87c-bbe672504397": {
+      "product_guid": "f54297ce-6eaf-48e2-a87c-bbe672504397",
+      "slug": "dracaena-marginata",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2ca65119-a3fc-4280-bcef-674337deb0b7": {
+      "product_guid": "2ca65119-a3fc-4280-bcef-674337deb0b7",
+      "slug": "dracaena-marginata-tricolor",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "69197439-fffe-42ff-8767-cd85fc58a2cf": {
+      "product_guid": "69197439-fffe-42ff-8767-cd85fc58a2cf",
+      "slug": "dracaena-compacta",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "05f5de63-0d14-4cc6-8fe5-50663a21b09f": {
+      "product_guid": "05f5de63-0d14-4cc6-8fe5-50663a21b09f",
+      "slug": "dracaena-janet-craig",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c32ee17c-a831-4b53-84fb-0000c40ce06a": {
+      "product_guid": "c32ee17c-a831-4b53-84fb-0000c40ce06a",
+      "slug": "dracaena-lemon-lime",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "fb0e7ed2-d4ad-42e4-879f-4eb8ac0c9c43": {
+      "product_guid": "fb0e7ed2-d4ad-42e4-879f-4eb8ac0c9c43",
+      "slug": "dracaena-song-of-india",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e6bc40af-be86-433a-b818-0d7836b956f8": {
+      "product_guid": "e6bc40af-be86-433a-b818-0d7836b956f8",
+      "slug": "dracaena-song-of-jamaica",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "43816d5e-0e8b-49d6-a016-7f3c31db2dcd": {
+      "product_guid": "43816d5e-0e8b-49d6-a016-7f3c31db2dcd",
+      "slug": "dracaena-fragrans-massangeana-corn-plant",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ae078a7b-4272-4740-94ad-ae7b5a2902e0": {
+      "product_guid": "ae078a7b-4272-4740-94ad-ae7b5a2902e0",
+      "slug": "dracaena-white-bird",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0fe0c1e0-dd68-4274-b58b-3e65fabd5d3d": {
+      "product_guid": "0fe0c1e0-dd68-4274-b58b-3e65fabd5d3d",
+      "slug": "dracaena-colorama",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "66c4be94-a248-40fe-89dd-f09364d41795": {
+      "product_guid": "66c4be94-a248-40fe-89dd-f09364d41795",
+      "slug": "croton-petra",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "cff09fc1-7f41-44ea-afef-5c9ed2d4cab7": {
+      "product_guid": "cff09fc1-7f41-44ea-afef-5c9ed2d4cab7",
+      "slug": "croton-gold-dust",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "406791e1-17a9-4f35-9726-79722c150a64": {
+      "product_guid": "406791e1-17a9-4f35-9726-79722c150a64",
+      "slug": "croton-mammy",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2efb01d1-eae4-410e-bc8a-62f6561040b1": {
+      "product_guid": "2efb01d1-eae4-410e-bc8a-62f6561040b1",
+      "slug": "croton-excellent",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ad15783c-656b-4e1e-8bf6-f004917d6ba4": {
+      "product_guid": "ad15783c-656b-4e1e-8bf6-f004917d6ba4",
+      "slug": "croton-zanzibar",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "1c2632c8-4e8d-46f2-8d83-4cc850961cf6": {
+      "product_guid": "1c2632c8-4e8d-46f2-8d83-4cc850961cf6",
+      "slug": "croton-sunny-star",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "edbbecbb-70cd-4470-9c8f-fbf8c07017b5": {
+      "product_guid": "edbbecbb-70cd-4470-9c8f-fbf8c07017b5",
+      "slug": "croton-banana",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "546aec56-1915-4d84-bf59-f208dea90952": {
+      "product_guid": "546aec56-1915-4d84-bf59-f208dea90952",
+      "slug": "croton-mrs-iceton",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "de7725b5-55c8-477b-8f32-8f52a9629c5f": {
+      "product_guid": "de7725b5-55c8-477b-8f32-8f52a9629c5f",
+      "slug": "croton-red-iceton",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d17f813a-07b6-4526-96ae-315211504272": {
+      "product_guid": "d17f813a-07b6-4526-96ae-315211504272",
+      "slug": "croton-magnificent",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0d50e535-2893-4b3c-93ad-5a11ec3cf91e": {
+      "product_guid": "0d50e535-2893-4b3c-93ad-5a11ec3cf91e",
+      "slug": "pilea-peperomioides",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "73933f91-94c2-4822-9d8a-f065c3bf7461": {
+      "product_guid": "73933f91-94c2-4822-9d8a-f065c3bf7461",
+      "slug": "pilea-cadierei",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c6dc83a3-7ec5-40d9-87fb-f763b5e01f04": {
+      "product_guid": "c6dc83a3-7ec5-40d9-87fb-f763b5e01f04",
+      "slug": "hypoestes-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "13a9cc86-112a-4956-95f0-767b53b450f6": {
+      "product_guid": "13a9cc86-112a-4956-95f0-767b53b450f6",
+      "slug": "hypoestes-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "46e59359-26b3-4b67-9be2-461e3bd4194a": {
+      "product_guid": "46e59359-26b3-4b67-9be2-461e3bd4194a",
+      "slug": "hypoestes-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0b112a04-ab7f-49a2-bf8d-ab28ffefca02": {
+      "product_guid": "0b112a04-ab7f-49a2-bf8d-ab28ffefca02",
+      "slug": "spider-plant-green",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "73b57b95-da92-4cdf-af87-bfa53479ce89": {
+      "product_guid": "73b57b95-da92-4cdf-af87-bfa53479ce89",
+      "slug": "spider-plant-variegated",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b5133d9b-e7b0-42bb-866e-f46ec44f53f6": {
+      "product_guid": "b5133d9b-e7b0-42bb-866e-f46ec44f53f6",
+      "slug": "tradescantia-zebrina",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "8326d54d-1cc6-45b4-a662-0d0dcdc097b8": {
+      "product_guid": "8326d54d-1cc6-45b4-a662-0d0dcdc097b8",
+      "slug": "tradescantia-nanouk",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2189c7a8-4e16-47eb-9a89-66e0bdd528d5": {
+      "product_guid": "2189c7a8-4e16-47eb-9a89-66e0bdd528d5",
+      "slug": "hoya-carnosa",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b603465b-f6fa-4125-b37f-32ccefc6cc68": {
+      "product_guid": "b603465b-f6fa-4125-b37f-32ccefc6cc68",
+      "slug": "hoya-compacta",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7bfbb038-2edc-408d-b2df-4302535484e6": {
+      "product_guid": "7bfbb038-2edc-408d-b2df-4302535484e6",
+      "slug": "hoya-kerrii",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2bf15767-b1fc-4d9a-be7f-b688d068cea1": {
+      "product_guid": "2bf15767-b1fc-4d9a-be7f-b688d068cea1",
+      "slug": "hoya-pubicalyx",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "51316bda-1b4c-4bd9-b427-cdc52c4c6f87": {
+      "product_guid": "51316bda-1b4c-4bd9-b427-cdc52c4c6f87",
+      "slug": "boston-fern",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "24e52cac-3170-4f68-9c71-efebaf51ae68": {
+      "product_guid": "24e52cac-3170-4f68-9c71-efebaf51ae68",
+      "slug": "maidenhair-fern",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "18ce2b98-885c-40d0-95d9-a796180e5ae4": {
+      "product_guid": "18ce2b98-885c-40d0-95d9-a796180e5ae4",
+      "slug": "button-fern",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "3b8ef80d-239e-45ef-a186-950afa7f2740": {
+      "product_guid": "3b8ef80d-239e-45ef-a186-950afa7f2740",
+      "slug": "rabbit-s-foot-fern",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "049ed314-a152-49f7-82f4-d2e93456a0d3": {
+      "product_guid": "049ed314-a152-49f7-82f4-d2e93456a0d3",
+      "slug": "begonia-rex",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7d78d7ba-79e0-4e95-86c9-4521318fcd8b": {
+      "product_guid": "7d78d7ba-79e0-4e95-86c9-4521318fcd8b",
+      "slug": "begonia-maculata",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2602c439-cc0e-4887-9ec5-fe5b2d541de5": {
+      "product_guid": "2602c439-cc0e-4887-9ec5-fe5b2d541de5",
+      "slug": "begonia-angel-wing",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b04947af-411b-4eb5-9c15-772118f2d3e8": {
+      "product_guid": "b04947af-411b-4eb5-9c15-772118f2d3e8",
+      "slug": "begonia-tiger",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "f33f5cda-0d7c-4aee-bfbb-6af77a5d9cf1": {
+      "product_guid": "f33f5cda-0d7c-4aee-bfbb-6af77a5d9cf1",
+      "slug": "begonia-iron-cross",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "1e838010-d439-40f9-a4d0-c63684b7be82": {
+      "product_guid": "1e838010-d439-40f9-a4d0-c63684b7be82",
+      "slug": "begonia-black-mamba",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "36f4f12a-5234-438b-87bd-420f592abd64": {
+      "product_guid": "36f4f12a-5234-438b-87bd-420f592abd64",
+      "slug": "begonia-red-kiss",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "3b709aea-cf8d-4269-b074-89b401f17071": {
+      "product_guid": "3b709aea-cf8d-4269-b074-89b401f17071",
+      "slug": "anthurium-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "86b70f93-8c4b-409b-a2b2-c11a7536ba30": {
+      "product_guid": "86b70f93-8c4b-409b-a2b2-c11a7536ba30",
+      "slug": "anthurium-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e3a7ba9d-8bc2-4717-a366-c77ff42fd684": {
+      "product_guid": "e3a7ba9d-8bc2-4717-a366-c77ff42fd684",
+      "slug": "anthurium-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0e16a18b-3cdc-42ad-9b66-9439b9432968": {
+      "product_guid": "0e16a18b-3cdc-42ad-9b66-9439b9432968",
+      "slug": "anthurium-black",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e2d16f52-740a-4b98-bcf1-80f57ed1595f": {
+      "product_guid": "e2d16f52-740a-4b98-bcf1-80f57ed1595f",
+      "slug": "anthurium-crystallinum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "70ba84df-2c46-4955-b0af-7f4fa1316958": {
+      "product_guid": "70ba84df-2c46-4955-b0af-7f4fa1316958",
+      "slug": "anthurium-clarinervium",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "934d69dc-5148-440f-aeaa-8d75bbcf4cf0": {
+      "product_guid": "934d69dc-5148-440f-aeaa-8d75bbcf4cf0",
+      "slug": "rhapis-lady-palm",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "514b9ca3-2618-445e-8195-814bbb83f453": {
+      "product_guid": "514b9ca3-2618-445e-8195-814bbb83f453",
+      "slug": "parlour-palm",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "56ce792a-c1d0-4bc1-9078-d25a6697d4f9": {
+      "product_guid": "56ce792a-c1d0-4bc1-9078-d25a6697d4f9",
+      "slug": "kentia-palm",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "cb897ada-9c17-47a9-abbc-d22a4b6bcae6": {
+      "product_guid": "cb897ada-9c17-47a9-abbc-d22a4b6bcae6",
+      "slug": "radermachera-china-doll",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d734fd8c-2727-4221-bb89-47456a3f77b5": {
+      "product_guid": "d734fd8c-2727-4221-bb89-47456a3f77b5",
+      "slug": "dischidia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "00ad4fb3-4107-4d6a-a4af-6b1e9fdc25ee": {
+      "product_guid": "00ad4fb3-4107-4d6a-a4af-6b1e9fdc25ee",
+      "slug": "rhoeo-tricolor",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "fb6d00dc-593b-41d2-a6f8-7936514155b0": {
+      "product_guid": "fb6d00dc-593b-41d2-a6f8-7936514155b0",
+      "slug": "hibiscus-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "001d936f-a2c9-4825-999c-589a4786243f": {
+      "product_guid": "001d936f-a2c9-4825-999c-589a4786243f",
+      "slug": "hibiscus-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "4a14c2e2-6467-4661-b990-939d561d0912": {
+      "product_guid": "4a14c2e2-6467-4661-b990-939d561d0912",
+      "slug": "hibiscus-yellow",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7e04f37f-bfa4-45a9-b081-2cf2e59669f7": {
+      "product_guid": "7e04f37f-bfa4-45a9-b081-2cf2e59669f7",
+      "slug": "hibiscus-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "17ad4a45-2541-4000-be00-59192a32a285": {
+      "product_guid": "17ad4a45-2541-4000-be00-59192a32a285",
+      "slug": "hibiscus-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "60350b07-e952-4fdc-a312-a0a90f85837d": {
+      "product_guid": "60350b07-e952-4fdc-a312-a0a90f85837d",
+      "slug": "double-hibiscus",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c0fd1d13-e415-4977-af31-1ccf1bd9ce62": {
+      "product_guid": "c0fd1d13-e415-4977-af31-1ccf1bd9ce62",
+      "slug": "variegated-hibiscus",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "6e695c34-f3fd-4800-80d2-2e1011a77c43": {
+      "product_guid": "6e695c34-f3fd-4800-80d2-2e1011a77c43",
+      "slug": "ixora-dwarf-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "926adb2c-f455-47e4-98e6-d575ce3bcbc9": {
+      "product_guid": "926adb2c-f455-47e4-98e6-d575ce3bcbc9",
+      "slug": "ixora-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ab7955b0-15ed-44c6-9211-a056c418149e": {
+      "product_guid": "ab7955b0-15ed-44c6-9211-a056c418149e",
+      "slug": "ixora-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "86a66b86-a5ed-416a-a5dd-3a3eba25fe50": {
+      "product_guid": "86a66b86-a5ed-416a-a5dd-3a3eba25fe50",
+      "slug": "ixora-yellow",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "1febee3f-6a55-4ad5-9ed2-df5ac67df450": {
+      "product_guid": "1febee3f-6a55-4ad5-9ed2-df5ac67df450",
+      "slug": "ixora-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7853168a-11b3-494a-8090-754f9bcddd11": {
+      "product_guid": "7853168a-11b3-494a-8090-754f9bcddd11",
+      "slug": "gardenia-jasminoides",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "fad62790-3a2e-46ef-9818-9e6558435dce": {
+      "product_guid": "fad62790-3a2e-46ef-9818-9e6558435dce",
+      "slug": "dwarf-gardenia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a1f61a29-cbd1-4057-a475-04a7b3653390": {
+      "product_guid": "a1f61a29-cbd1-4057-a475-04a7b3653390",
+      "slug": "mogra-arabian-jasmine",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "f5540079-d639-4bc6-83c1-5eb715854e15": {
+      "product_guid": "f5540079-d639-4bc6-83c1-5eb715854e15",
+      "slug": "jui-juhi-jasmine",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "728f9f78-1f18-4c39-a414-ead2113c7ef3": {
+      "product_guid": "728f9f78-1f18-4c39-a414-ead2113c7ef3",
+      "slug": "jai-jasmine",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d6c7fcb1-abc8-451d-9a02-d3028ab611b3": {
+      "product_guid": "d6c7fcb1-abc8-451d-9a02-d3028ab611b3",
+      "slug": "star-jasmine",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "af8e9e17-e5a3-4745-bc43-fabc89fc64f7": {
+      "product_guid": "af8e9e17-e5a3-4745-bc43-fabc89fc64f7",
+      "slug": "bougainvillea-dwarf-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "21767e3a-77bd-4814-a31c-4b42f8abbfdc": {
+      "product_guid": "21767e3a-77bd-4814-a31c-4b42f8abbfdc",
+      "slug": "bougainvillea-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "3af3e32a-e215-4b6c-a3d4-9bb595dc06f5": {
+      "product_guid": "3af3e32a-e215-4b6c-a3d4-9bb595dc06f5",
+      "slug": "bougainvillea-purple",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "3cb091af-738e-4879-af91-d6d2193db0de": {
+      "product_guid": "3cb091af-738e-4879-af91-d6d2193db0de",
+      "slug": "bougainvillea-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "6b367b88-3695-495a-9140-90712e6cf92e": {
+      "product_guid": "6b367b88-3695-495a-9140-90712e6cf92e",
+      "slug": "bougainvillea-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "40d5d62e-76e8-4700-a1a1-fa121cc2cfe0": {
+      "product_guid": "40d5d62e-76e8-4700-a1a1-fa121cc2cfe0",
+      "slug": "bougainvillea-yellow",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9779fce7-c75b-4d5d-9570-5970cbf8ab1c": {
+      "product_guid": "9779fce7-c75b-4d5d-9570-5970cbf8ab1c",
+      "slug": "bougainvillea-chitra",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7ab54a52-f2a3-4e8f-80ff-6fc2736517fb": {
+      "product_guid": "7ab54a52-f2a3-4e8f-80ff-6fc2736517fb",
+      "slug": "bougainvillea-green-apple",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ca922ee9-f74a-4f89-8f9a-5ddfc9b95ba0": {
+      "product_guid": "ca922ee9-f74a-4f89-8f9a-5ddfc9b95ba0",
+      "slug": "crossandra-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e1688aee-36f3-40fc-b849-ccf8e1413272": {
+      "product_guid": "e1688aee-36f3-40fc-b849-ccf8e1413272",
+      "slug": "crossandra-yellow",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "97fe58fd-2f08-439c-bc0a-16a88c51dd06": {
+      "product_guid": "97fe58fd-2f08-439c-bc0a-16a88c51dd06",
+      "slug": "kalanchoe-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "59721680-880b-42fc-b0d8-b3b78c465968": {
+      "product_guid": "59721680-880b-42fc-b0d8-b3b78c465968",
+      "slug": "kalanchoe-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5d024bcb-a5c8-4e28-ad4b-f5543bfadb72": {
+      "product_guid": "5d024bcb-a5c8-4e28-ad4b-f5543bfadb72",
+      "slug": "kalanchoe-yellow",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5359133f-d780-4558-9916-7abf95079203": {
+      "product_guid": "5359133f-d780-4558-9916-7abf95079203",
+      "slug": "kalanchoe-orange",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d4dca547-3c0a-470f-947c-3fb90eb70ea1": {
+      "product_guid": "d4dca547-3c0a-470f-947c-3fb90eb70ea1",
+      "slug": "kalanchoe-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7f7d06a2-4af6-4002-8799-804e35dc3118": {
+      "product_guid": "7f7d06a2-4af6-4002-8799-804e35dc3118",
+      "slug": "crown-of-thorns-red",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "f6c02cc8-f5b6-42d2-82ef-8b3478769052": {
+      "product_guid": "f6c02cc8-f5b6-42d2-82ef-8b3478769052",
+      "slug": "crown-of-thorns-pink",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7d8b4d10-ad63-49f3-a42e-d940c7d511f6": {
+      "product_guid": "7d8b4d10-ad63-49f3-a42e-d940c7d511f6",
+      "slug": "crown-of-thorns-yellow",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7f108077-27cd-4f82-acee-3f672fbbaead": {
+      "product_guid": "7f108077-27cd-4f82-acee-3f672fbbaead",
+      "slug": "crown-of-thorns-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5f292310-6e14-4516-afc4-e76c0b002e4f": {
+      "product_guid": "5f292310-6e14-4516-afc4-e76c0b002e4f",
+      "slug": "petunia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ccf96125-b427-4756-ba42-51615be25b27": {
+      "product_guid": "ccf96125-b427-4756-ba42-51615be25b27",
+      "slug": "dianthus",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "fc74362a-3719-4166-bbf6-3e033d2a56e6": {
+      "product_guid": "fc74362a-3719-4166-bbf6-3e033d2a56e6",
+      "slug": "marigold",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "4bfd99f2-f079-4cc8-b115-4d2afe056e7a": {
+      "product_guid": "4bfd99f2-f079-4cc8-b115-4d2afe056e7a",
+      "slug": "chrysanthemum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "55bc391b-bb8b-433e-be5c-d98b2c77e254": {
+      "product_guid": "55bc391b-bb8b-433e-be5c-d98b2c77e254",
+      "slug": "geranium",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "daaec75f-414e-45ef-bc18-6c754d805ccc": {
+      "product_guid": "daaec75f-414e-45ef-bc18-6c754d805ccc",
+      "slug": "impatiens",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "21f63e96-21aa-4cac-b278-9e9a30f25ea5": {
+      "product_guid": "21f63e96-21aa-4cac-b278-9e9a30f25ea5",
+      "slug": "vinca-sadabahar",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ea566442-383b-46bb-acfd-249f1f17ef4d": {
+      "product_guid": "ea566442-383b-46bb-acfd-249f1f17ef4d",
+      "slug": "gazania",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a9af1ee2-2a1e-4760-9e0b-b236a681a6bc": {
+      "product_guid": "a9af1ee2-2a1e-4760-9e0b-b236a681a6bc",
+      "slug": "zinnia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9856f177-7e97-4dd2-a706-a30fcf43392d": {
+      "product_guid": "9856f177-7e97-4dd2-a706-a30fcf43392d",
+      "slug": "celosia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b9fcdd18-88ba-4de9-af32-62e70f5e252f": {
+      "product_guid": "b9fcdd18-88ba-4de9-af32-62e70f5e252f",
+      "slug": "salvia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "cb4c565b-a970-462d-bab3-d8e7c515b0e5": {
+      "product_guid": "cb4c565b-a970-462d-bab3-d8e7c515b0e5",
+      "slug": "aster",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "dcefbd1a-9a5e-4caa-8eb9-eb34c4083170": {
+      "product_guid": "dcefbd1a-9a5e-4caa-8eb9-eb34c4083170",
+      "slug": "verbena",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "cf50ea75-5118-4933-b0e0-abacbb0a29e5": {
+      "product_guid": "cf50ea75-5118-4933-b0e0-abacbb0a29e5",
+      "slug": "portulaca",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2522c5d0-13a0-442e-9639-46268baa297b": {
+      "product_guid": "2522c5d0-13a0-442e-9639-46268baa297b",
+      "slug": "pentas",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "1683afbb-c82d-4113-a896-403139f449a1": {
+      "product_guid": "1683afbb-c82d-4113-a896-403139f449a1",
+      "slug": "plumbago-blue",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "6cf13de1-268d-4680-a0ea-33676cddca2f": {
+      "product_guid": "6cf13de1-268d-4680-a0ea-33676cddca2f",
+      "slug": "plumbago-white",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "6e4923b2-5cee-469e-97b1-b5bfb240ee59": {
+      "product_guid": "6e4923b2-5cee-469e-97b1-b5bfb240ee59",
+      "slug": "russelia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "204923f2-918b-4f0e-9470-21a32bdf51b5": {
+      "product_guid": "204923f2-918b-4f0e-9470-21a32bdf51b5",
+      "slug": "hamelia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a69a0109-e729-42aa-810e-03db9b10c0ec": {
+      "product_guid": "a69a0109-e729-42aa-810e-03db9b10c0ec",
+      "slug": "ruellia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7b4f252b-32f8-48ef-9cb4-2714e30093a8": {
+      "product_guid": "7b4f252b-32f8-48ef-9cb4-2714e30093a8",
+      "slug": "barleria",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "f84b5faf-f8ff-451c-aea8-02bcfecb63ae": {
+      "product_guid": "f84b5faf-f8ff-451c-aea8-02bcfecb63ae",
+      "slug": "aparajita-blue-pea",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5ecec56a-fef6-4a6d-ad00-c0c4949b4380": {
+      "product_guid": "5ecec56a-fef6-4a6d-ad00-c0c4949b4380",
+      "slug": "garlic-vine",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9d2b4f79-a1d5-4d8d-9577-ad8e50e9dbcd": {
+      "product_guid": "9d2b4f79-a1d5-4d8d-9577-ad8e50e9dbcd",
+      "slug": "bleeding-heart-vine",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "033f9a42-e304-496a-a436-04b7dcb4a0ad": {
+      "product_guid": "033f9a42-e304-496a-a436-04b7dcb4a0ad",
+      "slug": "morning-glory",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "bcec3fd8-d993-4461-b081-528f0954b614": {
+      "product_guid": "bcec3fd8-d993-4461-b081-528f0954b614",
+      "slug": "jade-plant-crassula-ovata",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "333eafd9-7d7a-4d6f-8e13-c7c1d1fef9f8": {
+      "product_guid": "333eafd9-7d7a-4d6f-8e13-c7c1d1fef9f8",
+      "slug": "jade-gollum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "67fbecdf-14b1-4a71-b7ae-ee2f0b1557d9": {
+      "product_guid": "67fbecdf-14b1-4a71-b7ae-ee2f0b1557d9",
+      "slug": "jade-hobbit",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "83f08a99-8cfc-44f8-a3a7-7fdf2488b04b": {
+      "product_guid": "83f08a99-8cfc-44f8-a3a7-7fdf2488b04b",
+      "slug": "crassula-campfire",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a1c44b18-ef72-4ac7-96f5-7157fd75e06f": {
+      "product_guid": "a1c44b18-ef72-4ac7-96f5-7157fd75e06f",
+      "slug": "echeveria-elegans",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "41f8aa10-cc95-4e98-bb68-0d8959e6d923": {
+      "product_guid": "41f8aa10-cc95-4e98-bb68-0d8959e6d923",
+      "slug": "echeveria-black-prince",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7f1216a0-e9c1-4665-8664-36500c03349a": {
+      "product_guid": "7f1216a0-e9c1-4665-8664-36500c03349a",
+      "slug": "echeveria-perle-von-nurnberg",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2846ec13-003d-4f40-862f-4d2a49b6df96": {
+      "product_guid": "2846ec13-003d-4f40-862f-4d2a49b6df96",
+      "slug": "sedum-adolphii",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a150dc18-611b-4aff-900c-41bca8fece4e": {
+      "product_guid": "a150dc18-611b-4aff-900c-41bca8fece4e",
+      "slug": "string-of-pearls",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d289081c-a33b-43ea-9e36-e4e628e526ab": {
+      "product_guid": "d289081c-a33b-43ea-9e36-e4e628e526ab",
+      "slug": "string-of-bananas",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "eacf291f-834e-41b8-8dbc-6e1c15418dbf": {
+      "product_guid": "eacf291f-834e-41b8-8dbc-6e1c15418dbf",
+      "slug": "string-of-dolphins",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5fe680cf-fbda-4596-b4b2-d5ab2e294b00": {
+      "product_guid": "5fe680cf-fbda-4596-b4b2-d5ab2e294b00",
+      "slug": "string-of-hearts",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "d6485338-7204-4071-9856-66ce9417a812": {
+      "product_guid": "d6485338-7204-4071-9856-66ce9417a812",
+      "slug": "golden-barrel-cactus",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "4a901f48-3505-4b66-8c91-ce26ebc1ebb4": {
+      "product_guid": "4a901f48-3505-4b66-8c91-ce26ebc1ebb4",
+      "slug": "bunny-ear-cactus",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c522cb3e-1d83-46b4-a954-e67c3249c5c9": {
+      "product_guid": "c522cb3e-1d83-46b4-a954-e67c3249c5c9",
+      "slug": "mammillaria",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e9b91033-ece3-4a20-94c2-ccc5efe35012": {
+      "product_guid": "e9b91033-ece3-4a20-94c2-ccc5efe35012",
+      "slug": "fairy-castle-cactus",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b446e02a-ad0e-4521-9d84-a64e9d09ba6e": {
+      "product_guid": "b446e02a-ad0e-4521-9d84-a64e9d09ba6e",
+      "slug": "rebutia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "7fa25c27-fadd-4479-95ed-4d22bd61a861": {
+      "product_guid": "7fa25c27-fadd-4479-95ed-4d22bd61a861",
+      "slug": "astrophytum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "8ae16f86-789b-4f55-89ce-a1a0d68c2729": {
+      "product_guid": "8ae16f86-789b-4f55-89ce-a1a0d68c2729",
+      "slug": "tulsi-rama",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "9a0ab2bf-1492-42c5-bcb2-afccdc3d203f": {
+      "product_guid": "9a0ab2bf-1492-42c5-bcb2-afccdc3d203f",
+      "slug": "tulsi-krishna",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0a651678-2d05-4523-9042-c6abaf8943dc": {
+      "product_guid": "0a651678-2d05-4523-9042-c6abaf8943dc",
+      "slug": "mint",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b5fd208d-4418-4dbe-b6b3-43b1f0b1d864": {
+      "product_guid": "b5fd208d-4418-4dbe-b6b3-43b1f0b1d864",
+      "slug": "spearmint",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "3166f809-ce0e-4f7a-b23e-a8fec90817ae": {
+      "product_guid": "3166f809-ce0e-4f7a-b23e-a8fec90817ae",
+      "slug": "lemongrass",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "5f26a21e-efcf-4087-acd3-741dcce540fb": {
+      "product_guid": "5f26a21e-efcf-4087-acd3-741dcce540fb",
+      "slug": "rosemary",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "a84632e9-b83a-4e01-a14b-8d7bfca04715": {
+      "product_guid": "a84632e9-b83a-4e01-a14b-8d7bfca04715",
+      "slug": "basil",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "32d63074-6af2-40ec-8f29-448de1ba0fd4": {
+      "product_guid": "32d63074-6af2-40ec-8f29-448de1ba0fd4",
+      "slug": "thai-basil",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "0dfa4dfe-eb3a-4647-a2b4-a63a0cabcbfd": {
+      "product_guid": "0dfa4dfe-eb3a-4647-a2b4-a63a0cabcbfd",
+      "slug": "oregano",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "41bf8698-2ce1-47ac-8516-7a83e52393dc": {
+      "product_guid": "41bf8698-2ce1-47ac-8516-7a83e52393dc",
+      "slug": "thyme",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "720c52d7-88bb-4ef0-a7b2-2b548098f551": {
+      "product_guid": "720c52d7-88bb-4ef0-a7b2-2b548098f551",
+      "slug": "parsley",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "c4ae6906-7e4d-4924-9d9f-5d33d8450918": {
+      "product_guid": "c4ae6906-7e4d-4924-9d9f-5d33d8450918",
+      "slug": "curry-leaf",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "2979486b-c608-4a2c-853a-0cb963f91c36": {
+      "product_guid": "2979486b-c608-4a2c-853a-0cb963f91c36",
+      "slug": "aloe-vera",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "71ee5e84-16d0-40d4-b853-743c67e69dc5": {
+      "product_guid": "71ee5e84-16d0-40d4-b853-743c67e69dc5",
+      "slug": "stevia",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "08ddf5d8-ec09-446e-9809-4c0b8ba5b802": {
+      "product_guid": "08ddf5d8-ec09-446e-9809-4c0b8ba5b802",
+      "slug": "ajwain",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e8025dfb-9cfd-48af-af9e-8b6fd7a54b02": {
+      "product_guid": "e8025dfb-9cfd-48af-af9e-8b6fd7a54b02",
+      "slug": "cherry-tomato",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "e60c07b0-5034-4166-99c5-fdb110a8f9c9": {
+      "product_guid": "e60c07b0-5034-4166-99c5-fdb110a8f9c9",
+      "slug": "chilli",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "3907b1a8-53d8-4070-a35f-f2f56a01485f": {
+      "product_guid": "3907b1a8-53d8-4070-a35f-f2f56a01485f",
+      "slug": "capsicum",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "94f43f13-c006-4930-87ec-2ccd8961ee8a": {
+      "product_guid": "94f43f13-c006-4930-87ec-2ccd8961ee8a",
+      "slug": "brinjal",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "bdad77f9-4da4-4abe-9375-b557ca555139": {
+      "product_guid": "bdad77f9-4da4-4abe-9375-b557ca555139",
+      "slug": "okra",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "ce05f01a-b0c1-4b1e-a951-1296dc4c1d22": {
+      "product_guid": "ce05f01a-b0c1-4b1e-a951-1296dc4c1d22",
+      "slug": "cucumber",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    },
+    "b74ce539-2645-4a1b-ba5b-48eebc41295d": {
+      "product_guid": "b74ce539-2645-4a1b-ba5b-48eebc41295d",
+      "slug": "strawberry",
+      "roles": {},
+      "updated_at": "2026-09-16T08:05:49.444729+00:00"
+    }
+  },
+  "updated_at": "2026-09-16T08:07:24.669488+00:00"
+}

@@ -1,0 +1,72 @@
+{
+  "categories": [
+    {
+      "slug": "indoor-plants",
+      "name": "Indoor Plants"
+    },
+    {
+      "slug": "succulents-cacti",
+      "name": "Succulents & Cacti"
+    },
+    {
+      "slug": "outdoor-plants",
+      "name": "Outdoor Plants"
+    },
+    {
+      "slug": "pots-planters",
+      "name": "Pots & Planters"
+    },
+    {
+      "slug": "gardening-essentials",
+      "name": "Gardening Essentials"
+    },
+    {
+      "slug": "corporate-gifting",
+      "name": "Corporate Gifting"
+    }
+  ],
+  "materials": [],
+  "finishes": [],
+  "collections": [
+    "Aglaonema",
+    "Alocasia / Colocasia",
+    "Asplenium & Ferns",
+    "Fittonia",
+    "Zamioculcas / Zamia",
+    "Haworthia",
+    "Peperomia",
+    "Dieffenbachia",
+    "Philodendron",
+    "Sansevieria / Snake Plants",
+    "Syngonium",
+    "Caladium",
+    "Money Plant / Pothos / Scindapsus",
+    "Monstera",
+    "Ficus / Bonsai",
+    "Flowering Plants",
+    "Palms / Pachira / Dracaena",
+    "Other plants / speciality items",
+    "Calathea / Maranta",
+    "Croton",
+    "Pilea & Hypoestes",
+    "Hanging & Trailing Plants",
+    "Hoya",
+    "Begonia",
+    "Hibiscus",
+    "Ixora",
+    "Gardenia",
+    "Jasmine & Fragrant Plants",
+    "Bougainvillea",
+    "Crossandra",
+    "Kalanchoe",
+    "Euphorbia / Crown of Thorns",
+    "Seasonal Flowering Plants",
+    "Compact Flowering Plants",
+    "Climbers & Creepers",
+    "Succulents",
+    "Trailing Succulents",
+    "Cactus",
+    "Herbs & Edibles",
+    "Kitchen Garden Plants"
+  ]
+}

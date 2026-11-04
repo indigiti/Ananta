@@ -1,0 +1,11 @@
+Sanjay Nursery v1.6.0 — Clean Baseline Audit
+products=174
+variants=0
+sellable_variants=0
+fabricated_prices=0
+fabricated_stock=0
+approved_product_images=0
+shopping_intelligence_profiles=0
+shopping_intelligence_events=0
+QA private records shipped=0
+v1.6 storage delta vs verified v1.5 clean baseline=storage/public-domain/discovery/settings.json only

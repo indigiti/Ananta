@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "surfaces": {
+    "default": {"preset":"sanjay-botanical-retail","overrides":{}},
+    "indoor-plants": {"preset":"sanjay-botanical-retail","overrides":{}},
+    "succulents-cacti": {"preset":"sanjay-botanical-retail","overrides":{}},
+    "pots-planters": {"preset":"sanjay-botanical-retail","overrides":{}},
+    "outdoor-plants": {"preset":"sanjay-botanical-retail","overrides":{}},
+    "corporate-gifting": {"preset":"sanjay-botanical-retail","overrides":{}},
+    "trade": {"preset":"trade-green","overrides":{}}
+  },
+  "updated_at": "2026-09-14T14:20:00+00:00"
+}

@@ -1,0 +1,1 @@
+<section class="page-hero shell compact"><p class="kicker">404</p><h1>That object isn’t here.</h1><p>The page may have moved or the link may be incomplete.</p><a class="btn dark" href="<?= e(url('/')) ?>">Return home</a></section>

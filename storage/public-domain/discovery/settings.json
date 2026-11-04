@@ -1,0 +1,68 @@
+{
+    "enabled": true,
+    "finder_enabled": true,
+    "intent_pages_enabled": true,
+    "typo_tolerance": true,
+    "max_typo_distance": 2,
+    "show_unknown_facets": false,
+    "search_synonyms": {
+        "zz": [
+            "zamioculcas",
+            "zamicro",
+            "zenzi",
+            "raven zz"
+        ],
+        "zanzibar gem": [
+            "zamioculcas",
+            "zz"
+        ],
+        "snake plant": [
+            "sansevieria"
+        ],
+        "mother in law tongue": [
+            "sansevieria"
+        ],
+        "money plant": [
+            "pothos",
+            "scindapsus"
+        ],
+        "pothos": [
+            "money plant",
+            "scindapsus"
+        ],
+        "bird nest fern": [
+            "asplenium",
+            "nidus"
+        ],
+        "peace lily": [
+            "spathiphyllum"
+        ],
+        "moon cactus": [
+            "gymnocalycium"
+        ],
+        "rubber fig": [
+            "ficus"
+        ],
+        "air plant": [
+            "tillandsia"
+        ],
+        "nerve plant": [
+            "fittonia"
+        ],
+        "elephant ear": [
+            "alocasia",
+            "colocasia"
+        ]
+    },
+    "featured_intents": [
+        "low-light",
+        "office",
+        "balcony",
+        "beginner",
+        "flowering",
+        "gifts",
+        "rare",
+        "live-now"
+    ],
+    "updated_at": null
+}

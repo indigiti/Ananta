@@ -1,0 +1,21 @@
+Sanjay Nursery v1.7.0 — clean web-only HTTP verification
+Date: 2026-09-16
+
+PASS
+- /health returned HTTP 200 and version 1.7.0 with 376 parent products.
+- /admin/setup created the first administrator through browser POST only.
+- /admin/login authenticated the browser session.
+- Main Dashboard rendered the AI Engine card.
+- /admin/system rendered AI Engine health.
+- All AI Admin sections returned HTTP 200: Overview, Catalogue, SEO Intelligence, Comparisons, Listicles, Review Queue, Sources, Jobs, History, Agent Readiness, Settings.
+- Scan Only mode was activated without API key/model; System Health correctly reported provider NOT REQUIRED and /ready returned HTTP 200.
+- /.well-known/agent-capabilities.json returned HTTP 200.
+- /api/openapi.json returned HTTP 200.
+- /feeds/ai-content.json returned HTTP 200.
+- A comparison draft was created/published from the web UI and the public comparison page returned HTTP 200.
+- A listicle draft was created/published from the web UI and the public listicle page returned HTTP 200.
+- /compare and /lists index pages returned HTTP 200.
+- /sitemap.xml returned HTTP 200 after publishing AI content.
+- PHP built-in-server log contained no PHP warning, fatal, parse, notice, deprecation or uncaught-exception markers during this verification.
+
+External provider/model behavior was not tested because the verified release intentionally contains no API credential. Provider testing is available from Admin → AI & Search → Settings after deployment.

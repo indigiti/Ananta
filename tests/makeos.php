@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);$root=dirname(__DIR__);putenv('APP_ENV=staging');$_SERVER['REMOTE_ADDR']='127.0.0.1';$_SERVER['REQUEST_URI']='/';$_SERVER['SCRIPT_NAME']='/index.php';require $root.'/src/bootstrap.php';
+if(count(products_public())!==376){fwrite(STDERR,"Expected 376 Sanjay Nursery varieties.\n");exit(1);}if(array_filter(products_public(),'product_is_sellable')){fwrite(STDERR,"Initial variety import should remain enquiry-only until live SKUs are assigned.\n");exit(1);}echo "PASS: MakeOS remains gated because imported plant varieties are catalogue/enquiry records, not production SKUs.\n";
