@@ -86,6 +86,10 @@ function marketplace_offer_save(array $input): string {
     $id=strtolower(trim((string)($input['id']??'')));
     if($id!==''&&!marketplace_uuid_valid($id))throw new InvalidArgumentException('Invalid offer ID.');
     $supplierId=strtolower(trim((string)($input['supplier_id']??'')));
+    $branchId=strtolower(trim((string)($input['branch_id']??'')));
+    if($branchId!==''&&!tenant_valid_id($branchId))throw new InvalidArgumentException('Invalid branch identifier.');
+    if(!$platformAdmin&&$branchId==='')throw new InvalidArgumentException('Choose a nursery branch.');
+    if($branchId!=='')supplier_branch_for_offer($supplierId,$branchId,false);
     $supplier=marketplace_supplier_by_id($supplierId);
     if(!$supplier)throw new InvalidArgumentException('Select a registered supplier.');
     $slug=trim((string)($input['product_slug']??''));
@@ -98,6 +102,7 @@ function marketplace_offer_save(array $input): string {
     if(!in_array($status,['draft','published','withdrawn'],true))throw new InvalidArgumentException('Invalid offer publication status.');
     if(!in_array($availability,['unknown','reported','confirmed','unavailable'],true))throw new InvalidArgumentException('Invalid availability status.');
     if($status==='published'&&($supplier['status']??'')!=='verified')throw new InvalidArgumentException('Verify the supplier before publishing.');
+    if($status==='published'&&$branchId!=='')supplier_branch_for_offer($supplierId,$branchId,true);
     $priceText=trim((string)($input['price_inr']??''));
     $quantityText=trim((string)($input['quantity']??''));
     if($priceText!==''&&(!ctype_digit($priceText)||(int)$priceText<1||(int)$priceText>10000000))throw new InvalidArgumentException('Price must be a positive INR amount.');
@@ -111,19 +116,20 @@ function marketplace_offer_save(array $input): string {
     $savedId=$id!==''?$id:uuidv7();
     $now=gmdate('c');
     marketplace_ensure_dir();
-    foundation_json_mutate(marketplace_registry_file(),function(array $raw)use($savedId,$id,$supplierId,$product,$label,$status,$availability,$price,$quantity,$evidence,$now,$platformAdmin) {
+    foundation_json_mutate(marketplace_registry_file(),function(array $raw)use($savedId,$id,$supplierId,$branchId,$product,$label,$status,$availability,$price,$quantity,$evidence,$now,$platformAdmin) {
         if(!$platformAdmin){
             $stillVerified=false;
             foreach($raw['suppliers']??[] as $row)if(($row['id']??'')===$supplierId&&($row['status']??'')==='verified'){$stillVerified=true;break;}
             if(!$stillVerified)throw new RuntimeException('Supplier is not verified.');
         }
         $offers=array_values((array)($raw['offers']??[]));$found=false;
-        $row=['id'=>$savedId,'supplier_id'=>$supplierId,'product_guid'=>(string)$product['guid'],
+        $row=['id'=>$savedId,'supplier_id'=>$supplierId,'branch_id'=>$branchId!==''?$branchId:null,'product_guid'=>(string)$product['guid'],
             'label'=>$label,'status'=>$status,'availability'=>$availability,'price_inr'=>$price,
             'quantity'=>$quantity,'evidence_ref'=>$evidence,'checked_at'=>$now,'updated_at'=>$now];
         foreach($offers as &$existing) {
             if(($existing['id']??'')===$savedId) {
                 if(($existing['supplier_id']??'')!==$supplierId)throw new RuntimeException('Offer ownership cannot be changed.');
+                if(($existing['branch_id']??null)!==($branchId!==''?$branchId:null))throw new RuntimeException('Offer branch ownership cannot be changed.');
                 if(!$platformAdmin&&($existing['status']??'draft')!=='draft')throw new RuntimeException('Only platform staff can edit published offers.');
                 $row['created_at']=$existing['created_at']??$now;
                 $existing=$row;$found=true;break;
@@ -159,6 +165,10 @@ function marketplace_offers_for_product(array|string $product): array {
         if(($o['product_guid']??'')!==$guid||($o['status']??'')!=='published')continue;
         $s=$verified[(string)($o['supplier_id']??'')]??null;
         if(!$s)continue;
+        $branchId=(string)($o['branch_id']??'');
+        $publicBranch=$branchId!==''?supplier_branch_public((string)$s['id'],$branchId):null;
+        if($branchId!==''&&!$publicBranch)continue;
+        $o['branch']=$publicBranch;
         $o['supplier']=['id'=>$s['id'],'name'=>$s['name'],'city'=>$s['city'],'phone'=>$s['phone']];
         $o['public_status']=marketplace_offer_public_status($o);
         unset($o['evidence_ref']);
@@ -182,7 +192,7 @@ function marketplace_public_offers_dto(array $product): array {
     $out=[];
     foreach(marketplace_offers_for_product($product) as $o) {
         $out[]=['id'=>$o['id'],'supplier_id'=>$o['supplier']['id'],'supplier_name'=>$o['supplier']['name'],
-            'supplier_city'=>$o['supplier']['city'],'variant_label'=>$o['label'],
+            'supplier_city'=>$o['supplier']['city'],'branch'=>$o['branch'],'variant_label'=>$o['label'],
             'indicative_price_inr'=>$o['price_inr'],'reported_quantity'=>$o['public_status']['key']==='confirmed'?$o['quantity']:null,
             'availability'=>$o['public_status']['key'],'availability_label'=>$o['public_status']['label'],
             'checked_at'=>$o['checked_at'],'sales_mode'=>'enquiry',
@@ -208,6 +218,8 @@ function marketplace_offer_report(string $offerId,string $supplierId,string $ava
         foreach($offers as &$offer){
             if(($offer['id']??'')!==$offerId)continue;
             if(($offer['supplier_id']??'')!==$supplierId)throw new RuntimeException('Cross-tenant availability update denied.');
+            $branchId=(string)($offer['branch_id']??'');
+            if($branchId!=='')supplier_branch_for_offer($supplierId,$branchId,false);
             $offer['availability']=$availability;
             $offer['quantity']=$quantity;
             $offer['evidence_ref']='';

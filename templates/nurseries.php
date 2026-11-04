@@ -2,7 +2,11 @@
 $store=marketplace_offers_store();
 $suppliers=array_values(array_filter($store['suppliers'],fn($s)=>($s['status']??'')==='verified'));
 usort($suppliers,fn($a,$b)=>strnatcasecmp($a['name'],$b['name']));
-$published=array_values(array_filter($store['offers'],fn($o)=>($o['status']??'')==='published'));
+$published=array_values(array_filter($store['offers'],static function($o){
+    if(($o['status']??'')!=='published')return false;
+    $b=(string)($o['branch_id']??'');
+    return $b===''||supplier_branch_public((string)($o['supplier_id']??''),$b)!==null;
+}));
 $countBySeller=[];
 foreach($published as $offer)$countBySeller[(string)$offer['supplier_id']]=($countBySeller[(string)$offer['supplier_id']]??0)+1;
 ?>

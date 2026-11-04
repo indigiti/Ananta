@@ -9,6 +9,8 @@ putenv('SANJAY_AGENT_SIGNING_KEY=tenant-regression-agent-key-0123456789');
 $nonce=bin2hex(random_bytes(5));
 $private=$root.'/storage/tmp/tenancy-test-'.$nonce.'.json';
 $market=$root.'/storage/tmp/marketplace-test-'.$nonce.'.json';
+$branchStore=$root.'/storage/tmp/branches-test-'.$nonce.'.json';
+putenv('ANANTA_TEST_BRANCHES_FILE='.$branchStore);
 putenv('ANANTA_TEST_TENANT_FILE='.$private);
 putenv('ANANTA_TEST_MARKETPLACE_FILE='.$market);
 $_SERVER['HTTP_HOST']='staging.example.test';
@@ -37,9 +39,10 @@ try{
     $assert(tenant_can('offers.draft',$a),'Owner cannot create drafts.');
     $assert(!tenant_can('offers.read',$b),'Owner read another tenant.');
     $assert(!tenant_switch($b),'Cross-tenant context switch succeeded.');
+    $alphaBranch=supplier_branch_save($a,['name'=>'Alpha Growing Site','city'=>'Pune','pincode'=>'412201','address'=>'QA fixture location']);
     $p=products_public()[0]??null;
     if(!$p)throw new RuntimeException('No canonical catalogue product for QA.');
-    $input=['supplier_id'=>$a,'product_slug'=>$p['slug'],'label'=>'100 cm pot, 12 inch · QA',
+    $input=['supplier_id'=>$a,'branch_id'=>$alphaBranch,'product_slug'=>$p['slug'],'label'=>'100 cm pot, 12 inch · QA',
         'status'=>'draft','availability'=>'unknown','price_inr'=>'150','quantity'=>'5'];
     $offerA=marketplace_offer_save($input);
     $assert(marketplace_offer_by_id($offerA)['supplier_id']===$a,'Draft offer tenant ID wrong.');
@@ -72,6 +75,6 @@ try{
     $assert(!str_contains($raw,$inviteA),'Invitation bearer token persisted in plaintext.');
     $assert((marketplace_offer_by_id($offerA)['supplier_id']??'')===$a,'Supplier ownership drifted.');
 }catch(Throwable $e){$errors[]=$e->getMessage();}
-@unlink($private);@unlink($market);
+@unlink($private);@unlink($market);@unlink($branchStore);
 if($errors){fwrite(STDERR,"FAIL tenant foundation:\n".implode("\n",array_unique($errors))."\n");exit(1);}
 echo "PASS: encrypted supplier identities, one-time invitations, roles, tenant isolation, scoped drafts, availability reporting, revocation and suspension.\n";

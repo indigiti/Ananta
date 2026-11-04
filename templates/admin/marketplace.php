@@ -1,5 +1,5 @@
 <section class="admin-head"><div><p class="eyebrow">Ananta · File-first supplier marketplace</p><h1>Nursery suppliers &amp; offers</h1><p>Admin-curated supplier offers for the controlled pilot. Verify the supplier before publishing; published offers are enquiry-only and never enter the legacy Sanjay Nursery cart.</p></div><a class="btn outline" href="<?=e(url('/shop'))?>" target="_blank" rel="noopener">View catalogue</a></section>
-<?php $suppliers=(array)($store['suppliers']??[]);$offers=(array)($store['offers']??[]);$products=products_public();$editSupplier=marketplace_supplier_by_id((string)($_GET['supplier']??''))??[];$editOffer=marketplace_offer_by_id((string)($_GET['offer']??''))??[];$editPlant=isset($editOffer['product_guid'])?product_by_guid((string)$editOffer['product_guid']):null; ?>
+<?php $suppliers=(array)($store['suppliers']??[]);$offers=(array)($store['offers']??[]);$products=products_public();$branches=supplier_branches_all();$editSupplier=marketplace_supplier_by_id((string)($_GET['supplier']??''))??[];$editOffer=marketplace_offer_by_id((string)($_GET['offer']??''))??[];$editPlant=isset($editOffer['product_guid'])?product_by_guid((string)$editOffer['product_guid']):null; ?>
 <section class="admin-metric-grid">
   <article><span>Suppliers</span><strong><?=count($suppliers)?></strong><small><?=count(array_filter($suppliers,fn($s)=>($s['status']??'')==='verified'))?> verified</small></article>
   <article><span>Offers</span><strong><?=count($offers)?></strong><small><?=count(array_filter($offers,fn($o)=>($o['status']??'')==='published'))?> published</small></article>
@@ -30,11 +30,33 @@
 <?php foreach($suppliers as $s):?><tr><td><strong><?=e($s['name'])?></strong><small><?=e($s['id'])?></small></td><td><?=e($s['city'])?></td><td><span class="status-pill <?=($s['status']??'')==='verified'?'ok':'warn'?>"><?=e($s['status']??'draft')?></span></td><td><?=count(array_filter($offers,fn($o)=>($o['supplier_id']??'')===$s['id']))?></td><td><?=e($s['updated_at']??'—')?> <a class="text-link" href="<?=e(url('/admin/marketplace?supplier='.$s['id']))?>">Edit</a></td></tr><?php endforeach;?>
 <?php if(!$suppliers):?><tr><td colspan="5"><p>No suppliers registered. Published offers will stay empty until a nursery is verified.</p></td></tr><?php endif;?>
 </tbody></table></div></section>
+
+<section class="admin-panel" id="branch-verification">
+  <div class="panel-head"><h2>Branch verification queue</h2><span class="status-pill"><?=count(array_filter($branches,static fn($b)=>($b['state']??'pending')==='pending'))?> pending</span></div>
+  <p>Supplier verification is not branch verification. Verify each nursery location separately and record an internal evidence reference. Suspended or edited branches automatically disappear from public offers until reapproved.</p>
+  <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Supplier / branch</th><th>Location</th><th>Review state</th><th>Platform review</th></tr></thead><tbody>
+  <?php foreach($branches as $branch):$owner=marketplace_supplier_by_id((string)$branch['tenant_id']);?>
+    <tr><td><strong><?=e($owner['name']??'Unknown supplier')?></strong><small><?=e($branch['name'])?></small></td>
+      <td><?=e($branch['city'])?><small><?=e($branch['pincode']??'')?> · <?=e($branch['address']??'')?></small></td>
+      <td><span class="status-pill <?=($branch['state']??'')==='approved'?'ok':'warn'?>"><?=e($branch['state']??'pending')?></span><small>Last reviewed <?=e($branch['reviewed_at']??'—')?></small></td>
+      <td><form method="post" action="<?=e(url('/admin/marketplace/branches/review'))?>" class="ananta-branch-review-form"><?=csrf_field()?>
+        <input type="hidden" name="tenant_id" value="<?=e($branch['tenant_id'])?>">
+        <input type="hidden" name="branch_id" value="<?=e($branch['id'])?>">
+        <label>Decision<select name="decision"><option value="approved">Approve</option><option value="rejected">Reject</option><option value="suspended">Suspend</option></select></label>
+        <label>Private evidence reference<input type="text" name="evidence" required minlength="8" maxlength="200" placeholder="Inspection / call reference"></label>
+        <button class="btn outline" type="submit">Save review</button>
+      </form></td>
+    </tr>
+  <?php endforeach;?>
+  <?php if(!$branches):?><tr><td colspan="4">No nursery branch submissions yet.</td></tr><?php endif;?>
+  </tbody></table></div>
+</section>
 <section class="admin-panel"><div class="panel-head"><h2>Publish nursery-specific plant offers</h2><span class="status-pill">Enquiry only</span></div>
 <p>Every offer belongs to a real supplier and a canonical plant variety. A reported quantity is not guaranteed stock. “Recently confirmed” requires supporting evidence and expires into “Check availability” after seven days.</p>
 <form class="stack-form" action="<?=e(url('/admin/marketplace/offers/save'))?>" method="post"><?=csrf_field()?>
   <label>Existing offer (optional)<select name="id"><option value="">Create new offer</option><?php foreach($offers as $o): $p=product_by_guid((string)($o['product_guid']??''));?><option value="<?=e($o['id'])?>" <?=($editOffer['id']??'')===$o['id']?'selected':''?>><?=e($p['name']??'Missing plant')?> · <?=e($o['label']??'')?> · <?=e($o['id'])?></option><?php endforeach;?></select></label>
   <label>Supplier<select name="supplier_id" required><option value="">Choose nursery</option><?php foreach($suppliers as $s):?><option value="<?=e($s['id'])?>" <?=($editOffer['supplier_id']??'')===$s['id']?'selected':''?>><?=e($s['name'])?> (<?=e($s['status']??'draft')?>)</option><?php endforeach;?></select></label>
+  <label>Supplying branch<select name="branch_id"><option value="">Legacy offer / unassigned branch</option><?php foreach($branches as $branch):$owner=marketplace_supplier_by_id((string)$branch['tenant_id']);?><option value="<?=e($branch['id'])?>" <?=($editOffer['branch_id']??'')===$branch['id']?'selected':''?>><?=e($owner['name']??'Unknown')?> · <?=e($branch['name'])?> (<?=e($branch['state']??'pending')?>)</option><?php endforeach;?></select></label>
   <label>Canonical plant<select name="product_slug" required><option value="">Choose plant</option><?php foreach($products as $p):?><option value="<?=e($p['slug'])?>" <?=($editPlant['slug']??'')===$p['slug']?'selected':''?>><?=e($p['name'])?></option><?php endforeach;?></select></label>
   <label>Variant specification<input name="label" maxlength="140" required value="<?=e($editOffer['label']??'')?>" placeholder="12 inch pot · 120–150 cm · Grade A"></label>
   <label>Indicative seller price in ₹ (optional)<input type="number" name="price_inr" min="1" max="10000000" step="1" value="<?=isset($editOffer['price_inr'])?e((string)$editOffer['price_inr']):''?>" placeholder="Subject to reconfirmation"></label>
@@ -46,6 +68,6 @@
 </form></section>
 <section class="admin-panel"><div class="panel-head"><h2>Offer register</h2><span class="status-pill"><?=count($offers)?> offers</span></div>
 <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Plant / specification</th><th>Supplier</th><th>Price</th><th>Availability</th><th>Publish</th></tr></thead><tbody>
-<?php foreach($offers as $o):$p=product_by_guid((string)($o['product_guid']??''));$s=marketplace_supplier_by_id((string)($o['supplier_id']??''));$av=marketplace_offer_public_status($o);?><tr><td><strong><?=e($p['name']??'Missing plant')?></strong><small><?=e($o['label']??'')?></small></td><td><?=e($s['name']??'Missing supplier')?></td><td><?=isset($o['price_inr'])?money((int)$o['price_inr']):'Request quote'?></td><td><?=e($av['label'])?><small><?=e($o['checked_at']??'—')?></small></td><td><?=e($o['status']??'draft')?> <a class="text-link" href="<?=e(url('/admin/marketplace?offer='.$o['id']))?>">Edit</a></td></tr><?php endforeach;?>
+<?php foreach($offers as $o):$p=product_by_guid((string)($o['product_guid']??''));$s=marketplace_supplier_by_id((string)($o['supplier_id']??''));$av=marketplace_offer_public_status($o);?><tr><td><strong><?=e($p['name']??'Missing plant')?></strong><small><?=e($o['label']??'')?></small></td><td><?=e($s['name']??'Missing supplier')?><small><?=e(supplier_branch_by_id((string)($o['branch_id']??''))['name']??'Legacy / unassigned')?></small></td><td><?=isset($o['price_inr'])?money((int)$o['price_inr']):'Request quote'?></td><td><?=e($av['label'])?><small><?=e($o['checked_at']??'—')?></small></td><td><?=e($o['status']??'draft')?> <a class="text-link" href="<?=e(url('/admin/marketplace?offer='.$o['id']))?>">Edit</a></td></tr><?php endforeach;?>
 <?php if(!$offers):?><tr><td colspan="5"><p>No nursery offers yet. Create a supplier before creating an offer.</p></td></tr><?php endif;?>
 </tbody></table></div></section>

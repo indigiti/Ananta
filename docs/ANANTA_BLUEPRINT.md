@@ -10,6 +10,7 @@
 - [Part IV: Implemented Ananta storefront and seller-offer pilot](#part-iv-implemented-ananta-storefront-and-seller-offer-pilot)
 - [Part V: Release A — tenant identity and repository containment](#part-v-release-a--tenant-identity-and-repository-containment-implementation)
 - [Part VI: Release A2 — persistent uploaded plant media](#part-vi-release-a2--persistent-uploaded-plant-media)
+- [Part VII: Release B1 — supplier branches and stock review](#part-vii-release-b1--supplier-branches-private-locations-and-stock-review)
 
 ---
 
@@ -644,3 +645,26 @@ For DigiOps split deployment (\`public_html/ananta/\` + \`private_html/ananta/\`
 - \`tests/media_persistence.php\` asserts traversal denial, admin-only previews, approved-public state, retirement withdrawal and a private artifact boundary.
 
 **Remaining:** migration of any existing manually uploaded photos from the old public tree, image backup/restore drill, live WebP HTTP behavior and performance verification, and supplier-specific photo rights/workflow ownership. Do not claim full P0 media acceptance before those checks.
+
+
+---
+
+## Part VII: Release B1 — Supplier branches, private locations and stock review
+
+**Implementation scope:** Branch-specific SupplierOS management within the existing file-first, single-server staging pilot.
+
+| Acceptance requirement | Implementation / control |
+| --- | --- |
+| Tenant-scoped branch CRUD | Owners/managers create or revise branches; IDs are UUIDv7 and every mutation validates the current membership |
+| Private branch data | Branches are stored via authenticated encryption under \`storage/private-domain/tenancy/branches.json\` |
+| Manual branch verification | Platform admin approves/rejects/suspends a branch with internal review evidence |
+| Review invalidation | A change to branch name, city, site address or PIN resets approval to pending |
+| Branch-specific offers | Each new supplier-managed draft requires a valid branch owned by that supplier |
+| Publication gating | Published branch offers require the supplier to be verified and branch to be approved |
+| Immediate withdrawal | Pending, rejected or suspended branches disappear from public offer projections, including nursery pages and APIs |
+| Inventory integrity | Supplier-reported quantities remain indicative; platform-confirmed stock requires evidence and expires after seven days |
+| Legacy compatibility | Existing admin-curated offers without a branch remain enquiry-only and unchanged |
+| Disclosure limits | Public projections reveal approved branch name and city only; no private address, PIN or evidence |
+| Test gate | Two independent tenants, wrong-tenant access and mutation denial, approval/reapproval/suspension checks, public DTO redaction, full regression and DigiOps release smoke |
+
+This does **not** implement bulk imports, unlimited multi-branch scale, digital KYC, map-based serviceability, supplier image rights attestations, B2B RFQs, WhatsApp API messaging or transactional stock reservations. Those remain explicit backlog items. Real-world supplier and branch proof must be reviewed manually before publishing.
