@@ -158,6 +158,27 @@ if($path==='/sourcing/boq/template.csv'&&$method==='GET'){
     header('Cache-Control: private, no-store');
     echo implode(',',sourcing_boq_headers())."\r\n";exit;
 }
+if($path==='/sourcing/boq/ingest'&&$method==='POST'){
+    require_customer('/sourcing/boq');verify_csrf();
+    try{
+        $file=$_FILES['intake_file']??null;
+        if(!is_array($file)||($file['error']??UPLOAD_ERR_NO_FILE)!==UPLOAD_ERR_OK
+            ||!is_string($file['tmp_name']??null)||!is_uploaded_file($file['tmp_name']))
+            throw new InvalidArgumentException('Select a valid Excel or PDF file.');
+        sourcing_ingest_stage($file['tmp_name'],(string)($file['name']??''),
+            ($_POST['ai_consent']??'')==='yes');
+        flash('success','Rows extracted for review. Verify every plant, grade and quantity before continuing.');
+    }catch(Throwable $e){flash('error',$e->getMessage());}
+    redirect('/sourcing/boq');
+}
+if($path==='/sourcing/boq/review'&&$method==='POST'){
+    require_customer('/sourcing/boq');verify_csrf();
+    try{
+        sourcing_ingest_review($_POST);
+        flash('success','All BOQ lines verified. Select nurseries and confirm sharing to send the request.');
+    }catch(Throwable $e){flash('error',$e->getMessage());}
+    redirect('/sourcing/boq');
+}
 if($path==='/sourcing/boq/preview'&&$method==='POST'){
     require_customer('/sourcing/boq');verify_csrf();
     try{
@@ -181,7 +202,9 @@ if($path==='/sourcing/boq/submit'&&$method==='POST'){
 if($path==='/sourcing/boq'&&$method==='GET'){
     require_customer('/sourcing/boq');
     render('sourcing/boq',['title'=>'Multi-plant BOQ sourcing','robots'=>'noindex,nofollow',
-        'preview'=>sourcing_boq_pending(),'suppliers'=>sourcing_verified_suppliers()]);
+        'preview'=>sourcing_boq_pending(),'ingest'=>sourcing_ingest_pending(),
+        'catalogue'=>products_public(),'aiReady'=>ai_enrichment_ready(),
+        'suppliers'=>sourcing_verified_suppliers()]);
     exit;
 }
 if(preg_match('#^/account/sourcing/([0-9a-f-]{36})/approve-draft$#D',$path,$m)&&$method==='POST'){

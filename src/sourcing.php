@@ -143,7 +143,14 @@ function sourcing_supplier_projection(array $rfq,string $tenantId): array {
         'specification'=>$rfq['specification'],'quantity'=>$rfq['quantity'],
         'destination'=>$rfq['destination'],'notes'=>$rfq['notes'],
         'status'=>$rfq['status'],'invitation'=>$entry,
-        'type'=>$rfq['type']??'single','lines'=>($rfq['type']??'')==='boq'?($rfq['lines']??[]):[],
+        'type'=>$rfq['type']??'single',
+        // Only the reviewed commercial schedule is supplier-visible.
+        // Source excerpts, document hashes, AI evidence and buyer review
+        // metadata remain private to the buyer/platform.
+        'lines'=>($rfq['type']??'')==='boq'
+            ?array_map(static fn($line)=>array_intersect_key($line,array_flip([
+                'id','product_guid','product_slug','plant_name','quantity','specification'
+            ])),(array)($rfq['lines']??[])) : [],
         'awarded_draft'=>isset($rfq['purchase_order'])
             &&($rfq['purchase_order']['supplier_id']??'')===$tenantId
                 ?['id'=>$rfq['purchase_order']['id'],'status'=>'buyer_approved_draft']:null,

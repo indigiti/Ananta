@@ -1,3 +1,4 @@
+<?php $ingest=$ingest??null; $aiReady=$aiReady??false; $catalogue=$catalogue??products_public(); ?>
 <section class="shell ananta-source-wrap">
   <div class="ananta-source-hero"><p class="kicker">Ananta Trade · Multi-plant procurement</p>
     <h1>One BOQ.<br><em>Several nursery options.</em></h1>
@@ -5,10 +6,60 @@
   </div>
   <div class="ananta-source-grid">
     <div class="ananta-source-card">
-      <p class="kicker">Step 1 · Upload and validate</p><h2>Review your plant requirements.</h2>
-      <p class="ananta-source-disclaimer">CSV upload is the supported structured extraction method in this release. AI-assisted OCR/PDF extraction remains disabled until a human-review pipeline and evidence checks are ready.</p>
-      <p>Required CSV columns: <code>product_slug,quantity,specification</code>. Maximum 30 unique plant/grade rows, 128 KB. Choose plant slugs from the Ananta catalogue.</p>
-      <a class="ananta-seller-cta" href="<?=e(url('/sourcing/boq/template.csv'))?>">Download CSV template <?=ui_icon('external')?></a>
+      <p class="kicker">Step 1 · Extract and validate</p><h2>Review your plant requirements.</h2>
+      <p class="ananta-source-disclaimer">Upload an Excel sheet or a text-based PDF. Ananta extracts candidate rows, but <strong>you decide</strong> which catalogue plants, quantities and grades are correct. Original files are not retained.</p>
+      <div class="ananta-ingest-choice">
+        <div><strong>Excel XLSX</strong><small>Sheet1 · Plant name or slug / quantity / specification · 30 rows maximum</small></div>
+        <div><strong>Text-based PDF</strong><small>Server must support PDF text extraction · scanned images need separate OCR</small></div>
+      </div>
+      <form action="<?=e(url('/sourcing/boq/ingest'))?>" method="post" enctype="multipart/form-data" class="ananta-source-form ananta-ingest-upload">
+        <?=csrf_field()?>
+        <label for="boq-intake-file">Select a BOQ document (.xlsx or .pdf)
+          <input id="boq-intake-file" type="file" name="intake_file" accept=".xlsx,.pdf,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf" required>
+        </label>
+        <label class="ananta-source-check">
+          <input type="checkbox" name="ai_consent" value="yes" <?=!$aiReady?'disabled':''?>>
+          <span>For a <strong>text-based PDF only</strong>, I authorize sending its extracted text to the configured AI provider to suggest rows. This is optional, may incur provider costs, and requires my review. <?=!$aiReady?'AI is not configured; local extraction remains available.':''?></span>
+        </label>
+        <button type="submit">Extract rows for my review <?=ui_icon('chevron-right')?></button>
+      </form>
+      <?php if($ingest):?>
+        <div class="ananta-ingest-review">
+          <p class="kicker">Step 2 · Required human verification</p>
+          <h3><?=count($ingest['rows'])?> proposed lines · <?=e(strtoupper($ingest['origin']))?></h3>
+          <p>These are extraction suggestions, <strong>not submitted RFQs</strong>. Select an active catalogue plant for every line. Correct quantity and grade using your original document. No supplier is notified until you confirm later.</p>
+          <form action="<?=e(url('/sourcing/boq/review'))?>" method="post" class="ananta-source-form">
+            <?=csrf_field()?>
+            <input type="hidden" name="preview_token" value="<?=e($ingest['token'])?>">
+            <?php foreach($ingest['rows'] as $i=>$candidate):?>
+              <fieldset class="ananta-ingest-row">
+                <legend>Source row <?=e((string)($i+1))?> · <?=e($candidate['match_confidence'])?></legend>
+                <p class="ananta-ingest-evidence"><strong>From document:</strong> <?=e($candidate['source_ref'])?></p>
+                <p class="ananta-ingest-original">Original plant: <strong><?=e($candidate['original_plant'])?></strong> · Quantity: <?=e($candidate['original_quantity'])?> · Grade: <?=e($candidate['original_specification'])?></p>
+                <div class="ananta-ingest-fields">
+                  <label>Correct catalogue plant<select name="rows[<?=e($candidate['id'])?>][product_slug]" required>
+                    <option value="">Choose a matched plant</option>
+                    <?php foreach($catalogue as $plant):?>
+                    <option value="<?=e($plant['slug'])?>" <?=($candidate['product_slug']===$plant['slug'])?'selected':''?>><?=e($plant['name'])?></option>
+                    <?php endforeach;?>
+                  </select></label>
+                  <label>Correct quantity<input type="number" name="rows[<?=e($candidate['id'])?>][quantity]" min="1" max="50000" value="<?=e($candidate['quantity'])?>" required></label>
+                  <label>Correct size / grade<input type="text" name="rows[<?=e($candidate['id'])?>][specification]" maxlength="180" value="<?=e($candidate['specification'])?>" required></label>
+                </div>
+              </fieldset>
+            <?php endforeach;?>
+            <label class="ananta-source-check"><input type="checkbox" name="confirm_review" value="yes" required>
+              <span>I have checked <strong>every line</strong> against the source document, including quantities and grades. AI suggestions are not treated as facts.</span>
+            </label>
+            <button type="submit">Confirm my reviewed BOQ <?=ui_icon('chevron-right')?></button>
+          </form>
+        </div>
+      <?php endif;?>
+      <details class="ananta-ingest-legacy">
+        <summary>Use the original CSV template instead</summary>
+        <p>Strict CSV columns: <code>product_slug,quantity,specification</code>. Maximum 30 unique catalogue lines and 128 KB. All quantities and specifications must already be correct.</p>
+        <a class="ananta-seller-cta" href="<?=e(url('/sourcing/boq/template.csv'))?>">Download CSV template <?=ui_icon('external')?></a>
+      </details>
       <form action="<?=e(url('/sourcing/boq/preview'))?>" method="post" enctype="multipart/form-data" class="ananta-source-form" style="margin-top:20px">
         <?=csrf_field()?>
         <label>Choose BOQ CSV file<input type="file" name="boq_file" accept=".csv,text/csv" required></label>
