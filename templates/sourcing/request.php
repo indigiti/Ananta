@@ -1,5 +1,6 @@
 <section class="shell ananta-source-wrap">
   <div class="ananta-source-hero"><p class="kicker">Ananta Trade · Supplier network</p><h1>One requirement.<br><em>More nursery options.</em></h1><p>Send one plant requirement to up to five verified nurseries. Compare their responses privately, without making a purchase commitment.</p></div>
+  <div class="ananta-boq-entry"><div><strong>Need several plant varieties?</strong><p>Upload a reviewed multi-line BOQ and compare complete supplier quotations.</p></div><a class="ananta-seller-cta" href="<?=e(url('/sourcing/boq'))?>">Start a multi-plant BOQ <?=ui_icon('chevron-right')?></a></div>
   <div class="ananta-source-grid">
   <section class="ananta-source-card" aria-labelledby="source-form-title">
     <p class="kicker">New sourcing request</p><h2 id="source-form-title">Tell nurseries what you need.</h2>

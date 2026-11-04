@@ -143,6 +143,10 @@ function sourcing_supplier_projection(array $rfq,string $tenantId): array {
         'specification'=>$rfq['specification'],'quantity'=>$rfq['quantity'],
         'destination'=>$rfq['destination'],'notes'=>$rfq['notes'],
         'status'=>$rfq['status'],'invitation'=>$entry,
+        'type'=>$rfq['type']??'single','lines'=>($rfq['type']??'')==='boq'?($rfq['lines']??[]):[],
+        'awarded_draft'=>isset($rfq['purchase_order'])
+            &&($rfq['purchase_order']['supplier_id']??'')===$tenantId
+                ?['id'=>$rfq['purchase_order']['id'],'status'=>'buyer_approved_draft']:null,
         'contact_shared'=>$rfq['contact_shared'],
         'buyer_contact'=>($rfq['contact_shared']??false)?$rfq['buyer_contact']:null,
         'updated_at'=>$entry['updated_at'],'created_at'=>$rfq['created_at'],
@@ -175,6 +179,7 @@ function sourcing_supplier_respond(string $tenantId,string $id,array $input): vo
     sourcing_mutate(static function(array $d)use($tenantId,$id,$decision,$price,$days,$notes,$now,$actor){
         $rfq=$d['rfqs'][$id]??null;
         if(!$rfq||!isset($rfq['recipients'][$tenantId]))throw new RuntimeException('This request is not assigned to your nursery.');
+        if(($rfq['type']??'')==='boq')throw new RuntimeException('Use the line-by-line BOQ quotation workflow.');
         if(($rfq['status']??'')!=='open')throw new RuntimeException('Buyer closed this request.');
         $supplier=marketplace_supplier_by_id($tenantId);
         if(!$supplier||($supplier['status']??'')!=='verified')throw new RuntimeException('Nursery is not currently verified.');
@@ -200,6 +205,7 @@ function sourcing_buyer_close(string $id): void {
     sourcing_mutate(static function(array $d)use($id,$buyer){
         $r=$d['rfqs'][$id]??null;
         if(!$r||($r['buyer_guid']??'')!==$buyer['guid'])throw new RuntimeException('Sourcing request not found.');
+        if(isset($r['purchase_order'])&&$r['purchase_order']!==null)throw new RuntimeException('Approved draft cannot be closed as an open RFQ.');
         $r['status']='closed';$r['updated_at']=gmdate('c');$d['rfqs'][$id]=$r;
         return $d;
     },'buyer.close');
