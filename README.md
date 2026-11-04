@@ -28,6 +28,14 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## Release B2 — SupplierOS layout and controlled CSV inventory imports
+
+The supplier login and invitation screens use a separate, release-fingerprinted SupplierOS stylesheet: public/assets/css/supplier-os.css. They have restrained editorial typography, stacked accessible form fields, a two-column desktop composition, a mobile fallback, and dark-mode support. On supplier pages the consumer newsletter is omitted. CSS/JS URLs use source-content fingerprints instead of only the unchanged 1.7.0 application version.
+
+Verified supplier owners/managers can now visit /supplier#import and upload UTF-8 CSV with exactly these columns: branch_id,product_slug,label,price_inr,quantity. The validator accepts up to 50 rows / 128 KB and allows only canonical published plants and branch IDs from the current tenant. The operator must approve a 15-minute session preview before writing. One locked mutation creates only draft, unknown-availability offers; existing duplicates are skipped and retries are idempotent. No external seller checkout or automatic stock confirmation is enabled.
+
+Regression gates: php tests/supplier_ui.php; php tests/supplier_import.php; bash scripts/full_regression.sh; and the DigiOps split-layout smoke test. After deployment, visually check supplier login, invitation, branch screens and CSV preview on desktop and mobile. Live browser acceptance, supplier MFA and production data restore remain open.
+
 ## Release B1 — Supplier branches and inventory evidence (staging)
 
 Verified nursery members can manage up to 25 private branch records from `/supplier#branches`, each with branch name, city, address and optional PIN. Owner and manager roles can submit branches; inventory/viewer roles can read but cannot edit them. The platform verifies, rejects or suspends each branch separately at `/admin/marketplace#branch-verification` with a private evidence reference. Editing a branch resets review to pending, immediately hiding its public offers until approval returns.

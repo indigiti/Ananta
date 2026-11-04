@@ -21,6 +21,7 @@ elseif (function_exists('growth_schema_graph')) $pageSchema=growth_schema_graph(
 else $pageSchema=[];
 $siConfig=function_exists('si_public_config')?si_public_config():['enabled'=>false];
 $currentPath=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
+$isSupplierSurface=str_starts_with($currentPath,url('/supplier'));
 ?>
 <!doctype html>
 <html lang="en" data-theme="light">
@@ -43,9 +44,10 @@ $currentPath=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
 <?php if(!empty($growthSettings['bing_site_verification'])):?><meta name="msvalidate.01" content="<?=e($growthSettings['bing_site_verification'])?>"><?php endif;?>
 <link rel="stylesheet" href="<?= e(asset('css/app.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/ananta-premium.css')) ?>">
+<?php if($isSupplierSurface): ?><link rel="stylesheet" href="<?=e(asset('css/supplier-os.css'))?>"><?php endif; ?>
 <?php if (!empty($pageSchema)): ?><script type="application/ld+json" nonce="<?= e($GLOBALS['csp_nonce'] ?? '') ?>"><?= json_encode($pageSchema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_HEX_TAG|JSON_HEX_AMP) ?></script><?php endif; ?>
 </head>
-<body class="ananta-storefront page-theme page-theme-<?= e($pageTheme['key'] ?? 'sanjay-botanical-retail') ?> surface-<?= e(str_replace('_','-',$pageTheme['surface'] ?? 'default')) ?>" style="<?= e($themeStyle) ?>" data-page-theme="<?= e($pageTheme['key'] ?? 'sanjay-botanical-retail') ?>" data-analytics-enabled="<?=!empty($growthTracking['enabled'])?'1':'0'?>" data-analytics-consent="<?=!empty($growthTracking['consent'])?'1':'0'?>" data-ga4="<?=e($growthTracking['ga4']??'')?>" data-gtm="<?=e($growthTracking['gtm']??'')?>" data-si-enabled="<?=!empty($siConfig['enabled'])?'1':'0'?>" data-si-personalisation="<?=!empty($siConfig['personalisation'])?'1':'0'?>">
+<body class="ananta-storefront <?=$isSupplierSurface?'ananta-supplier-surface':''?> page-theme page-theme-<?= e($pageTheme['key'] ?? 'sanjay-botanical-retail') ?> surface-<?= e(str_replace('_','-',$pageTheme['surface'] ?? 'default')) ?>" style="<?= e($themeStyle) ?>" data-page-theme="<?= e($pageTheme['key'] ?? 'sanjay-botanical-retail') ?>" data-analytics-enabled="<?=!empty($growthTracking['enabled'])?'1':'0'?>" data-analytics-consent="<?=!empty($growthTracking['consent'])?'1':'0'?>" data-ga4="<?=e($growthTracking['ga4']??'')?>" data-gtm="<?=e($growthTracking['gtm']??'')?>" data-si-enabled="<?=!empty($siConfig['enabled'])?'1':'0'?>" data-si-personalisation="<?=!empty($siConfig['personalisation'])?'1':'0'?>">
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="sn-announcement"><div class="sn-marquee"><span>Ananta Nursery Mall</span><span>Curated plants and nurseries</span><span>Wholesale &amp; project enquiries</span><span><?=e((string)count(products_public()))?> curated plant varieties</span></div></div>
 <header class="site-header marketplace-header sn-header" data-header>
@@ -87,7 +89,7 @@ $currentPath=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
 </header>
 <?php if ($success || $error): ?><div class="shell flash-wrap"><div class="flash <?= $error ? 'error':'success' ?>"><?= e($error ?: $success) ?></div></div><?php endif; ?>
 <main id="main"><?= $content ?></main>
-<section class="sn-newsletter"><div class="shell sn-newsletter-inner"><div><h3>Grow with Sanjay Nursery.</h3><p>Plant-care notes, nursery updates and new-arrival alerts.</p></div><form class="sn-email" action="<?=e(url('/contact'))?>" data-track-submit="newsletter_intent"><input type="email" placeholder="Enter email address" aria-label="Email address"><button type="submit">Stay connected</button></form></div></section>
+<?php if(!$isSupplierSurface): ?><section class="sn-newsletter"><div class="shell sn-newsletter-inner"><div><h3>Discover more with Ananta.</h3><p>Plant-care notes, nursery updates and new-arrival alerts.</p></div><form class="sn-email" action="<?=e(url('/contact'))?>" data-track-submit="newsletter_intent"><input type="email" placeholder="Enter email address" aria-label="Email address"><button type="submit">Stay connected</button></form></div></section><?php endif; ?>
 <footer class="site-footer nursery-footer sn-footer">
   <div class="shell footer-grid sn-footer-grid">
     <div class="sn-footer-brand"><a class="brand sn-brand footer-brand-lockup" href="<?=e(url('/'))?>"><i class="sn-brand-mark" aria-hidden="true"></i><span class="brand-main">Ananta</span></a><p>Discover plants, explore verified nursery offers and source greener spaces with confidence. Sanjay Nursery is our founding nursery.</p></div>

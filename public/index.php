@@ -186,6 +186,34 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
         catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/supplier');
     }
+    if($path==='/supplier/import/template.csv'&&$method==='GET'){
+        tenant_require('offers.draft',$supplier['tenant_id']);
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="ananta-supplier-draft-template.csv"');
+        header('Cache-Control: private, no-store');
+        echo implode(',',supplier_csv_headers())."\r\n";
+        exit;
+    }
+    if($path==='/supplier/import/preview'&&$method==='POST'){
+        verify_csrf();
+        try{
+            $file=$_FILES['csv_file']??null;
+            if(!is_array($file)||($file['error']??UPLOAD_ERR_NO_FILE)!==UPLOAD_ERR_OK
+                ||!is_string($file['tmp_name']??null)||!is_uploaded_file($file['tmp_name']))
+                throw new InvalidArgumentException('Select a valid CSV upload.');
+            supplier_csv_stage($file['tmp_name'],$supplier['tenant_id']);
+            flash('success','CSV preview validated. Review the draft offers and confirm the import.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier#import');
+    }
+    if($path==='/supplier/import/confirm'&&$method==='POST'){
+        verify_csrf();
+        try{
+            $result=supplier_csv_commit($supplier['tenant_id'],(string)($_POST['preview_token']??''));
+            flash('success',$result['created'].' draft offers added; '.$result['skipped'].' duplicates skipped. Platform approval is still required.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier#import');
+    }
     if($path==='/supplier/offer/report'&&$method==='POST'){
         verify_csrf();
         try{

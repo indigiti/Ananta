@@ -1,0 +1,51 @@
+<?php
+declare(strict_types=1);
+$root=dirname(__DIR__);
+putenv('APP_ENV=staging');
+putenv('SANJAY_DATA_KEY='.base64_encode(str_repeat('U',32)));
+putenv('SANJAY_SANDBOX_WEBHOOK_SECRET=supplier-ui-test');
+$_SERVER['REQUEST_URI']='/ananta/supplier/login';
+$_SERVER['SCRIPT_NAME']='/ananta/index.php';
+$_SERVER['HTTP_HOST']='stage.example.invalid';
+$_SERVER['REMOTE_ADDR']='127.0.0.97';
+require $root.'/src/bootstrap.php';
+$errors=[];
+$assert=static function(bool $ok,string $msg)use(&$errors){if(!$ok)$errors[]=$msg;};
+$cssFile=$root.'/public/assets/css/supplier-os.css';
+$expected=substr((string)hash_file('sha256',$cssFile),0,12);
+$asset=asset('css/supplier-os.css');
+$assert(str_contains($asset,'?v=1.7.0-'.$expected),'Supplier stylesheet lacks its source-based cache fingerprint.');
+$assetApp=asset('css/app.css');
+$assert((bool)preg_match('/[?]v=1[.]7[.]0-[0-9a-f]{12}/',$assetApp),'App stylesheet is not fingerprinted.');
+ob_start();
+render('supplier/login',['title'=>'Supplier sign in','robots'=>'noindex,nofollow']);
+$login=ob_get_clean();
+$assert(str_contains($login,'ananta-supplier-surface'),'Supplier layout body surface marker missing.');
+$assert(str_contains($login,'ananta-auth-shell')&&str_contains($login,'ananta-auth-panel'),'Supplier login two-column layout missing.');
+$assert(str_contains($login,'ananta-auth-story'),'Supplier editorial panel missing.');
+$assert(str_contains($login,$asset),'Supplier stylesheet did not load on the Cloudways /ananta/ route.');
+$assert(str_contains($login,'ananta-premium.css'),'Base premium stylesheet missing.');
+$assert(!str_contains($login,'class="sn-newsletter"'),'Consumer newsletter incorrectly shown on supplier login.');
+$assert(str_contains($login,'autocomplete="current-password"'),'Password input lacks correct autofill behavior.');
+$assert(str_contains($login,'name="_csrf"'),'Supplier login missing CSRF field.');
+$assert(str_contains($login,'<span class="brand-main">Ananta</span>'),'Brand label missing.');
+$assert(str_contains($login,'<main id="main">'),'Site main landmark absent.');
+$_SERVER['REQUEST_URI']='/ananta/supplier/accept';
+ob_start();
+render('supplier/accept',['title'=>'Accept invitation','invitation'=>null,'token'=>'','robots'=>'noindex,nofollow']);
+$accept=ob_get_clean();
+$assert(str_contains($accept,'ananta-auth-panel')&&str_contains($accept,$asset),'Invitation layout lacks supplier design system.');
+$assert(!str_contains($accept,'<form method="post" action="/ananta/supplier/accept"'),'Expired invite rendered activation form.');
+$_SERVER['REQUEST_URI']='/ananta/shop';
+ob_start();
+render('supplier/login',['title'=>'Supplier sign in','robots'=>'noindex,nofollow']);
+$shop=ob_get_clean();
+$assert(!str_contains($shop,'/css/supplier-os.css'),'Supplier stylesheet loaded on ordinary marketplace route.');
+$css=(string)file_get_contents($cssFile);
+foreach(['.ananta-auth-story h1','.ananta-auth-panel','.ananta-auth-panel .ananta-supplier-form','@media(max-width:620px)','[data-theme=dark]'] as $needle){
+    $assert(str_contains($css,$needle),'Supplier CSS contract missing: '.$needle);
+}
+$admin=(string)file_get_contents($root.'/templates/admin/layout.php');
+$assert(str_contains($admin,"asset('css/admin-marketplace.css')"),'Admin marketplace review CSS missing.');
+if($errors){fwrite(STDERR,"FAIL SupplierOS UI contracts:\n".implode("\n",array_unique($errors))."\n");exit(1);}
+echo "PASS: Cloudways /ananta/ cache fingerprint, constrained supplier auth layout, accessible form controls, mobile/dark theme, no consumer newsletter.\n";

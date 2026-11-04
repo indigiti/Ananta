@@ -30,8 +30,20 @@ function asset(string $path): string {
     $out=url('/assets/'.$clean);
     $ext=strtolower(pathinfo($clean,PATHINFO_EXTENSION));
     if(in_array($ext,['css','js'],true)){
+        // APP_VERSION stays stable during staged releases. Use a content fingerprint
+        // so browsers/CDNs cannot reuse a pre-SupplierOS CSS or JS asset.
+        static $fingerprints=[];
+        if(!array_key_exists($clean,$fingerprints)){
+            $root=dirname(__DIR__).'/public/assets/';
+            $source=realpath($root.$clean);
+            $base=realpath($root);
+            $valid=$source!==false&&$base!==false
+                &&str_starts_with($source,$base.DIRECTORY_SEPARATOR)&&is_file($source);
+            $fingerprints[$clean]=$valid?substr((string)hash_file('sha256',$source),0,12):'';
+        }
         $version=(string)($GLOBALS['app']['version']??'');
-        if($version!=='') $out.='?v='.rawurlencode($version);
+        $stamp=($version!==''?$version:'assets').($fingerprints[$clean]!==''?'-'.$fingerprints[$clean]:'');
+        $out.='?v='.rawurlencode($stamp);
     }
     return $out;
 }
