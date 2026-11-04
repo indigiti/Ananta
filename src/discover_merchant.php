@@ -24,7 +24,10 @@ function discover_variant_reasons(array $variant,array $product): array {
     if(($variant['shipping_class']??'')==='pickup-only')$reasons[]='pickup_only';
     if(!mediaos_primary_approved($product))$reasons[]='unapproved_parent_image';
     if(!variant_has_image($variant,$product))$reasons[]='missing_variant_image';
-    return $reasons;
+    if(empty($variant['track_inventory']))$reasons[]='untracked_inventory';
+    if(function_exists('merchant_completion_item_reasons'))
+        $reasons=array_merge($reasons,merchant_completion_item_reasons((string)($variant['sku']??'')));
+    return array_values(array_unique($reasons));
 }
 function discover_parent_reasons(array $product): array {
     $reasons=[];
@@ -38,7 +41,9 @@ function discover_parent_reasons(array $product): array {
     elseif((int)($inventory['stock']??0)<1)$reasons[]='zero_stock';
     if(!mediaos_primary_approved($product))$reasons[]='unapproved_parent_image';
     if(trim((string)($product['sku']??''))==='')$reasons[]='missing_sku';
-    return $reasons;
+    if(function_exists('merchant_completion_item_reasons'))
+        $reasons=array_merge($reasons,merchant_completion_item_reasons((string)($product['sku']??'')));
+    return array_values(array_unique($reasons));
 }
 function discover_merchant_rows(): array {
     $rows=[];

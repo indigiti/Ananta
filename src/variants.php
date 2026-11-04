@@ -80,7 +80,7 @@ function variant_has_image(array $v,?array $p=null): bool {
 }
 
 function variant_is_merchant_eligible(array $v,?array $p=null): bool {
-    if(!variant_is_sellable($v) || empty($v['merchant_enabled']))return false;
+    if(!variant_is_sellable($v) || empty($v['merchant_enabled']) || empty($v['track_inventory']))return false;
     if($p===null)$p=product_by_guid((string)($v['product_guid']??''));
     if(!is_array($p) || (($p['status']??'draft')!=='active') || !variant_has_image($v,$p)) return false;
     // v1.6 Merchant eligibility always requires an approved, rights-cleared parent catalogue hero.

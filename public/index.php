@@ -606,6 +606,44 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
         catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/admin/discover/merchant');
     }
+    if($path==='/admin/discover/completion'){
+        $page=max(1,min(1000,(int)($_GET['page']??1)));
+        render_admin('discover-completion',['title'=>'Ananta Discover · Live SKU Reconciliation',
+            'recon'=>merchant_completion_reconcile($page,40),'google'=>merchant_google_report(),
+            'policy'=>merchant_completion_policy()]);exit;
+    }
+    if($path==='/admin/discover/completion/catalogue.csv'&&$method==='GET'){
+        require_admin();header('Cache-Control: no-store, private');
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="ananta-catalogue-reconciliation.csv"');
+        echo merchant_completion_csv();exit;
+    }
+    if($path==='/admin/discover/completion/openai.csv'&&$method==='GET'){
+        require_admin();header('Cache-Control: no-store, private');
+        try{$csv=merchant_openai_compatible_csv();}
+        catch(Throwable $e){flash('error',$e->getMessage());redirect('/admin/discover/completion');}
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="ananta-openai-partner-preview.csv"');
+        echo $csv;exit;
+    }
+    if($path==='/admin/discover/completion/policy'&&$method==='POST'){
+        verify_csrf();try{merchant_completion_policy_save($_POST);
+            flash('success','Merchant operator evidence saved. Google approval remains unverified.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/discover/completion');
+    }
+    if($path==='/admin/discover/completion/sku-review'&&$method==='POST'){
+        verify_csrf();try{merchant_completion_review_save($_POST);
+            flash('success','SKU review saved; this does not change real inventory or price.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/discover/completion');
+    }
+    if($path==='/admin/discover/completion/google-sync'&&$method==='POST'){
+        verify_csrf();try{$result=merchant_google_sync();
+            flash('success','Read-only Google processed-products results received for '.$result['totals']['google_processed'].' items.');}
+        catch(Throwable $e){flash('error','Google Merchant API sync was not verified: '.$e->getMessage());}
+        redirect('/admin/discover/completion');
+    }
     if ($path === '/admin/discover/merchant'){
         render_admin('discover-merchant',['title'=>'Ananta Discover · Merchant Readiness',
             'report'=>discover_merchant_report(),'ai'=>discover_ai_readiness(),

@@ -1,0 +1,1512 @@
+{
+  "version": 1,
+  "source_commit": "8a33863fb79528406afb46234c8d5cb8d6fcf991",
+  "source_path": "storage/public-domain/catalog/products.json",
+  "reference_count": 376,
+  "items": [
+    {
+      "sku": "SNV-01-001",
+      "slug": "aglaonema-bai-kaw"
+    },
+    {
+      "sku": "SNV-01-002",
+      "slug": "aglaonema-beauty"
+    },
+    {
+      "sku": "SNV-01-003",
+      "slug": "aglaonema-black-new"
+    },
+    {
+      "sku": "SNV-01-004",
+      "slug": "aglaonema-star-dust-green"
+    },
+    {
+      "sku": "SNV-01-005",
+      "slug": "aglaonema-white-anjuman"
+    },
+    {
+      "sku": "SNV-01-006",
+      "slug": "aglaonema-red-vein"
+    },
+    {
+      "sku": "SNV-01-007",
+      "slug": "aglaonema-anjuman"
+    },
+    {
+      "sku": "SNV-01-008",
+      "slug": "aglaonema-white-vein"
+    },
+    {
+      "sku": "SNV-01-009",
+      "slug": "aglaonema-peach-cochin"
+    },
+    {
+      "sku": "SNV-01-010",
+      "slug": "aglaonema-pink-khanza"
+    },
+    {
+      "sku": "SNV-01-011",
+      "slug": "aglaonema-happiness"
+    },
+    {
+      "sku": "SNV-01-012",
+      "slug": "aglaonema-red-lipstick"
+    },
+    {
+      "sku": "SNV-01-013",
+      "slug": "aglaonema-new-pink"
+    },
+    {
+      "sku": "SNV-01-014",
+      "slug": "aglaonema-china-red"
+    },
+    {
+      "sku": "SNV-01-015",
+      "slug": "aglaonema-diamond-red"
+    },
+    {
+      "sku": "SNV-01-016",
+      "slug": "aglaonema-firework"
+    },
+    {
+      "sku": "SNV-01-017",
+      "slug": "aglaonema-rui"
+    },
+    {
+      "sku": "SNV-01-018",
+      "slug": "aglaonema-green-rosy"
+    },
+    {
+      "sku": "SNV-01-019",
+      "slug": "aglaonema-angel"
+    },
+    {
+      "sku": "SNV-02-001",
+      "slug": "alocasia-azlanii"
+    },
+    {
+      "sku": "SNV-02-002",
+      "slug": "alocasia-bambino"
+    },
+    {
+      "sku": "SNV-02-003",
+      "slug": "alocasia-parasol"
+    },
+    {
+      "sku": "SNV-02-004",
+      "slug": "alocasia-melo"
+    },
+    {
+      "sku": "SNV-02-005",
+      "slug": "alocasia-lauterbachiana"
+    },
+    {
+      "sku": "SNV-02-006",
+      "slug": "alocasia-silver-dragon"
+    },
+    {
+      "sku": "SNV-02-007",
+      "slug": "alocasia-cuprea-red-secret"
+    },
+    {
+      "sku": "SNV-02-008",
+      "slug": "alocasia-jacklyn"
+    },
+    {
+      "sku": "SNV-02-009",
+      "slug": "alocasia-polly"
+    },
+    {
+      "sku": "SNV-02-010",
+      "slug": "alocasia-pink-dragon"
+    },
+    {
+      "sku": "SNV-02-011",
+      "slug": "alocasia-sarian"
+    },
+    {
+      "sku": "SNV-02-012",
+      "slug": "alocasia-wentii-ruby"
+    },
+    {
+      "sku": "SNV-02-013",
+      "slug": "alocasia-watsoniana"
+    },
+    {
+      "sku": "SNV-02-014",
+      "slug": "alocasia-black-velvet"
+    },
+    {
+      "sku": "SNV-02-015",
+      "slug": "alocasia-dragon"
+    },
+    {
+      "sku": "SNV-02-016",
+      "slug": "alocasia-sinuata"
+    },
+    {
+      "sku": "SNV-02-017",
+      "slug": "alocasia-green-shield"
+    },
+    {
+      "sku": "SNV-02-018",
+      "slug": "alocasia-cucullata-variegata"
+    },
+    {
+      "sku": "SNV-02-019",
+      "slug": "colocasia-gold-ginger"
+    },
+    {
+      "sku": "SNV-03-001",
+      "slug": "asplenium-cobra"
+    },
+    {
+      "sku": "SNV-03-002",
+      "slug": "asplenium-nidus"
+    },
+    {
+      "sku": "SNV-03-003",
+      "slug": "asplenium-crispy-wave"
+    },
+    {
+      "sku": "SNV-03-004",
+      "slug": "asplenium-nidus-crispy-wave"
+    },
+    {
+      "sku": "SNV-03-005",
+      "slug": "asplenium-nidus-osaka"
+    },
+    {
+      "sku": "SNV-03-006",
+      "slug": "asplenium-nidus-variegated"
+    },
+    {
+      "sku": "SNV-03-007",
+      "slug": "asplenium-leslie"
+    },
+    {
+      "sku": "SNV-03-008",
+      "slug": "asplenium-antiquum-osaka"
+    },
+    {
+      "sku": "SNV-03-009",
+      "slug": "asplenium-silver-wing"
+    },
+    {
+      "sku": "SNV-03-010",
+      "slug": "asplenium-lemkasii"
+    },
+    {
+      "sku": "SNV-03-011",
+      "slug": "asplenium-manila"
+    },
+    {
+      "sku": "SNV-03-012",
+      "slug": "asplenium-venus"
+    },
+    {
+      "sku": "SNV-03-013",
+      "slug": "asplenium-crissie"
+    },
+    {
+      "sku": "SNV-03-014",
+      "slug": "asplenium-scolopendrium"
+    },
+    {
+      "sku": "SNV-03-015",
+      "slug": "asplenium-staghorn"
+    },
+    {
+      "sku": "SNV-03-016",
+      "slug": "asplenium-antiquum"
+    },
+    {
+      "sku": "SNV-03-017",
+      "slug": "platycerium-wandae"
+    },
+    {
+      "sku": "SNV-03-018",
+      "slug": "microsorum-fern"
+    },
+    {
+      "sku": "SNV-03-019",
+      "slug": "fern"
+    },
+    {
+      "sku": "SNV-04-001",
+      "slug": "fittonia-pink"
+    },
+    {
+      "sku": "SNV-04-002",
+      "slug": "fittonia-red-vein"
+    },
+    {
+      "sku": "SNV-04-003",
+      "slug": "fittonia-white-green"
+    },
+    {
+      "sku": "SNV-04-004",
+      "slug": "fittonia-red"
+    },
+    {
+      "sku": "SNV-04-005",
+      "slug": "fittonia-root-bridges-green"
+    },
+    {
+      "sku": "SNV-04-006",
+      "slug": "fittonia-green"
+    },
+    {
+      "sku": "SNV-04-007",
+      "slug": "fittonia-yellow-green"
+    },
+    {
+      "sku": "SNV-04-008",
+      "slug": "fittonia-forest-flame"
+    },
+    {
+      "sku": "SNV-04-009",
+      "slug": "fittonia-red-cloud"
+    },
+    {
+      "sku": "SNV-04-010",
+      "slug": "fittonia-albivenis-green"
+    },
+    {
+      "sku": "SNV-04-011",
+      "slug": "fittonia-pink-forest-flame"
+    },
+    {
+      "sku": "SNV-04-012",
+      "slug": "fittonia-white"
+    },
+    {
+      "sku": "SNV-04-013",
+      "slug": "fittonia-red-nerve"
+    },
+    {
+      "sku": "SNV-04-014",
+      "slug": "fittonia-mini-white"
+    },
+    {
+      "sku": "SNV-05-001",
+      "slug": "zz-plant-zamioculcas-zamiifolia"
+    },
+    {
+      "sku": "SNV-05-002",
+      "slug": "zenzi-dwarf-zz"
+    },
+    {
+      "sku": "SNV-05-003",
+      "slug": "raven-black-zz"
+    },
+    {
+      "sku": "SNV-05-004",
+      "slug": "mini-zz"
+    },
+    {
+      "sku": "SNV-05-005",
+      "slug": "variegated-zz"
+    },
+    {
+      "sku": "SNV-05-006",
+      "slug": "zamicro-mini"
+    },
+    {
+      "sku": "SNV-05-007",
+      "slug": "zamia-variegata"
+    },
+    {
+      "sku": "SNV-06-001",
+      "slug": "haworthia-aloe-flow"
+    },
+    {
+      "sku": "SNV-06-002",
+      "slug": "haworthia-plant"
+    },
+    {
+      "sku": "SNV-06-003",
+      "slug": "haworthia-maculata"
+    },
+    {
+      "sku": "SNV-06-004",
+      "slug": "haworthia-star"
+    },
+    {
+      "sku": "SNV-06-005",
+      "slug": "haworthia-magnifica"
+    },
+    {
+      "sku": "SNV-06-006",
+      "slug": "haworthia-angustifolia-baylissii"
+    },
+    {
+      "sku": "SNV-06-007",
+      "slug": "haworthia-gasteraloe-hybrida-d-tigar"
+    },
+    {
+      "sku": "SNV-06-008",
+      "slug": "haworthia-aloe-tiki"
+    },
+    {
+      "sku": "SNV-06-009",
+      "slug": "haworthia-zebra"
+    },
+    {
+      "sku": "SNV-06-010",
+      "slug": "haworthia-limifolia-spider-white"
+    },
+    {
+      "sku": "SNV-06-011",
+      "slug": "haworthia-aloe-rauhii-reynolds"
+    },
+    {
+      "sku": "SNV-07-001",
+      "slug": "peperomia-orba-green"
+    },
+    {
+      "sku": "SNV-07-002",
+      "slug": "peperomia-buenos-aires"
+    },
+    {
+      "sku": "SNV-07-003",
+      "slug": "peperomia-brasilia"
+    },
+    {
+      "sku": "SNV-07-004",
+      "slug": "peperomia-brasilia-hanging"
+    },
+    {
+      "sku": "SNV-07-005",
+      "slug": "peperomia-caperata"
+    },
+    {
+      "sku": "SNV-07-006",
+      "slug": "peperomia-hope"
+    },
+    {
+      "sku": "SNV-07-007",
+      "slug": "peperomia-red-luna"
+    },
+    {
+      "sku": "SNV-07-008",
+      "slug": "peperomia-moonlight"
+    },
+    {
+      "sku": "SNV-07-009",
+      "slug": "peperomia-rosso"
+    },
+    {
+      "sku": "SNV-07-010",
+      "slug": "peperomia-clusiifolia-jelly-pink"
+    },
+    {
+      "sku": "SNV-08-001",
+      "slug": "dieffenbachia-star-bright"
+    },
+    {
+      "sku": "SNV-08-002",
+      "slug": "dieffenbachia-milky-way"
+    },
+    {
+      "sku": "SNV-08-003",
+      "slug": "dieffenbachia-white-flame"
+    },
+    {
+      "sku": "SNV-08-004",
+      "slug": "dieffenbachia-delilah"
+    },
+    {
+      "sku": "SNV-08-005",
+      "slug": "dieffenbachia-green-magic"
+    },
+    {
+      "sku": "SNV-08-006",
+      "slug": "dieffenbachia-chinese-evergreen"
+    },
+    {
+      "sku": "SNV-08-007",
+      "slug": "dieffenbachia-vesuvius"
+    },
+    {
+      "sku": "SNV-09-001",
+      "slug": "philodendron-white-wizard"
+    },
+    {
+      "sku": "SNV-09-002",
+      "slug": "philodendron-white-wizard-seedling"
+    },
+    {
+      "sku": "SNV-09-003",
+      "slug": "philodendron-bird-of-paradise-yellow"
+    },
+    {
+      "sku": "SNV-09-004",
+      "slug": "philodendron-golden-saw"
+    },
+    {
+      "sku": "SNV-09-005",
+      "slug": "philodendron-brandtianum"
+    },
+    {
+      "sku": "SNV-09-006",
+      "slug": "philodendron-goeldii"
+    },
+    {
+      "sku": "SNV-10-001",
+      "slug": "sansevieria-black-gold"
+    },
+    {
+      "sku": "SNV-10-002",
+      "slug": "sansevieria-trifasciata-tornado"
+    },
+    {
+      "sku": "SNV-10-003",
+      "slug": "sansevieria-trifasciata-hahnii-silver-zebra"
+    },
+    {
+      "sku": "SNV-10-004",
+      "slug": "sansevieria-l-crooked"
+    },
+    {
+      "sku": "SNV-10-005",
+      "slug": "sansevieria-trifasciata-dwarf-laurentii"
+    },
+    {
+      "sku": "SNV-10-006",
+      "slug": "sansevieria-mikado"
+    },
+    {
+      "sku": "SNV-10-007",
+      "slug": "sansevieria-star-and-stripes"
+    },
+    {
+      "sku": "SNV-10-008",
+      "slug": "sansevieria-mikado-liliput"
+    },
+    {
+      "sku": "SNV-10-009",
+      "slug": "sansevieria-green"
+    },
+    {
+      "sku": "SNV-10-010",
+      "slug": "sansevieria-green-dwarf"
+    },
+    {
+      "sku": "SNV-11-001",
+      "slug": "syngonium-light-green"
+    },
+    {
+      "sku": "SNV-11-002",
+      "slug": "syngonium-red-heart"
+    },
+    {
+      "sku": "SNV-11-003",
+      "slug": "syngonium-white-green"
+    },
+    {
+      "sku": "SNV-11-004",
+      "slug": "syngonium-green-syngonium"
+    },
+    {
+      "sku": "SNV-12-001",
+      "slug": "caladium-colors-and-varieties"
+    },
+    {
+      "sku": "SNV-12-002",
+      "slug": "caladium-viola"
+    },
+    {
+      "sku": "SNV-12-003",
+      "slug": "caladium-green-spider"
+    },
+    {
+      "sku": "SNV-12-004",
+      "slug": "xanthosoma"
+    },
+    {
+      "sku": "SNV-12-005",
+      "slug": "caladium-pink-green"
+    },
+    {
+      "sku": "SNV-13-001",
+      "slug": "pothos-njoy-golden-variegated"
+    },
+    {
+      "sku": "SNV-13-002",
+      "slug": "marble-money-plant"
+    },
+    {
+      "sku": "SNV-13-003",
+      "slug": "green-money-plant-variegated"
+    },
+    {
+      "sku": "SNV-13-004",
+      "slug": "golden-money-plant"
+    },
+    {
+      "sku": "SNV-13-005",
+      "slug": "njoy-scindapsus-money-plant"
+    },
+    {
+      "sku": "SNV-13-006",
+      "slug": "green-money-water-plant"
+    },
+    {
+      "sku": "SNV-13-007",
+      "slug": "scindapsus-water-plant"
+    },
+    {
+      "sku": "SNV-14-001",
+      "slug": "monstera-burle-marx-flame"
+    },
+    {
+      "sku": "SNV-14-002",
+      "slug": "monstera-peru"
+    },
+    {
+      "sku": "SNV-15-001",
+      "slug": "ficus-aspera-variegated"
+    },
+    {
+      "sku": "SNV-15-002",
+      "slug": "ficus-altissima-yellow-gem"
+    },
+    {
+      "sku": "SNV-15-003",
+      "slug": "ficus-bonsai-bonzii"
+    },
+    {
+      "sku": "SNV-15-004",
+      "slug": "ficus-bonsai"
+    },
+    {
+      "sku": "SNV-15-005",
+      "slug": "bonsai-ficus-plant"
+    },
+    {
+      "sku": "SNV-15-006",
+      "slug": "bonsai-plants"
+    },
+    {
+      "sku": "SNV-16-001",
+      "slug": "calla-lily"
+    },
+    {
+      "sku": "SNV-16-002",
+      "slug": "yellow-calla-lily"
+    },
+    {
+      "sku": "SNV-16-003",
+      "slug": "mandevilla-white"
+    },
+    {
+      "sku": "SNV-16-004",
+      "slug": "adenium"
+    },
+    {
+      "sku": "SNV-16-005",
+      "slug": "anthurium-blood-red-flamingo"
+    },
+    {
+      "sku": "SNV-16-006",
+      "slug": "doritaenopsis-orchid"
+    },
+    {
+      "sku": "SNV-16-007",
+      "slug": "spathiphyllum"
+    },
+    {
+      "sku": "SNV-16-008",
+      "slug": "spathiphyllum-silver-streak"
+    },
+    {
+      "sku": "SNV-16-009",
+      "slug": "spathiphyllum-crown"
+    },
+    {
+      "sku": "SNV-17-001",
+      "slug": "bamboo-palm"
+    },
+    {
+      "sku": "SNV-17-002",
+      "slug": "areca-palm"
+    },
+    {
+      "sku": "SNV-17-003",
+      "slug": "pachira-aquatica-braided-thin"
+    },
+    {
+      "sku": "SNV-17-004",
+      "slug": "pachira-money-plant-tree"
+    },
+    {
+      "sku": "SNV-17-005",
+      "slug": "dracaena"
+    },
+    {
+      "sku": "SNV-17-006",
+      "slug": "lucky-bamboo"
+    },
+    {
+      "sku": "SNV-18-001",
+      "slug": "schefflera-variegated"
+    },
+    {
+      "sku": "SNV-18-002",
+      "slug": "calathea-freddie"
+    },
+    {
+      "sku": "SNV-18-003",
+      "slug": "calathea-makoyana"
+    },
+    {
+      "sku": "SNV-18-004",
+      "slug": "calathea-insignis"
+    },
+    {
+      "sku": "SNV-18-005",
+      "slug": "oxycardium-red"
+    },
+    {
+      "sku": "SNV-18-006",
+      "slug": "snake-plant"
+    },
+    {
+      "sku": "SNV-18-007",
+      "slug": "tillandsia-cotton-candy"
+    },
+    {
+      "sku": "SNV-18-008",
+      "slug": "tillandsia-paucifolia-red-hybrid"
+    },
+    {
+      "sku": "SNV-18-009",
+      "slug": "gymnocalycium-orange-moon-cactus"
+    },
+    {
+      "sku": "SNV-18-010",
+      "slug": "gymnocalycium-red-moon-cactus"
+    },
+    {
+      "sku": "SNV-18-011",
+      "slug": "gymnocalycium-orange-and-yellow-moon-cactus"
+    },
+    {
+      "sku": "SNV-18-012",
+      "slug": "parodia-magnifica"
+    },
+    {
+      "sku": "SNV-18-013",
+      "slug": "aurum-succulent"
+    },
+    {
+      "sku": "SNV-162-001",
+      "slug": "ficus-lyrata-fiddle-leaf-fig"
+    },
+    {
+      "sku": "SNV-162-002",
+      "slug": "ficus-lyrata-bambino"
+    },
+    {
+      "sku": "SNV-162-003",
+      "slug": "ficus-elastica-green"
+    },
+    {
+      "sku": "SNV-162-004",
+      "slug": "ficus-elastica-burgundy"
+    },
+    {
+      "sku": "SNV-162-005",
+      "slug": "ficus-elastica-tineke"
+    },
+    {
+      "sku": "SNV-162-006",
+      "slug": "ficus-elastica-ruby"
+    },
+    {
+      "sku": "SNV-162-007",
+      "slug": "ficus-benjamina-green"
+    },
+    {
+      "sku": "SNV-162-008",
+      "slug": "ficus-benjamina-starlight"
+    },
+    {
+      "sku": "SNV-162-009",
+      "slug": "ficus-benjamina-golden-king"
+    },
+    {
+      "sku": "SNV-162-010",
+      "slug": "ficus-alii"
+    },
+    {
+      "sku": "SNV-162-011",
+      "slug": "ficus-audrey"
+    },
+    {
+      "sku": "SNV-162-012",
+      "slug": "ficus-deltoidea-golden"
+    },
+    {
+      "sku": "SNV-162-013",
+      "slug": "monstera-deliciosa"
+    },
+    {
+      "sku": "SNV-162-014",
+      "slug": "monstera-adansonii"
+    },
+    {
+      "sku": "SNV-162-015",
+      "slug": "monstera-thai-constellation"
+    },
+    {
+      "sku": "SNV-162-016",
+      "slug": "monstera-albo-variegata"
+    },
+    {
+      "sku": "SNV-162-017",
+      "slug": "monstera-siltepecana"
+    },
+    {
+      "sku": "SNV-162-018",
+      "slug": "philodendron-birkin"
+    },
+    {
+      "sku": "SNV-162-019",
+      "slug": "philodendron-pink-princess"
+    },
+    {
+      "sku": "SNV-162-020",
+      "slug": "philodendron-prince-of-orange"
+    },
+    {
+      "sku": "SNV-162-021",
+      "slug": "philodendron-moonlight"
+    },
+    {
+      "sku": "SNV-162-022",
+      "slug": "philodendron-imperial-green"
+    },
+    {
+      "sku": "SNV-162-023",
+      "slug": "philodendron-imperial-red"
+    },
+    {
+      "sku": "SNV-162-024",
+      "slug": "philodendron-congo-green"
+    },
+    {
+      "sku": "SNV-162-025",
+      "slug": "philodendron-congo-rojo"
+    },
+    {
+      "sku": "SNV-162-026",
+      "slug": "philodendron-xanadu"
+    },
+    {
+      "sku": "SNV-162-027",
+      "slug": "philodendron-selloum-hope"
+    },
+    {
+      "sku": "SNV-162-028",
+      "slug": "philodendron-brasil"
+    },
+    {
+      "sku": "SNV-162-029",
+      "slug": "philodendron-micans"
+    },
+    {
+      "sku": "SNV-162-030",
+      "slug": "philodendron-heartleaf"
+    },
+    {
+      "sku": "SNV-162-031",
+      "slug": "philodendron-lemon-lime"
+    },
+    {
+      "sku": "SNV-162-032",
+      "slug": "philodendron-gloriosum"
+    },
+    {
+      "sku": "SNV-162-033",
+      "slug": "philodendron-melanochrysum"
+    },
+    {
+      "sku": "SNV-162-034",
+      "slug": "calathea-orbifolia"
+    },
+    {
+      "sku": "SNV-162-035",
+      "slug": "calathea-medallion"
+    },
+    {
+      "sku": "SNV-162-036",
+      "slug": "calathea-beauty-star"
+    },
+    {
+      "sku": "SNV-162-037",
+      "slug": "calathea-white-fusion"
+    },
+    {
+      "sku": "SNV-162-038",
+      "slug": "calathea-roseopicta"
+    },
+    {
+      "sku": "SNV-162-039",
+      "slug": "calathea-dottie"
+    },
+    {
+      "sku": "SNV-162-040",
+      "slug": "calathea-zebrina"
+    },
+    {
+      "sku": "SNV-162-041",
+      "slug": "calathea-rufibarba"
+    },
+    {
+      "sku": "SNV-162-042",
+      "slug": "maranta-red-prayer-plant"
+    },
+    {
+      "sku": "SNV-162-043",
+      "slug": "maranta-lemon-lime"
+    },
+    {
+      "sku": "SNV-162-044",
+      "slug": "stromanthe-triostar"
+    },
+    {
+      "sku": "SNV-162-045",
+      "slug": "dracaena-marginata"
+    },
+    {
+      "sku": "SNV-162-046",
+      "slug": "dracaena-marginata-tricolor"
+    },
+    {
+      "sku": "SNV-162-047",
+      "slug": "dracaena-compacta"
+    },
+    {
+      "sku": "SNV-162-048",
+      "slug": "dracaena-janet-craig"
+    },
+    {
+      "sku": "SNV-162-049",
+      "slug": "dracaena-lemon-lime"
+    },
+    {
+      "sku": "SNV-162-050",
+      "slug": "dracaena-song-of-india"
+    },
+    {
+      "sku": "SNV-162-051",
+      "slug": "dracaena-song-of-jamaica"
+    },
+    {
+      "sku": "SNV-162-052",
+      "slug": "dracaena-fragrans-massangeana-corn-plant"
+    },
+    {
+      "sku": "SNV-162-053",
+      "slug": "dracaena-white-bird"
+    },
+    {
+      "sku": "SNV-162-054",
+      "slug": "dracaena-colorama"
+    },
+    {
+      "sku": "SNV-162-055",
+      "slug": "croton-petra"
+    },
+    {
+      "sku": "SNV-162-056",
+      "slug": "croton-gold-dust"
+    },
+    {
+      "sku": "SNV-162-057",
+      "slug": "croton-mammy"
+    },
+    {
+      "sku": "SNV-162-058",
+      "slug": "croton-excellent"
+    },
+    {
+      "sku": "SNV-162-059",
+      "slug": "croton-zanzibar"
+    },
+    {
+      "sku": "SNV-162-060",
+      "slug": "croton-sunny-star"
+    },
+    {
+      "sku": "SNV-162-061",
+      "slug": "croton-banana"
+    },
+    {
+      "sku": "SNV-162-062",
+      "slug": "croton-mrs-iceton"
+    },
+    {
+      "sku": "SNV-162-063",
+      "slug": "croton-red-iceton"
+    },
+    {
+      "sku": "SNV-162-064",
+      "slug": "croton-magnificent"
+    },
+    {
+      "sku": "SNV-162-065",
+      "slug": "pilea-peperomioides"
+    },
+    {
+      "sku": "SNV-162-066",
+      "slug": "pilea-cadierei"
+    },
+    {
+      "sku": "SNV-162-067",
+      "slug": "hypoestes-pink"
+    },
+    {
+      "sku": "SNV-162-068",
+      "slug": "hypoestes-red"
+    },
+    {
+      "sku": "SNV-162-069",
+      "slug": "hypoestes-white"
+    },
+    {
+      "sku": "SNV-162-070",
+      "slug": "spider-plant-green"
+    },
+    {
+      "sku": "SNV-162-071",
+      "slug": "spider-plant-variegated"
+    },
+    {
+      "sku": "SNV-162-072",
+      "slug": "tradescantia-zebrina"
+    },
+    {
+      "sku": "SNV-162-073",
+      "slug": "tradescantia-nanouk"
+    },
+    {
+      "sku": "SNV-162-074",
+      "slug": "hoya-carnosa"
+    },
+    {
+      "sku": "SNV-162-075",
+      "slug": "hoya-compacta"
+    },
+    {
+      "sku": "SNV-162-076",
+      "slug": "hoya-kerrii"
+    },
+    {
+      "sku": "SNV-162-077",
+      "slug": "hoya-pubicalyx"
+    },
+    {
+      "sku": "SNV-162-078",
+      "slug": "boston-fern"
+    },
+    {
+      "sku": "SNV-162-079",
+      "slug": "maidenhair-fern"
+    },
+    {
+      "sku": "SNV-162-080",
+      "slug": "button-fern"
+    },
+    {
+      "sku": "SNV-162-081",
+      "slug": "rabbit-s-foot-fern"
+    },
+    {
+      "sku": "SNV-162-082",
+      "slug": "begonia-rex"
+    },
+    {
+      "sku": "SNV-162-083",
+      "slug": "begonia-maculata"
+    },
+    {
+      "sku": "SNV-162-084",
+      "slug": "begonia-angel-wing"
+    },
+    {
+      "sku": "SNV-162-085",
+      "slug": "begonia-tiger"
+    },
+    {
+      "sku": "SNV-162-086",
+      "slug": "begonia-iron-cross"
+    },
+    {
+      "sku": "SNV-162-087",
+      "slug": "begonia-black-mamba"
+    },
+    {
+      "sku": "SNV-162-088",
+      "slug": "begonia-red-kiss"
+    },
+    {
+      "sku": "SNV-162-089",
+      "slug": "anthurium-pink"
+    },
+    {
+      "sku": "SNV-162-090",
+      "slug": "anthurium-white"
+    },
+    {
+      "sku": "SNV-162-091",
+      "slug": "anthurium-orange"
+    },
+    {
+      "sku": "SNV-162-092",
+      "slug": "anthurium-black"
+    },
+    {
+      "sku": "SNV-162-093",
+      "slug": "anthurium-crystallinum"
+    },
+    {
+      "sku": "SNV-162-094",
+      "slug": "anthurium-clarinervium"
+    },
+    {
+      "sku": "SNV-162-095",
+      "slug": "rhapis-lady-palm"
+    },
+    {
+      "sku": "SNV-162-096",
+      "slug": "parlour-palm"
+    },
+    {
+      "sku": "SNV-162-097",
+      "slug": "kentia-palm"
+    },
+    {
+      "sku": "SNV-162-098",
+      "slug": "radermachera-china-doll"
+    },
+    {
+      "sku": "SNV-162-099",
+      "slug": "dischidia"
+    },
+    {
+      "sku": "SNV-162-100",
+      "slug": "rhoeo-tricolor"
+    },
+    {
+      "sku": "SNV-162-101",
+      "slug": "hibiscus-red"
+    },
+    {
+      "sku": "SNV-162-102",
+      "slug": "hibiscus-pink"
+    },
+    {
+      "sku": "SNV-162-103",
+      "slug": "hibiscus-yellow"
+    },
+    {
+      "sku": "SNV-162-104",
+      "slug": "hibiscus-white"
+    },
+    {
+      "sku": "SNV-162-105",
+      "slug": "hibiscus-orange"
+    },
+    {
+      "sku": "SNV-162-106",
+      "slug": "double-hibiscus"
+    },
+    {
+      "sku": "SNV-162-107",
+      "slug": "variegated-hibiscus"
+    },
+    {
+      "sku": "SNV-162-108",
+      "slug": "ixora-dwarf-red"
+    },
+    {
+      "sku": "SNV-162-109",
+      "slug": "ixora-orange"
+    },
+    {
+      "sku": "SNV-162-110",
+      "slug": "ixora-pink"
+    },
+    {
+      "sku": "SNV-162-111",
+      "slug": "ixora-yellow"
+    },
+    {
+      "sku": "SNV-162-112",
+      "slug": "ixora-white"
+    },
+    {
+      "sku": "SNV-162-113",
+      "slug": "gardenia-jasminoides"
+    },
+    {
+      "sku": "SNV-162-114",
+      "slug": "dwarf-gardenia"
+    },
+    {
+      "sku": "SNV-162-115",
+      "slug": "mogra-arabian-jasmine"
+    },
+    {
+      "sku": "SNV-162-116",
+      "slug": "jui-juhi-jasmine"
+    },
+    {
+      "sku": "SNV-162-117",
+      "slug": "jai-jasmine"
+    },
+    {
+      "sku": "SNV-162-118",
+      "slug": "star-jasmine"
+    },
+    {
+      "sku": "SNV-162-119",
+      "slug": "bougainvillea-dwarf-pink"
+    },
+    {
+      "sku": "SNV-162-120",
+      "slug": "bougainvillea-white"
+    },
+    {
+      "sku": "SNV-162-121",
+      "slug": "bougainvillea-purple"
+    },
+    {
+      "sku": "SNV-162-122",
+      "slug": "bougainvillea-red"
+    },
+    {
+      "sku": "SNV-162-123",
+      "slug": "bougainvillea-orange"
+    },
+    {
+      "sku": "SNV-162-124",
+      "slug": "bougainvillea-yellow"
+    },
+    {
+      "sku": "SNV-162-125",
+      "slug": "bougainvillea-chitra"
+    },
+    {
+      "sku": "SNV-162-126",
+      "slug": "bougainvillea-green-apple"
+    },
+    {
+      "sku": "SNV-162-127",
+      "slug": "crossandra-orange"
+    },
+    {
+      "sku": "SNV-162-128",
+      "slug": "crossandra-yellow"
+    },
+    {
+      "sku": "SNV-162-129",
+      "slug": "kalanchoe-red"
+    },
+    {
+      "sku": "SNV-162-130",
+      "slug": "kalanchoe-pink"
+    },
+    {
+      "sku": "SNV-162-131",
+      "slug": "kalanchoe-yellow"
+    },
+    {
+      "sku": "SNV-162-132",
+      "slug": "kalanchoe-orange"
+    },
+    {
+      "sku": "SNV-162-133",
+      "slug": "kalanchoe-white"
+    },
+    {
+      "sku": "SNV-162-134",
+      "slug": "crown-of-thorns-red"
+    },
+    {
+      "sku": "SNV-162-135",
+      "slug": "crown-of-thorns-pink"
+    },
+    {
+      "sku": "SNV-162-136",
+      "slug": "crown-of-thorns-yellow"
+    },
+    {
+      "sku": "SNV-162-137",
+      "slug": "crown-of-thorns-white"
+    },
+    {
+      "sku": "SNV-162-138",
+      "slug": "petunia"
+    },
+    {
+      "sku": "SNV-162-139",
+      "slug": "dianthus"
+    },
+    {
+      "sku": "SNV-162-140",
+      "slug": "marigold"
+    },
+    {
+      "sku": "SNV-162-141",
+      "slug": "chrysanthemum"
+    },
+    {
+      "sku": "SNV-162-142",
+      "slug": "geranium"
+    },
+    {
+      "sku": "SNV-162-143",
+      "slug": "impatiens"
+    },
+    {
+      "sku": "SNV-162-144",
+      "slug": "vinca-sadabahar"
+    },
+    {
+      "sku": "SNV-162-145",
+      "slug": "gazania"
+    },
+    {
+      "sku": "SNV-162-146",
+      "slug": "zinnia"
+    },
+    {
+      "sku": "SNV-162-147",
+      "slug": "celosia"
+    },
+    {
+      "sku": "SNV-162-148",
+      "slug": "salvia"
+    },
+    {
+      "sku": "SNV-162-149",
+      "slug": "aster"
+    },
+    {
+      "sku": "SNV-162-150",
+      "slug": "verbena"
+    },
+    {
+      "sku": "SNV-162-151",
+      "slug": "portulaca"
+    },
+    {
+      "sku": "SNV-162-152",
+      "slug": "pentas"
+    },
+    {
+      "sku": "SNV-162-153",
+      "slug": "plumbago-blue"
+    },
+    {
+      "sku": "SNV-162-154",
+      "slug": "plumbago-white"
+    },
+    {
+      "sku": "SNV-162-155",
+      "slug": "russelia"
+    },
+    {
+      "sku": "SNV-162-156",
+      "slug": "hamelia"
+    },
+    {
+      "sku": "SNV-162-157",
+      "slug": "ruellia"
+    },
+    {
+      "sku": "SNV-162-158",
+      "slug": "barleria"
+    },
+    {
+      "sku": "SNV-162-159",
+      "slug": "aparajita-blue-pea"
+    },
+    {
+      "sku": "SNV-162-160",
+      "slug": "garlic-vine"
+    },
+    {
+      "sku": "SNV-162-161",
+      "slug": "bleeding-heart-vine"
+    },
+    {
+      "sku": "SNV-162-162",
+      "slug": "morning-glory"
+    },
+    {
+      "sku": "SNV-162-163",
+      "slug": "jade-plant-crassula-ovata"
+    },
+    {
+      "sku": "SNV-162-164",
+      "slug": "jade-gollum"
+    },
+    {
+      "sku": "SNV-162-165",
+      "slug": "jade-hobbit"
+    },
+    {
+      "sku": "SNV-162-166",
+      "slug": "crassula-campfire"
+    },
+    {
+      "sku": "SNV-162-167",
+      "slug": "echeveria-elegans"
+    },
+    {
+      "sku": "SNV-162-168",
+      "slug": "echeveria-black-prince"
+    },
+    {
+      "sku": "SNV-162-169",
+      "slug": "echeveria-perle-von-nurnberg"
+    },
+    {
+      "sku": "SNV-162-170",
+      "slug": "sedum-adolphii"
+    },
+    {
+      "sku": "SNV-162-171",
+      "slug": "string-of-pearls"
+    },
+    {
+      "sku": "SNV-162-172",
+      "slug": "string-of-bananas"
+    },
+    {
+      "sku": "SNV-162-173",
+      "slug": "string-of-dolphins"
+    },
+    {
+      "sku": "SNV-162-174",
+      "slug": "string-of-hearts"
+    },
+    {
+      "sku": "SNV-162-175",
+      "slug": "golden-barrel-cactus"
+    },
+    {
+      "sku": "SNV-162-176",
+      "slug": "bunny-ear-cactus"
+    },
+    {
+      "sku": "SNV-162-177",
+      "slug": "mammillaria"
+    },
+    {
+      "sku": "SNV-162-178",
+      "slug": "fairy-castle-cactus"
+    },
+    {
+      "sku": "SNV-162-179",
+      "slug": "rebutia"
+    },
+    {
+      "sku": "SNV-162-180",
+      "slug": "astrophytum"
+    },
+    {
+      "sku": "SNV-162-181",
+      "slug": "tulsi-rama"
+    },
+    {
+      "sku": "SNV-162-182",
+      "slug": "tulsi-krishna"
+    },
+    {
+      "sku": "SNV-162-183",
+      "slug": "mint"
+    },
+    {
+      "sku": "SNV-162-184",
+      "slug": "spearmint"
+    },
+    {
+      "sku": "SNV-162-185",
+      "slug": "lemongrass"
+    },
+    {
+      "sku": "SNV-162-186",
+      "slug": "rosemary"
+    },
+    {
+      "sku": "SNV-162-187",
+      "slug": "basil"
+    },
+    {
+      "sku": "SNV-162-188",
+      "slug": "thai-basil"
+    },
+    {
+      "sku": "SNV-162-189",
+      "slug": "oregano"
+    },
+    {
+      "sku": "SNV-162-190",
+      "slug": "thyme"
+    },
+    {
+      "sku": "SNV-162-191",
+      "slug": "parsley"
+    },
+    {
+      "sku": "SNV-162-192",
+      "slug": "curry-leaf"
+    },
+    {
+      "sku": "SNV-162-193",
+      "slug": "aloe-vera"
+    },
+    {
+      "sku": "SNV-162-194",
+      "slug": "stevia"
+    },
+    {
+      "sku": "SNV-162-195",
+      "slug": "ajwain"
+    },
+    {
+      "sku": "SNV-162-196",
+      "slug": "cherry-tomato"
+    },
+    {
+      "sku": "SNV-162-197",
+      "slug": "chilli"
+    },
+    {
+      "sku": "SNV-162-198",
+      "slug": "capsicum"
+    },
+    {
+      "sku": "SNV-162-199",
+      "slug": "brinjal"
+    },
+    {
+      "sku": "SNV-162-200",
+      "slug": "okra"
+    },
+    {
+      "sku": "SNV-162-201",
+      "slug": "cucumber"
+    },
+    {
+      "sku": "SNV-162-202",
+      "slug": "strawberry"
+    }
+  ]
+}
