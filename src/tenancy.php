@@ -172,10 +172,11 @@ function tenant_require(string $permission,string $tenantId): array {
 }
 function tenant_switch(string $tenantId): bool {
     if(!tenant_valid_id($tenantId)||empty($_SESSION['supplier_user']['user_id']))return false;
-    $old=$_SESSION['supplier_user']['tenant_id'];
+    $original=$_SESSION['supplier_user'];
     $_SESSION['supplier_user']['tenant_id']=$tenantId;
     if(!tenant_identity()){
-        $_SESSION['supplier_user']['tenant_id']=$old;
+        // A denied tenant-switch must not destroy the caller's previously valid session.
+        $_SESSION['supplier_user']=$original;
         return false;
     }
     session_regenerate_id(true);
