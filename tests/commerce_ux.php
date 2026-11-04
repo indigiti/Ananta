@@ -12,5 +12,5 @@ $css=(string)file_get_contents($root.'/public/assets/css/app.css');$layout=(stri
 foreach(['sn-family-filter','sn-plant-placeholder','sn-pdp-care','sn-pagination'] as $needle)if(!str_contains($css,$needle))$errors[]='Plant catalogue CSS marker missing: '.$needle;
 foreach(['Sanjay Nursery','indoor-plants','succulents-cacti','data-menu-toggle'] as $needle)if(!str_contains($layout,$needle))$errors[]='Nursery header marker missing: '.$needle;
 foreach(['Plant Discovery','sn-family-scroll','Live availability','marketplace-product-grid'] as $needle)if(!str_contains(strtolower($shop),strtolower($needle)))$errors[]='Catalogue UX marker missing: '.$needle;
-foreach(['Featured plant varieties','curated plant varieties','Corporate Gifting','sn-home-hero'] as $needle)if(!str_contains($home,$needle))$errors[]='Nursery home marker missing: '.$needle;
+foreach(['The plant edit','curated plant varieties','Corporate Gifting','sn-home-hero'] as $needle)if(!str_contains($home,$needle))$errors[]='Nursery home marker missing: '.$needle;
 if($errors){fwrite(STDERR,implode("\n",array_unique($errors))."\n");exit(1);}echo "PASS: 376-variety catalogue, family navigation, v1.6 discovery controls, pagination markers and responsive plant UX verified.\n";
