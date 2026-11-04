@@ -12,6 +12,7 @@
 - [Part VI: Release A2 — persistent uploaded plant media](#part-vi-release-a2--persistent-uploaded-plant-media)
 - [Part VII: Release B1 — supplier branches and stock review](#part-vii-release-b1--supplier-branches-private-locations-and-stock-review)
 - [Part VIII: Release B2 — SupplierOS styling and CSV import](#part-viii-release-b2--supplieros-styling-and-csv-to-draft-imports)
+- [Part IX: Release B3 — private buyer sourcing and nursery quotations](#part-ix-release-b3--private-buyer-sourcing-nursery-inbox-and-indicative-quotations)
 
 ---
 
@@ -691,3 +692,28 @@ Inventory import acceptance:
 - Automated coverage includes HTML/CSS integration, invalid inputs, cross-tenant denial, retries, no public exposure and split DigiOps release packaging.
 
 Pending: real-browser QA at common phone/tablet/desktop widths, password recovery/MFA, supplier KYC, serviceability, lead inbox, formal backup restoration, RFQ workflow and WhatsApp API integration.
+
+
+---
+
+## Part IX: Release B3 — private buyer sourcing, nursery inbox and indicative quotations
+
+**Scope:** Build the first measurable multi-nursery buyer-to-supplier commercial flow while retaining the PHP-first file-backed Cloudways staging architecture. This release is NOT the full P2 BOQ engine or P5 transaction platform.
+
+| Acceptance requirement | Implementation |
+| --- | --- |
+| Buyer sourcing entry points | /sourcing and contextual plant/nursery CTAs for authenticated customers |
+| Requirement fields | One canonical published plant, quantity, size/grade, destination, optional notes |
+| Explicit buyer consent | Buyer selects 1–5 verified, actively onboarded nurseries, grants request sharing; account email/phone only shared with separate consent |
+| Encrypted record | File-first `private-domain/marketplace/sourcing-rfqs.json`, UUIDv7, authenticated encryption, locked aggregate mutations |
+| Buyer quotation workspace | /account/sourcing and private detail, buyer-only read, compare independent quotes |
+| Supplier inbox | /supplier/enquiries, only currently authorized tenant members; separate supplier projection hides all competing vendors |
+| Supplier responses | Owner/manager can submit an indicative unit price and 0–365-day lead time or decline; no automatically confirmed stocks |
+| Buyer lifecycle | Buyer may close RFQ and block further supplier responses |
+| Platform oversight | Aggregate RFQ/invitation/quote counts in marketplace admin without public buyer details |
+| Limits and safety | Per-buyer/IP request throttle, maximum 1,500 total RFQs during file-first pilot, 1–5 recipients, input constraints and CSRF |
+| Regression tests | Encrypted storage, cross-buyer denial, invited/uninvited supplier isolation, quote confidentiality, contact consent, role gating, closure and Cloudways sourcing CSS |
+
+**Deliberate limitations:** Single-plant RFQs rather than multi-row Excel/PDF BOQs; manual quotations without binding purchase order or settlement; no external WhatsApp transport or delivery-confirmation claims; no automated seller matching based on verified real-time inventory; no supplier-specific payment capture. Keep original TradeOS customer projects and Sanjay Nursery checkout isolated.
+
+**Next acceptance gates:** A real two-supplier pilot and buyer test, real browser QA, opt-in policy/legal text, supplier account and document verification, recovery/MFA, backup restore, and measures of conversion from submitted RFQ to returned quotation.

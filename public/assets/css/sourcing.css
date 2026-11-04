@@ -1,0 +1,59 @@
+/* Ananta B3: buyer-owned sourcing requests and quotation comparison */
+.ananta-source-wrap{max-width:1240px;padding-top:58px;padding-bottom:96px}
+.ananta-source-hero{max-width:900px;margin-bottom:33px}
+.ananta-source-hero>.kicker{color:#527c5a}
+.ananta-source-hero h1{font-family:var(--a-serif,Georgia,serif);font-size:clamp(43px,5.1vw,78px);font-weight:500;letter-spacing:-.055em;line-height:1.07;color:#183f2e;margin:10px 0 20px;text-wrap:balance}
+.ananta-source-hero h1 em{color:#66956d;font-weight:400}
+.ananta-source-hero>p:not(.kicker){font-size:16px;line-height:1.7;color:#536958;max-width:650px}
+.ananta-source-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,.75fr);align-items:start;gap:26px}
+.ananta-source-card,.ananta-source-aside{min-width:0;border:1px solid #dce7da;border-radius:22px;padding:clamp(22px,3vw,37px);background:#fff;box-shadow:0 12px 35px rgba(20,60,35,.04)}
+.ananta-source-card h2{font-family:var(--a-serif,Georgia,serif);font-size:clamp(26px,2.8vw,37px);line-height:1.2;font-weight:500;color:#1c422c;margin:0 0 21px;letter-spacing:-.04em}
+.ananta-source-form{display:grid;gap:22px}
+.ananta-source-form>label,.ananta-source-cols label{display:grid;gap:7px;font-size:13px;font-weight:700;color:#314d38}
+.ananta-source-form :is(input:not([type=checkbox]),textarea,select){width:100%;box-sizing:border-box;min-width:0;min-height:49px;border:1px solid #d3e2d7;border-radius:12px;background:#fafcf9;padding:12px 13px;color:#193b27;font:inherit;font-size:14px}
+.ananta-source-form textarea{min-height:90px;resize:vertical}
+.ananta-source-form :is(input,textarea,select):focus-visible{outline:3px solid #a2d5af;outline-offset:2px}
+.ananta-source-cols{display:grid;grid-template-columns:1fr 1.4fr;gap:16px}
+.ananta-source-suppliers{border:0;margin:0;padding:0;display:grid;gap:10px}
+.ananta-source-suppliers legend{padding:0;margin-bottom:8px;font-size:14px;font-weight:750;color:#244a33}
+.ananta-source-suppliers>p{margin:0 0 5px;font-size:12px;line-height:1.6;color:#607463}
+.ananta-source-suppliers>label{display:flex;gap:13px;align-items:center;padding:12px 15px;border:1px solid #dae7dc;border-radius:13px;background:#fff;cursor:pointer;min-width:0}
+.ananta-source-suppliers>label:has(input:checked){background:#edf6ec;border-color:#98c6a0}
+.ananta-source-suppliers>label input{width:19px;height:19px;flex:none;accent-color:#245d3c}
+.ananta-source-suppliers>label span{display:grid;gap:3px;min-width:0}
+.ananta-source-suppliers>label strong{font-size:13px;color:#264a32}
+.ananta-source-suppliers>label small{font-size:11px;color:#66806b}
+.ananta-source-form .ananta-source-check{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.55;font-weight:500;color:#496650}
+.ananta-source-check input{width:17px;height:17px;flex:none;margin-top:2px;accent-color:#225a3b}
+.ananta-source-form>button{border-radius:12px;min-height:54px;display:flex;gap:12px;align-items:center;justify-content:center;padding:13px 19px;font-size:14px;font-weight:750;color:#fff;background:#194532;border:0;cursor:pointer}
+.ananta-source-form>button:disabled{opacity:.4;cursor:not-allowed}
+.ananta-source-form>button .ui-icon{width:17px;height:17px}
+.ananta-source-disclaimer{font-size:12px;line-height:1.65;color:#5e7563;margin:4px 0}
+.ananta-source-aside{background:linear-gradient(150deg,#e9f2e3,#fbfcf6)}
+.ananta-source-aside h3{font-family:var(--a-serif,Georgia,serif);font-size:30px;line-height:1.15;letter-spacing:-.035em;font-weight:500;color:#224734}
+.ananta-source-aside ol{padding-left:24px;display:grid;gap:14px;margin:26px 0}
+.ananta-source-aside li{font-size:13px;line-height:1.6;color:#49614f}
+.ananta-source-response{display:grid;grid-template-columns:minmax(170px,1fr) minmax(0,1.6fr);gap:17px;padding:18px 0;border-top:1px solid #e0e9df}
+.ananta-source-response>div{display:grid;align-content:start;gap:6px}
+.ananta-source-response strong{color:#214a32}
+.ananta-source-response small{font-size:12px;color:#607968}
+.ananta-source-response p{font-size:13px;color:#405e49;margin:0}
+.ananta-nursery-sourcing{display:flex;gap:25px;align-items:center;justify-content:space-between;padding:35px;margin-block:35px;background:#f0f6ee;border:1px solid #d7e6d5;border-radius:22px}
+.ananta-nursery-sourcing h2{font-family:var(--a-serif,Georgia,serif);font-size:33px;font-weight:500;letter-spacing:-.035em;color:#244b33;margin:0 0 9px}
+.ananta-nursery-sourcing p{font-size:14px;color:#57715c;line-height:1.5}
+.ananta-sourcing-product-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;background:#e9f3e6;padding:20px;border-radius:18px;border:1px solid #cddfc9;margin-top:20px}
+.ananta-sourcing-product-cta>div{display:grid;gap:5px;max-width:440px}
+.ananta-sourcing-product-cta strong{font-size:18px;color:#235036}
+.ananta-sourcing-product-cta span{font-size:12px;color:#56705b;line-height:1.5}
+html[data-theme=dark] .ananta-source-hero h1{color:#e9f2e8}
+html[data-theme=dark] .ananta-source-hero>p:not(.kicker){color:#bed1bf}
+html[data-theme=dark] .ananta-source-card,html[data-theme=dark] .ananta-source-aside{background:#223b2e;border-color:#416448}
+html[data-theme=dark] .ananta-source-card h2,html[data-theme=dark] .ananta-source-aside h3{color:#e3f0e5}
+html[data-theme=dark] .ananta-source-form>label,html[data-theme=dark] .ananta-source-cols label,html[data-theme=dark] .ananta-source-suppliers legend{color:#e0ebe2}
+html[data-theme=dark] .ananta-source-form :is(input:not([type=checkbox]),textarea,select){color:#f2f8ed;background:#193025;border-color:#476a4c}
+html[data-theme=dark] .ananta-source-suppliers>label{background:#253f2f;border-color:#426b4d}
+html[data-theme=dark] .ananta-source-suppliers>label strong{color:#eaf3e9}
+html[data-theme=dark] .ananta-source-suppliers>label small,html[data-theme=dark] .ananta-source-suppliers>p,html[data-theme=dark] .ananta-source-disclaimer{color:#bdcfba}
+html[data-theme=dark] .ananta-source-suppliers>label:has(input:checked){background:#305d3c}
+@media(max-width:900px){.ananta-source-grid{grid-template-columns:1fr}.ananta-source-aside{max-width:100%}}
+@media(max-width:620px){.ananta-source-wrap{padding:38px 16px 75px}.ananta-source-hero h1{font-size:clamp(39px,10vw,52px)}.ananta-source-card,.ananta-source-aside{padding:22px 17px}.ananta-source-cols,.ananta-source-response{grid-template-columns:1fr}.ananta-nursery-sourcing{flex-direction:column;align-items:flex-start;padding:22px}.ananta-sourcing-product-cta{align-items:flex-start;flex-direction:column}}

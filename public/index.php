@@ -149,6 +149,52 @@ if (str_starts_with($path,'/api/intelligence/')) {
 }
 
 
+
+/* ---------------- Ananta Sourcing (buyer-owned, multi-nursery RFQs) ---------------- */
+if($path==='/sourcing'){
+    require_customer('/sourcing');
+    if($method==='POST'){
+        verify_csrf();
+        $token=(string)($_POST['_rfq_form_token']??'');
+        $expected=(string)($_SESSION['sourcing_form_token']??'');
+        if($expected===''||!hash_equals($expected,$token)){
+            flash('error','This request form was already submitted or expired. Start another request.');
+            redirect('/sourcing');
+        }
+        try{
+            $id=sourcing_create($_POST);
+            unset($_SESSION['sourcing_form_token']); // A second click/retry cannot create another RFQ.
+            flash('success','Your requirement was sent to the selected nurseries. Track quotations here.');
+            redirect('/account/sourcing/'.$id);
+        }catch(Throwable $e){flash('error',$e->getMessage());redirect('/sourcing');}
+    }
+    if(empty($_SESSION['sourcing_form_token']))$_SESSION['sourcing_form_token']=bin2hex(random_bytes(24));
+    $selectedSlug=trim((string)($_GET['product']??''));
+    render('sourcing/request',['title'=>'Source plants from nurseries','robots'=>'noindex,nofollow',
+        'suppliers'=>sourcing_verified_suppliers(),'products'=>products_public(),'selectedSlug'=>$selectedSlug,
+        'formToken'=>$_SESSION['sourcing_form_token'],
+        'selectedSupplier'=>trim((string)($_GET['supplier']??''))]);
+    exit;
+}
+if($path==='/account/sourcing'){
+    require_customer('/account/sourcing');
+    render('account/sourcing',['title'=>'My sourcing requests','robots'=>'noindex,nofollow','rfqs'=>sourcing_buyer_rows()]);
+    exit;
+}
+if(preg_match('#^/account/sourcing/([0-9a-f-]{36})/close$#D',$path,$m)&&$method==='POST'){
+    require_customer('/account/sourcing');
+    verify_csrf();
+    try{sourcing_buyer_close($m[1]);flash('success','Sourcing request closed.');}
+    catch(Throwable $e){flash('error',$e->getMessage());}
+    redirect('/account/sourcing/'.$m[1]);
+}
+if(preg_match('#^/account/sourcing/([0-9a-f-]{36})$#D',$path,$m)){
+    require_customer('/account/sourcing');
+    $rfq=sourcing_buyer_rfq($m[1]);
+    if(!$rfq){http_response_code(404);render('404',['title'=>'Request not found','robots'=>'noindex,nofollow']);exit;}
+    render('account/sourcing-detail',['title'=>'Sourcing quotation comparisons','robots'=>'noindex,nofollow','rfq'=>$rfq]);exit;
+}
+
 /* Supplier access — invite-only and tenant-scoped */
 if ($path==='/supplier/login') {
     if($method==='POST'){
@@ -174,6 +220,22 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
     $supplier=tenant_identity();
     if(!$supplier){flash('error','Supplier authentication is required.');redirect('/supplier/login');}
     if($path==='/supplier'){render('supplier/dashboard',['title'=>'Supplier workspace','supplier'=>$supplier,'robots'=>'noindex,nofollow']);exit;}
+    if($path==='/supplier/enquiries'){
+        $requests=sourcing_supplier_rows($supplier['tenant_id']);
+        render('supplier/enquiries',['title'=>'Supplier sourcing inbox','robots'=>'noindex,nofollow','supplier'=>$supplier,'requests'=>$requests]);exit;
+    }
+    if(preg_match('#^/supplier/enquiries/([0-9a-f-]{36})/respond$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{sourcing_supplier_respond($supplier['tenant_id'],$m[1],$_POST);flash('success','Your response was saved and is available to the buyer.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/enquiries/'.$m[1]);
+    }
+    if(preg_match('#^/supplier/enquiries/([0-9a-f-]{36})$#D',$path,$m)){
+        $request=sourcing_supplier_rfq($m[1],$supplier['tenant_id']);
+        if(!$request){http_response_code(404);render('404',['title'=>'Request not found','robots'=>'noindex,nofollow']);exit;}
+        render('supplier/enquiry-detail',['title'=>'Supplier quotation response','robots'=>'noindex,nofollow',
+            'supplier'=>$supplier,'request'=>$request]);exit;
+    }
     if($path==='/supplier/branch/save'&&$method==='POST'){
         verify_csrf();
         try{$branchId=supplier_branch_save($supplier['tenant_id'],$_POST);flash('success','Branch submitted for platform verification: '.$branchId);}

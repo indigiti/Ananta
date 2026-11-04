@@ -141,3 +141,17 @@ html[data-theme=dark] body.ananta-storefront .ananta-offer-count{color:#d5e7d8;b
 .ananta-branch-review-form input,.ananta-branch-review-form select{max-width:260px;width:100%;border:1px solid #d3e1d7;border-radius:9px;padding:10px;font:inherit}
 .ananta-branch-review-form button{justify-self:start}
 @media(max-width:600px){.ananta-supplier-section-head,.ananta-supplier-branch{align-items:start;flex-direction:column}.ananta-supplier-branch-actions{width:100%}.ananta-supplier-workspace{padding-block:36px 75px}}
+
+
+/* Buyer journey entry points for the B3 multi-nursery sourcing workflow. */
+body.ananta-storefront .ananta-sourcing-product-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;background:#e9f3e6;padding:20px;border-radius:18px;border:1px solid #cddfc9;margin-top:20px}
+body.ananta-storefront .ananta-sourcing-product-cta>div{display:grid;gap:5px;max-width:440px}
+body.ananta-storefront .ananta-sourcing-product-cta strong{font-size:18px;color:#235036}
+body.ananta-storefront .ananta-sourcing-product-cta span{font-size:12px;color:#56705b;line-height:1.5}
+body.ananta-storefront .ananta-nursery-sourcing{display:flex;gap:25px;align-items:center;justify-content:space-between;padding:35px;margin-block:35px;background:#f0f6ee;border:1px solid #d7e6d5;border-radius:22px}
+body.ananta-storefront .ananta-nursery-sourcing h2{font-family:var(--a-serif,Georgia,serif);font-size:33px;font-weight:500;letter-spacing:-.035em;color:#244b33;margin:0 0 9px}
+body.ananta-storefront .ananta-nursery-sourcing p{font-size:14px;color:#57715c;line-height:1.5}
+html[data-theme=dark] body.ananta-storefront .ananta-sourcing-product-cta,html[data-theme=dark] body.ananta-storefront .ananta-nursery-sourcing{background:#244232;border-color:#44664b}
+html[data-theme=dark] body.ananta-storefront .ananta-sourcing-product-cta strong,html[data-theme=dark] body.ananta-storefront .ananta-nursery-sourcing h2{color:#e1eedf}
+html[data-theme=dark] body.ananta-storefront .ananta-sourcing-product-cta span,html[data-theme=dark] body.ananta-storefront .ananta-nursery-sourcing p{color:#bfd0bd}
+@media(max-width:620px){body.ananta-storefront .ananta-nursery-sourcing{flex-direction:column;align-items:flex-start;padding:22px}body.ananta-storefront .ananta-sourcing-product-cta{align-items:flex-start;flex-direction:column}}

@@ -1,6 +1,6 @@
 <?php
 $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/account', PHP_URL_PATH) ?: '/account';
-$nav = [['/account','Overview'],['/account/addresses','Addresses'],['/account/orders','Orders']];
+$nav = [['/account','Overview'],['/account/sourcing','Sourcing requests'],['/account/addresses','Addresses'],['/account/orders','Orders']];
 ?>
 <aside class="account-side" aria-label="Account navigation">
 <?php foreach($nav as [$href,$label]): $active = $href==='/account' ? $uri==='/account' : str_starts_with($uri,$href); ?>

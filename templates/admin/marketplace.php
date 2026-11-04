@@ -17,6 +17,11 @@
     <button class="btn primary" type="submit">Save nursery</button> <?php if($editSupplier):?><a class="btn outline" href="<?=e(url('/admin/marketplace'))?>">Create new</a><?php endif;?>
   </form>
 </section>
+<section class="admin-panel"><div class="panel-head"><h2>RFQ routing overview</h2><span class="status-pill">Buyer sourcing</span></div>
+<?php $sourcingStats=sourcing_admin_summary();?>
+<p>Private, consent-based multi-nursery requests. Only verified selected suppliers can read and quote each invitation. No external order or payment is created.</p>
+<div class="admin-metrics"><div><span>Total RFQs</span><strong><?=e((string)$sourcingStats['total'])?></strong></div><div><span>Open requests</span><strong><?=e((string)$sourcingStats['open'])?></strong></div><div><span>Supplier invitations</span><strong><?=e((string)$sourcingStats['invites'])?></strong></div><div><span>Quotes returned</span><strong><?=e((string)$sourcingStats['quoted'])?></strong></div></div>
+</section>
 <section class="admin-panel"><div class="panel-head"><h2>Invite verified nursery staff</h2><span class="status-pill">Private onboarding</span></div>
 <p>Invitations expire after 24 hours. Members choose their own passwords and receive only tenant-scoped permissions. Share the one-time link privately.</p>
 <?php if($inviteUrl=flash('tenant_invite_link')):?><div class="ananta-admin-invite" role="status"><strong>Copy invitation link now</strong><input type="text" value="<?=e($inviteUrl)?>" readonly aria-label="One-time supplier invitation" onclick="this.select()"><small>This link is shown only once. Do not put it in a public post.</small></div><?php endif;?>
