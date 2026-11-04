@@ -582,9 +582,22 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
         }catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/admin/connect');
     }
+    if($path==='/admin/discover/distribution/refresh'&&$method==='POST'){
+        verify_csrf();
+        try{$r=discover_distribution_refresh();flash('success','Local feed and structured-data audit recorded: '.$r['merchant']['sku_count'].' SKU(s). No Google submission occurred.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/discover/merchant');
+    }
+    if($path==='/admin/discover/distribution/gsc-sync'&&$method==='POST'){
+        verify_csrf();
+        try{$r=discover_distribution_gsc_sync();flash('success','Read-only Search Console report updated: '.$r['clicks'].' clicks.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/discover/merchant');
+    }
     if ($path === '/admin/discover/merchant'){
         render_admin('discover-merchant',['title'=>'Ananta Discover · Merchant Readiness',
-            'report'=>discover_merchant_report(),'ai'=>discover_ai_readiness()]);exit;
+            'report'=>discover_merchant_report(),'ai'=>discover_ai_readiness(),
+            'distribution'=>discover_distribution_report()]);exit;
     }
     if ($path === '/admin/marketplace') { render_admin('marketplace',['title'=>'Nurseries and seller offers','store'=>marketplace_offers_store()]); exit; }
     if ($path === '/admin/marketplace/invite' && $method==='POST') {

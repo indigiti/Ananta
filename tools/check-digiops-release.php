@@ -33,6 +33,8 @@ $required=[
     'private/templates/supplier/connect-inbox.php',
     'private/templates/supplier/connect-thread.php',
     'private/src/discover_merchant.php',
+    'private/src/discover_distribution.php',
+    'private/src/discover_distribution_cli.php',
     'private/templates/admin/connect.php',
     'private/templates/admin/discover-merchant.php',
     'private/templates/supplier/connect.php',
