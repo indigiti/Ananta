@@ -42,7 +42,7 @@ mkdir($release.'/private',0755,true);
 ananta_release_copy($root.'/public/assets',$release.'/public/assets');
 ananta_release_copy($root.'/tools/digiops-public-index.php',$release.'/public/index.php');
 ananta_release_copy($root.'/tools/digiops-public-htaccess',$release.'/public/.htaccess');
-foreach(['src','config','templates','resources','public'] as $name){
+foreach(['src','config','templates','resources','public','python'] as $name){
     ananta_release_copy($root.'/'.$name,$release.'/private/'.$name);
 }
 ananta_release_copy($root.'/VERSION',$release.'/private/VERSION');

@@ -52,7 +52,7 @@ function mediaos_role(array $product,string $role='hero'): ?array {
 function mediaos_primary_file(array $product): string { return (string)(mediaos_role($product,'hero')['file']??($product['image']??'')); }
 function mediaos_primary_alt(array $product): string { return (string)(mediaos_role($product,'hero')['alt']??($product['name']??'Plant image')); }
 function mediaos_role_approved(array $role): bool { return ($role['status']??'')==='approved'&&in_array(($role['rights']??''),['owned','licensed','generated'],true)&&trim((string)($role['file']??''))!==''; }
-function mediaos_primary_approved(array $product): bool { $r=mediaos_role($product,'hero');return is_array($r)&&mediaos_role_approved($r)&&is_file(dirname(__DIR__).'/public/assets/images/products/'.basename((string)$r['file'])); }
+function mediaos_primary_approved(array $product): bool { $r=mediaos_role($product,'hero');return is_array($r)&&mediaos_role_approved($r)&&media_existing_path(basename((string)$r['file']))!==null; }
 function mediaos_gallery(array $product,bool $approvedOnly=false): array {
     $entry=mediaos_product((string)($product['guid']??''));$out=[];
     foreach(mediaos_roles() as $role=>$label){$r=$entry['roles'][$role]??null;if(!is_array($r)||empty($r['file']))continue;if($approvedOnly&&!mediaos_role_approved($r))continue;$out[]=['role'=>$role,'label'=>$label]+$r;}

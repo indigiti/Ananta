@@ -32,6 +32,10 @@ if ($method==='GET' && !str_starts_with($path,'/admin/')) {
     if ($r=cms_redirect_for_path($path)) { http_response_code((int)$r['code']); header('Location: '.url((string)$r['to'])); exit; }
 }
 
+if(preg_match('#^/assets/images/products/([a-z0-9][a-z0-9-]{0,100}\.webp)$#D',$path,$m)&&in_array($method,['GET','HEAD'],true)){
+    media_serve_persistent($m[1]);
+}
+
 if ($path==='/LIVE_VARIANT_IMPORT_TEMPLATE.csv' && $method==='GET'){header('Content-Type: text/csv; charset=utf-8');header('Content-Disposition: attachment; filename="Sanjay_Nursery_Live_Variant_Import_Template.csv"');readfile(dirname(__DIR__).'/resources/LIVE_VARIANT_IMPORT_TEMPLATE.csv');exit;}
 
 if ($path === '/health') {

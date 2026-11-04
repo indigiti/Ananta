@@ -30,6 +30,7 @@ require_once $root . '/src/cms.php';
 require_once $root . '/src/growth.php';
 require_once $root . '/src/themes.php';
 require_once $root . '/src/mediaos.php';
+require_once $root . '/src/media_persistence.php';
 require_once $root . '/src/designos.php';
 require_once $root . '/src/intelligence.php';
 require_once $root . '/src/shopping_intelligence.php';

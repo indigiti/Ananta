@@ -9,6 +9,7 @@
 - [Part III: Implementation backlog](#part-iii-implementation-backlog)
 - [Part IV: Implemented Ananta storefront and seller-offer pilot](#part-iv-implemented-ananta-storefront-and-seller-offer-pilot)
 - [Part V: Release A — tenant identity and repository containment](#part-v-release-a--tenant-identity-and-repository-containment-implementation)
+- [Part VI: Release A2 — persistent uploaded plant media](#part-vi-release-a2--persistent-uploaded-plant-media)
 
 ---
 
@@ -627,3 +628,19 @@ Run `php tests/marketplace_offers.php` and the existing `bash scripts/full_regre
 **Incomplete security controls:** real-world supplier identity/document verification, email delivery and recovery, MFA, backups plus restoration drills, external penetration review, encrypted seller-offer registry, persistent media uploads, and real Cloudways browser QA. Do not onboard real suppliers or claim full production readiness before these gates close.
 
 **Acceptance:** \`php tests/tenancy.php\`, \`bash scripts/full_regression.sh\`, release packaging/boot smoke, and repository-hygiene CI must pass. The workflow returning success only validates the automated subset—not real-world security or deployment.
+
+
+---
+
+## Part VI: Release A2 — persistent uploaded plant media
+
+**Status:** Implementation candidate; subject to CI, privacy and staging browser acceptance.
+
+For DigiOps split deployment (\`public_html/ananta/\` + \`private_html/ananta/\`), new uploaded WebP files live at \`private_html/ananta/storage/private-domain/media/products/\`, not in the replaceable \`release/public/assets\` tree. The existing \`/ananta/assets/images/products/{name}.webp\` URLs are handled by a strict filename-validating PHP route for persistent images missing from the static release. Only approved, rights-cleared MediaOS roles on active products may be served publicly. Administrators can preview private uploads with a no-store response. Retired or unapproved media return 404 to public clients. Legacy source-controlled static media remains compatible.
+
+- File MIME and image size validation and WebP re-encoding remain mandatory; uploaded supplier files never become executable PHP.
+- Server storage, upload retention, backups and restoration are independent of the DigiOps source artifact.
+- The packaging includes optional Python image workers for environments without PHP GD/WebP, but the primary pipeline remains PHP-native.
+- \`tests/media_persistence.php\` asserts traversal denial, admin-only previews, approved-public state, retirement withdrawal and a private artifact boundary.
+
+**Remaining:** migration of any existing manually uploaded photos from the old public tree, image backup/restore drill, live WebP HTTP behavior and performance verification, and supplier-specific photo rights/workflow ownership. Do not claim full P0 media acceptance before those checks.
