@@ -118,3 +118,26 @@ html[data-theme=dark] body.ananta-storefront .ananta-offer-count{color:#d5e7d8;b
 .ananta-admin-invite{display:grid;gap:8px;border:1px solid #a4d3b6;background:#edf7ef;padding:15px;border-radius:13px;margin:16px 0}
 .ananta-admin-invite input{width:100%;min-height:44px;border:1px solid #a8cfb6;border-radius:8px;padding:8px;background:#fff}
 @media(max-width:720px){.ananta-supplier-top{flex-direction:column}.ananta-supplier-stats{gap:8px}.ananta-supplier-stats article{padding:12px}.ananta-supplier-stats strong{font-size:25px}.ananta-supplier-offer{grid-template-columns:1fr}.ananta-supplier-report{grid-template-columns:1fr 1fr}.ananta-supplier-report button{grid-column:1/-1}}
+
+
+/* P1 SupplierOS: branch verification, stock workflow and responsive density */
+.ananta-supplier-section-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:14px}
+.ananta-supplier-section-head .kicker{margin-bottom:5px}
+.ananta-supplier-stats article span{font-size:12px;color:#5c7861}
+.ananta-supplier-form textarea{width:100%;min-height:80px;resize:vertical;border:1px solid #d4e2d6;border-radius:11px;padding:11px 12px;font:inherit;color:#254b35;background:#fff}
+.ananta-supplier-form-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ananta-supplier-branch{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px 0;border-top:1px solid #e3ebe4}
+.ananta-supplier-branch>div:first-child{display:grid;gap:5px}
+.ananta-supplier-branch strong{font-weight:700;font-size:15px;color:#21452d}
+.ananta-supplier-branch small{color:#64806c;font-size:12px}
+.ananta-supplier-branch-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.ananta-supplier-branch-actions a{color:#256a43;font-weight:750;font-size:12px}
+.ananta-branch-state{border-radius:100px;background:#eef1eb;color:#475c49;font-size:11px;font-weight:750;padding:6px 12px;white-space:nowrap}
+.ananta-branch-state.approved{background:#e0f1df;color:#216039}
+.ananta-branch-state.pending{background:#fff1d9;color:#885a13}
+.ananta-branch-state.rejected,.ananta-branch-state.suspended{background:#fbe7e4;color:#93483d}
+.ananta-branch-review-form{display:grid;gap:9px;min-width:230px}
+.ananta-branch-review-form label{display:grid;gap:5px;font-size:11px;font-weight:700;color:#4b6852}
+.ananta-branch-review-form input,.ananta-branch-review-form select{max-width:260px;width:100%;border:1px solid #d3e1d7;border-radius:9px;padding:10px;font:inherit}
+.ananta-branch-review-form button{justify-self:start}
+@media(max-width:600px){.ananta-supplier-section-head,.ananta-supplier-branch{align-items:start;flex-direction:column}.ananta-supplier-branch-actions{width:100%}.ananta-supplier-workspace{padding-block:36px 75px}}

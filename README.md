@@ -28,6 +28,16 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## Release B1 — Supplier branches and inventory evidence (staging)
+
+Verified nursery members can manage up to 25 private branch records from `/supplier#branches`, each with branch name, city, address and optional PIN. Owner and manager roles can submit branches; inventory/viewer roles can read but cannot edit them. The platform verifies, rejects or suspends each branch separately at `/admin/marketplace#branch-verification` with a private evidence reference. Editing a branch resets review to pending, immediately hiding its public offers until approval returns.
+
+Each new supplier offer is assigned to **one branch** and can be submitted as a draft, with canonical plant reference, specification, indicative price and stock report. Platform administrators must approve the branch **and** publish the offer. Confirmed stock still requires explicit private evidence and expires after seven days; supplier reports cannot self-verify stock. The public API exposes only approved branch name/city, not exact site address, PIN or review evidence.
+
+Legacy offers without a branch remain supported so preexisting curated listings do not disappear. This is still **not** real-time reserved inventory, multi-seller checkout, fully verified business identity, or a complete supplier catalogue importer. No database is required for this staging pilot.
+
+Local security test: `php tests/supplier_branches.php`. Deployment acceptance additionally requires `bash scripts/full_regression.sh`, DigiOps release packaging, and manual Cloudways browser verification.
+
 ## Release A supplier security pilot
 
 The planned tenant-security implementation adds invitation-only supplier accounts at `/supplier/login`, a tenant-scoped workspace at `/supplier`, and one-time platform-issued invitations in `/admin/marketplace`. Supplier staff can propose drafts and report stock but **cannot** publish, verify stock, or enter multi-seller checkout.

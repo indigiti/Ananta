@@ -174,6 +174,12 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
     $supplier=tenant_identity();
     if(!$supplier){flash('error','Supplier authentication is required.');redirect('/supplier/login');}
     if($path==='/supplier'){render('supplier/dashboard',['title'=>'Supplier workspace','supplier'=>$supplier,'robots'=>'noindex,nofollow']);exit;}
+    if($path==='/supplier/branch/save'&&$method==='POST'){
+        verify_csrf();
+        try{$branchId=supplier_branch_save($supplier['tenant_id'],$_POST);flash('success','Branch submitted for platform verification: '.$branchId);}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier#branches');
+    }
     if($path==='/supplier/offer/draft'&&$method==='POST'){
         verify_csrf();
         try{$input=$_POST;$input['supplier_id']=$supplier['tenant_id'];$input['status']='draft';$input['availability']='unknown';marketplace_offer_save($input);flash('success','Offer draft saved for platform review.');}
@@ -231,6 +237,15 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
             flash('success','One-time 24-hour invitation created. Copy it below now.');
         }catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/admin/marketplace');
+    }
+    if ($path === '/admin/marketplace/branches/review' && $method==='POST') {
+        verify_csrf();
+        try{
+            supplier_branch_review((string)($_POST['tenant_id']??''),(string)($_POST['branch_id']??''),
+                (string)($_POST['decision']??''),(string)($_POST['evidence']??''));
+            flash('success','Branch review recorded. Public offers will respect the new branch status.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/marketplace#branch-verification');
     }
     if ($path === '/admin/marketplace/suppliers/save' && $method==='POST') { verify_csrf();try{$id=marketplace_supplier_save($_POST);flash('success','Nursery saved: '.$id);}catch(Throwable $e){flash('error',$e->getMessage());}redirect('/admin/marketplace'); }
     if ($path === '/admin/marketplace/offers/save' && $method==='POST') { verify_csrf();try{$id=marketplace_offer_save($_POST);flash('success','Offer saved: '.$id);}catch(Throwable $e){flash('error',$e->getMessage());}redirect('/admin/marketplace'); }
