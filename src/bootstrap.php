@@ -24,6 +24,7 @@ require_once $root . '/src/supplier_bulk_import.php';
 require_once $root . '/src/sourcing.php';
 require_once $root . '/src/sourcing_boq.php';
 require_once $root . '/src/sourcing_ingest.php';
+require_once $root . '/src/sourcing_readiness.php';
 require_once $root . '/src/commerce.php';
 require_once $root . '/src/configurator.php';
 require_once $root . '/src/bespoke.php';

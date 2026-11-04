@@ -153,7 +153,8 @@ function sourcing_supplier_projection(array $rfq,string $tenantId): array {
             ])),(array)($rfq['lines']??[])) : [],
         'awarded_draft'=>isset($rfq['purchase_order'])
             &&($rfq['purchase_order']['supplier_id']??'')===$tenantId
-                ?['id'=>$rfq['purchase_order']['id'],'status'=>'buyer_approved_draft']:null,
+                ?['id'=>$rfq['purchase_order']['id'],'status'=>'buyer_approved_draft',
+                    'readiness'=>sourcing_readiness_supplier_view($rfq['purchase_order'])]:null,
         'contact_shared'=>$rfq['contact_shared'],
         'buyer_contact'=>($rfq['contact_shared']??false)?$rfq['buyer_contact']:null,
         'updated_at'=>$entry['updated_at'],'created_at'=>$rfq['created_at'],

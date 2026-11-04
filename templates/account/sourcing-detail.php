@@ -30,7 +30,45 @@ $po=$rfq['purchase_order']??null;
 <section class="account-panel ananta-buyer-po">
   <p class="kicker">Buyer-approved commercial draft</p><h2>Non-binding PO draft <?=e(substr($po['id'],0,8))?></h2>
   <p><strong><?=e($po['supplier_name'])?></strong> · Quote revision <?=e((string)$po['quote_version'])?> · <?=money((int)$po['total_inr'])?> indicative amount.</p>
-  <p>This is your approved quotation selection, <strong>not a legally issued purchase order</strong>. Taxes, freight, payment terms, stock and supplier acceptance remain unconfirmed. No payment or dispatch has been triggered.</p>
+  <p>This is your selected quotation, <strong>not a legally issued purchase order</strong>. No payment, stock reservation, invoice or dispatch has been triggered.</p>
+  <?php $planning=sourcing_readiness_view($po);$proposal=$planning['proposal']??null;?>
+  <div class="ananta-readiness-status">
+    <strong>Fulfilment readiness: <?=e(ucwords(str_replace('_',' ',$planning['status'])))?></strong>
+    <small>Version <?=e((string)$planning['version'])?></small>
+    <?php if($proposal):?>
+      <p>Supplier-reported availability: <strong><?=$proposal['all_lines_reported_sufficient']?'All requested quantities reportedly available':'One or more lines have a stock shortfall'?></strong>. Not reserved or independently verified.</p>
+      <p>Delivery responsibility: <?=e(str_replace('_',' ',$proposal['delivery_mode']))?> · Estimated dispatch: <?=e((string)$proposal['dispatch_days'])?> days</p>
+      <p>Indicative freight: <?=money((int)$proposal['freight_inr'])?> · Tax declaration: <?=e(str_replace('_',' ',$proposal['tax_treatment']))?>. GST, HSN and final invoice require separate verification.</p>
+      <?php if($proposal['comment']!==''):?><p>Supplier note: <?=e($proposal['comment'])?></p><?php endif;?>
+      <div class="ananta-boq-table-wrap"><table class="ananta-boq-table"><thead><tr><th>Plant</th><th>Required</th><th>Supplier reports</th></tr></thead><tbody>
+      <?php foreach($po['lines'] as $line):$stock=$proposal['line_availability'][$line['id']]??null;?>
+      <tr><td><?=e($line['plant_name'])?></td><td><?=e((string)$line['quantity'])?></td><td><?=$stock?e((string)$stock['reported_available']):'Unknown'?></td></tr>
+      <?php endforeach;?></tbody></table></div>
+    <?php endif;?>
+  </div>
+  <?php if($planning['status']==='supplier_proposed'):?>
+    <form method="post" action="<?=e(url('/account/sourcing/'.$rfq['id'].'/readiness'))?>" class="ananta-buyer-readiness-form">
+      <?=csrf_field()?>
+      <input type="hidden" name="readiness_version" value="<?=e((string)$planning['version'])?>">
+      <label>Buyer decision
+        <select name="decision" required>
+          <option value="request_changes">Request clarification or revised availability</option>
+          <?php if(!empty($proposal['all_lines_reported_sufficient'])):?><option value="acknowledge_planning">Acknowledge for planning only</option><?php endif;?>
+        </select>
+      </label>
+      <label>Clarification / notes<textarea name="note" maxlength="500" rows="3" placeholder="Required if you request changes"></textarea></label>
+      <label class="ananta-source-check"><input type="checkbox" name="confirmation" value="nonbinding_planning_only">
+        <span>For planning acknowledgement only: I understand this is not a binding contract, verified stock, a tax invoice, or a payment instruction.</span>
+      </label>
+      <button class="btn dark" type="submit">Record buyer readiness decision</button>
+    </form>
+  <?php endif;?>
+  <?php if($planning['events']):?>
+    <h3>Planning activity</h3><ol class="ananta-readiness-timeline">
+    <?php foreach(array_reverse($planning['events']) as $event):?>
+      <li><strong><?=e(ucwords(str_replace('_',' ',$event['action'])))?></strong><small><?=e($event['at'])?> · Version <?=e((string)$event['version'])?></small></li>
+    <?php endforeach;?></ol>
+  <?php endif;?>
 </section>
 <?php endif;?>
 

@@ -90,3 +90,17 @@ html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-list-item small{
 html[data-theme=dark] .ananta-supplier-surface .ananta-rfq-facts dd{color:#e2efe0}
 html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-contact{background:#2b4b34;border-color:#447454}
 @media(max-width:680px){.ananta-supplier-surface .ananta-sourcing-quick-link{flex-direction:column;align-items:flex-start}.ananta-supplier-surface .ananta-rfq-facts{grid-template-columns:1fr}.ananta-supplier-surface .ananta-sourcing-list-item{align-items:flex-start;flex-direction:column}}
+
+
+/* B6 supplier readiness worksheet */
+.ananta-supplier-surface .ananta-readiness-panel{background:linear-gradient(150deg,#f5faf1,#fff 68%)}
+.ananta-supplier-surface .ananta-readiness-panel .kicker{color:#367a4f}
+.ananta-supplier-surface .ananta-readiness-panel .ananta-boq-table input[type=number]{max-width:175px;min-width:110px}
+.ananta-supplier-surface .ananta-readiness-panel .ananta-boq-table td{font-size:13px}
+.ananta-supplier-surface .ananta-readiness-timeline{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.ananta-supplier-surface .ananta-readiness-timeline li{display:grid;gap:5px;padding:8px 0 8px 15px;border-left:3px solid #77a887}
+.ananta-supplier-surface .ananta-readiness-timeline strong{color:#276342;font-size:13px}
+.ananta-supplier-surface .ananta-readiness-timeline small{color:#557460;line-height:1.5;font-size:12px}
+html[data-theme=dark] .ananta-supplier-surface .ananta-readiness-panel{background:#223c2d}
+html[data-theme=dark] .ananta-supplier-surface .ananta-readiness-timeline strong{color:#d4ecd4}
+@media(max-width:620px){.ananta-supplier-surface .ananta-readiness-panel .ananta-boq-table{min-width:470px}}

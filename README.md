@@ -2,7 +2,7 @@
 
 **AI-ready nursery discovery and commerce, built PHP-first.**
 
-Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, fully autonomous AI BOQ procurement, WhatsApp integrations and transactional multi-vendor checkout remain **roadmap items**. B3 introduces an authenticated, enquiry-only one-plant multi-nursery RFQ pilot.
+Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, fully autonomous AI BOQ procurement, WhatsApp integrations and transactional multi-vendor checkout remain **roadmap items**. B3–B6 add staging-only supplier onboarding, multi-nursery RFQs, buyer-reviewed BOQs, optional AI-assisted text intake and non-binding supplier fulfilment planning.
 
 > **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
@@ -28,6 +28,17 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## Release B6 — Supplier fulfilment readiness and buyer planning acknowledgement (staging)
+
+This milestone adds a **non-binding purchasing readiness workflow** to B4 buyer-selected BOQ drafts. It does **not** legally issue or accept a purchase order, verify or reserve stock, invoice GST, collect payment, or trigger shipping.
+
+- **Selected supplier only:** supplier owner/manager enters per-BOQ-line *supplier-reported* stock quantities (including zero for shortages), estimated dispatch days, freight INR estimate, delivery responsibility, tax-treatment declaration, and optional note or decline reason at `/supplier/enquiries/{rfq_uuid}`. Invited but unselected competitors and inventory/viewer staff cannot alter the draft.
+- **Buyer review:** the owning buyer sees the current availability statement and commercial terms at `/account/sourcing/{rfq_uuid}`. They can request changes or **acknowledge for planning only**, requiring an explicit non-binding confirmation. A shortage prohibits planning acknowledgement.
+- **Protected state:** `awaiting_supplier` → `supplier_proposed` → `buyer_changes_requested` → `supplier_proposed` → `buyer_acknowledged`; supplier may alternatively decline. The parent `buyer_approved_draft` record remains frozen and non-binding. All changes are atomic within the existing encrypted RFQ file, version-checked against stale submissions, and accompanied by a bounded append-only event record. No buyer internal IDs are exposed in the supplier view.
+- **Important tax limit:** tax handling is a supplier statement (*included, extra, or unconfirmed*), **not** a GST rate calculation. Freight is an estimate. Neither should be treated as an invoice or binding total. Seller-reported available quantities are not physical allocations.
+- **Regression gates:** `php tests/sourcing_readiness.php` validates tenant/role/buyer isolation, all-line stock reporting, insufficient-stock rejection, freight and delivery validation, stale versions, supplier change cycles, terminal acknowledgement/decline, immutable quote/draft and encrypted activity. Full regression and DigiOps split-layout smoke also apply.
+
+**Operational before transaction launch:** two-nursery real-world pilot, explicit seller-of-record/GST contract design, supplier/KYC and shipment proof, stock reservation transaction guarantees (SQL), data retention and recovery, webhook idempotency, and separate payment-provider compliance.
 ## Release B5 — Excel and text-PDF BOQ ingestion with mandatory human verification
 
 Ananta now offers an **optional document intake workflow** alongside the original strict CSV importer at `/sourcing/boq`. A buyer can upload XLSX (up to 1 MiB) or a text-based PDF (up to 3 MiB). XLSX is parsed using PHP ZIP + DOM/XML; the first worksheet must contain exactly `product_slug` (or `plant_name`), `quantity`, and `specification` columns. XLSX macros, formulas, embedded external objects, extra filled columns, pathological ZIP inflation and more than 30 rows are rejected. These restrictions are deliberate security boundaries, not full Excel-format support.

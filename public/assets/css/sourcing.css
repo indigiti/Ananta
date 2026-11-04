@@ -112,3 +112,23 @@ html[data-theme=dark] .ananta-ingest-row :is(p,label,legend){color:#d0e4cf}
 html[data-theme=dark] .ananta-ingest-fields :is(select,input){background:#192e21;color:#f0f7ed;border-color:#416a4b}
 @media(max-width:800px){.ananta-ingest-fields{grid-template-columns:1fr 1fr}.ananta-ingest-fields label:first-child{grid-column:1/-1}}
 @media(max-width:530px){.ananta-ingest-choice,.ananta-ingest-fields{grid-template-columns:1fr}.ananta-ingest-fields label:first-child{grid-column:auto}.ananta-ingest-review{padding:16px}.ananta-ingest-row{padding:13px}}
+
+
+/* B6 — auditable, non-binding supplier readiness and buyer acknowledgement */
+.ananta-readiness-status{padding:19px 21px;margin:20px 0;background:#fff;border:1px solid #c4dcc4;border-radius:16px;display:grid;gap:10px}
+.ananta-readiness-status>strong{color:#245b3e;font-size:15px}
+.ananta-readiness-status>small{color:#68836f;font-size:12px}
+.ananta-readiness-status p{font-size:13px;line-height:1.65;margin:0;color:#3b5944}
+.ananta-buyer-readiness-form{display:grid;gap:15px;border-top:1px solid #d4e4d2;padding-top:19px}
+.ananta-buyer-readiness-form>label:not(.ananta-source-check){display:grid;gap:7px;color:#32573c;font-size:13px;font-weight:700}
+.ananta-buyer-readiness-form :is(select,textarea){width:100%;min-height:44px;padding:11px 12px;border:1px solid #c9dfc9;border-radius:11px;background:#fff;color:#23432e;box-sizing:border-box;font-size:14px}
+.ananta-buyer-readiness-form textarea{min-height:75px;resize:vertical}
+.ananta-buyer-readiness-form button{justify-self:start}
+.ananta-readiness-timeline{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+.ananta-readiness-timeline li{border-left:3px solid #8cb89b;padding:4px 0 6px 14px;display:grid;gap:3px}
+.ananta-readiness-timeline strong{font-size:13px;color:#24583a}
+.ananta-readiness-timeline small{font-size:11px;color:#577662;line-height:1.5}
+html[data-theme=dark] .ananta-readiness-status{background:#253d2d;border-color:#537958}
+html[data-theme=dark] .ananta-readiness-status :is(strong,p),html[data-theme=dark] .ananta-readiness-timeline strong{color:#e4f1e5}
+html[data-theme=dark] .ananta-buyer-readiness-form :is(select,textarea){background:#1d3326;color:#edf4ec;border-color:#496c52}
+@media(max-width:620px){.ananta-readiness-status{padding:15px}.ananta-buyer-readiness-form button{width:100%}}

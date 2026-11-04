@@ -767,3 +767,26 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 **Deployment constraints:** PDF text extractor availability and Cloudways PHP extensions must be checked on the actual target server. An image-only scanned PDF requires a separately approved OCR implementation, privacy review, cost limits and source bounding boxes. This B5 milestone does not offer universal PDF/Excel compatibility or autonomous AI procurement.
 
 **Next exit gate:** real supplier/buyer documents (different spreadsheets, PDF layouts, scanned images), mobile accessibility, private data retention and backup restoration; evaluate conversion and extraction error rates before enabling an OCR provider or transactional supplier purchase orders.
+
+---
+
+## Part XII — B6 Supplier fulfilment readiness and buyer planning acknowledgement
+
+**Goal:** validate supply-side readiness for a selected BOQ quote without turning a staging/file-first proposal into a legally issued multi-vendor order.
+
+| Control | Design |
+| --- | --- |
+| Existing immutable commercial quote | Selected supplier, quote version, line prices and `binding=false` remain unchanged |
+| Supplier eligibility | Only the winning nursery and its owner/manager role can respond; verified status rechecked during locked mutation |
+| Supplier stock declaration | Exact line-ID keyed availability, required vs reported; no inventory deduction, no reservation, no independent proof |
+| Delivery planning | 0–365 day dispatch window, delivery responsibility (supplier, buyer pickup or third-party), bounded INR freight estimate |
+| Tax treatment | Seller declaration only: states included / states extra / unconfirmed. No tax rates, HSN classification, invoice or binding final total |
+| Decline and corrections | Supplier may decline with reason; buyer can request clarifications and supplier may revise before acknowledgement |
+| Buyer consent | Owning buyer may explicitly acknowledge non-binding planning terms only if all reported quantities cover required lines |
+| Status history | Version-locked encrypted aggregate writes, 25-event cap, actor type and action with timestamp, no internal buyer GUID in supplier views |
+| Transaction safety | No payment, order number issuance, stock allocation, messaging, invoicing, courier calls or seller settlement |
+| Tests and release | Role/tenant isolation, stale replays, insufficient stock, terminal states, buyer ownership, audit encryption, DigiOps package path |
+
+**Status boundary:** The parent RFQ remains `buyer_approved_draft` throughout B6. The nested readiness progression is `awaiting_supplier`, `supplier_proposed`, `buyer_changes_requested`, `buyer_acknowledged`, or `supplier_declined`. There is deliberately **no `paid`, `ordered`, `dispatched` or `delivered` transition** yet.
+
+**B7 prerequisites:** verified legal seller-of-record, tax review, supplier-accepted purchase contracts, inventory reservation under SQL transactions, shipping proof, data-backup restoration, successful live device/browser QA and genuine nursery fulfilment trials. Transactional multi-vendor checkout remains gated.
