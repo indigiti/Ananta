@@ -1,124 +1,75 @@
-# Sanjay Nursery v1.7.0 — AI Search, Catalogue & Content Intelligence
+# Ananta
 
-v1.7.0 builds on the verified v1.6.4 storefront/theme release and v1.6.3 Web Operations layer. It adds a **web-managed AI Engine** for catalogue intelligence, SEO auditing, governed enrichment, comparisons, listicles, review/rollback and agent-readable discovery without making SSH/console access part of normal setup or operation.
+**AI-ready nursery discovery and commerce, built PHP-first.**
 
-## Proposed AI-native multi-nursery roadmap (database-free pilot)
+Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, cross-supplier RFQs and WhatsApp integrations are **roadmap items, not features already delivered**.
 
-Ananta's longer-term strategy is an **AI-native nursery sourcing and commerce network** combining public nursery storefronts, NurserySetu supplier operations, wholesale RFQs and WhatsApp-assisted workflows. **These multi-supplier features are planned, not shipped in v1.7.0.** The near-term proposal is to reuse the existing PHP/file-backed staging foundation on a single authoritative Cloudways-compatible host rather than require SQL or Laravel immediately. Complex multi-supplier checkout, automated payment settlement and cross-seller inventory reservations remain gated on transactional persistence.
+> **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
-- [Product and AI-era blueprint v2.0](docs/ANANTA_AI_NATIVE_BLUEPRINT_V2.md)
-- [File-first pilot architecture, safety limits and SQL migration criteria](docs/FILE_FIRST_PILOT_ARCHITECTURE.md)
-- [P0–P5 implementation backlog and acceptance gates](docs/IMPLEMENTATION_BACKLOG_FILE_FIRST.md)
+## What works today (v1.7.0)
 
-The roadmap does **not** change the current release's installation steps or existing runtime behavior. Do not treat proposed new endpoints, roles or modules as implemented.
+- PHP storefront, plant catalogue, collections, search, discovery and Plant Finder.
+- Admin interfaces for catalogue, CMS, media, themes, commerce/variant workflows and operations.
+- AI & Search engine with **Scan Only**, administrator-reviewed suggestions, constrained **Safe Auto**, catalogue/SEO analysis, comparison/listicle publishing and rollback.
+- Human-approval-gated AI discovery and agent-facing catalogue feeds.
+- Browser-managed setup, bounded web job processing, System Health and Error Monitor.
 
-## What is new in v1.7.0
+**Commerce truth:** Enquiry-first catalogue items are not proof of live price or inventory. Do not invent SKUs, prices, stock, delivery guarantees, reviews, botanical risk or toxicity facts with AI. Publish verified offers and media only.
 
-### AI Engine — Admin → AI & Search
+## Roadmap: one authoritative blueprint
 
-The AI Engine has three explicit operating modes:
+The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) contains:
 
-- **Scan Only** — deterministic catalogue, SEO and content-opportunity analysis; no external AI provider is required and no AI-generated product edits are applied.
-- **Review** — provider-assisted product enrichment creates field-level suggestions in a review queue. An administrator decides what is applied.
-- **Safe Auto** — only allowlisted, non-protected fields can auto-apply when they meet their configured confidence threshold; protected or high-risk facts remain review-only.
+1. The retail/wholesale nursery marketplace product vision and customer/supplier journeys.
+2. The Cloudways-compatible, single-writer PHP **file-first pilot architecture**, security and SQL migration gates.
+3. The P0–P5 implementation backlog, acceptance tests, tenant isolation and RFQ/WhatsApp delivery constraints.
 
-The engine is disabled by default in the clean package. Provider configuration, API key storage, model selection, limits and activation are handled from the browser at `/admin/ai/settings`.
+**Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
-### Provider hub and cost controls
+## Installation (staging / Cloudways)
 
-- OpenAI-compatible HTTPS provider adapter.
-- Encrypted API key in protected private storage outside `public/`.
-- Test Connection and Refresh Models actions.
-- Refreshed model IDs become selectable from the Text Model field.
-- Daily request and token ceilings.
-- Maximum jobs per run and per hour.
-- Request timeout and bounded retries through the job lifecycle.
-- Changed-record-only enrichment to avoid unnecessary repeat calls.
+1. Upload or deploy this repository to a PHP 8.4-compatible staging application.
+2. Configure the website document root as **`public/`**, never the repository root. Never expose `src/`, `config/` or `storage/`.
+3. Visit `/admin/setup` and complete first-administrator setup immediately.
+4. Sign in at `/admin/login`; run **Admin → System Health** and inspect Error Monitor.
+5. Open **Admin → AI & Search → Settings**. Keep **Scan Only** for provider-free audits; configure an OpenAI-compatible HTTPS provider and encrypted key only for Review or Safe Auto.
+6. Test the provider/model (if used), set request/token/job limits, run initial catalogue/SEO scans and review changes before publication.
+7. Confirm routes, assets, feeds, themes, consent gating, release checks and backups before any external pilot access.
 
-### Catalogue Intelligence
+Normal browser setup does not require SSH, Node.js, a queue daemon or a SQL server. The included sample Nginx file is **illustrative**; use the actual Cloudways web-root and PHP-FPM settings rather than copying its version-specific example path unchanged.
 
-- Scores each product for catalogue, SEO, entity, commerce and media completeness.
-- Detects missing botanical/entity fields, imagery, live variants and Pune-specific guidance.
-- Creates provider-assisted enrichment suggestions only in Review/Safe Auto modes.
-- Never allows AI to invent or Safe-Auto-write price, stock, SKU, availability/delivery, reviews/ratings or safety-critical claims.
-- Botanical genus/species and mature-size suggestions are high-confidence/review protected.
+## Operational checks
 
-### SEO Intelligence
+- Public entry point: `public/index.php`; local development router: `router.php`.
+- Release version: `VERSION` (currently **1.7.0**).
+- Health and errors: administrator System Health / Error Monitor.
+- AI controls: **Scan Only → Review → Safe Auto**; protected price, stock, availability, safety and review fields remain outside automatic AI writes.
+- Developer validation: `bash scripts/full_regression.sh` (requires local PHP, and does not replace production security or load testing).
+- Deployment verification: HTTP 200 for `/assets/css/app.css`, `/assets/js/app.js`, `/.well-known/agent-capabilities.json` and `/api/openapi.json`; validate `/feeds/ai-products.json`, `/feeds/agent-products.json`, `/feeds/ai-content.json` and `/sitemap.xml` where relevant.
+- Publishing policy: require original nursery evidence, a responsible reviewer, credible citations for factual claims and rights-cleared photographs; avoid mass-generated near-duplicate pages.
 
-- Audits product and CMS records for title/description quality, image readiness, botanical identity, Pune context and editorial-quality thresholds.
-- Generates an SEO health score and an issue queue.
-- Content Opportunity detection identifies data-backed listicle and comparison ideas from the current catalogue.
-- Existing canonical, sitemap, robots, Product/ProductGroup, Offer, Breadcrumb and Organization architecture remains intact.
+## Project layout
 
-### Comparisons and listicles
+| Path | Responsibility |
+| --- | --- |
+| `public/` | HTTP entry point and public assets; only web-exposed folder |
+| `src/` | PHP application and modules |
+| `templates/` | Storefront and administrator views |
+| `config/` | PHP application configuration |
+| `storage/` | File-backed catalogue, snapshots and deployment runtime state |
+| `tests/`, `scripts/` | Regression, diagnostics and maintenance utilities |
+| `python/` | Optional media/visual tooling; not a required web runtime |
+| `resources/` | Import templates and reference CSV datasets |
+| `docs/ANANTA_BLUEPRINT.md` | Canonical future-product/architecture/backlog document |
 
-- Admin comparison builder for 2–4 real catalogue products.
-- Data-led listicle builder using catalogue attributes instead of invented product facts.
-- Published comparison URLs: `/compare/{slug}`.
-- Interactive ad-hoc compare route: `/compare?plants=...`, automatically `noindex,follow`.
-- Published listicle URLs: `/lists/{slug}`.
-- Article + ItemList + Breadcrumb structured data for published content.
-- Published comparison/listicle URLs are added to the XML sitemap.
-- Product pages can surface related published comparisons/listicles.
-- Content is marked **STALE** in Admin when an underlying product changed after the content item was last updated.
+Reusable source files: [live-variant import template](resources/LIVE_VARIANT_IMPORT_TEMPLATE.csv), [redirect migration template](resources/MIGRATION_REDIRECT_TEMPLATE.csv), [catalogue expansion source](resources/CATALOGUE_EXPANSION_LIST_v1.6.2.csv) and [intelligence event dictionary](resources/INTELLIGENCE_EVENT_DICTIONARY_v1.5.0.csv).
 
-### Human review and rollback
+## Security and repository hygiene
 
-- Field-level before/after diff.
-- Confidence percentage per suggestion.
-- Accept/reject review controls.
-- Immutable AI change history.
-- One-click product restore to the pre-AI snapshot.
-- Safe Auto only applies allowlisted fields that pass their field-specific threshold.
+**Important: historical operational data needs a separate remediation.** The public Git history includes tracked files under `storage/private-domain/` and `storage/journals/`, including a setup key. A new `.gitignore` blocks accidental addition of new storage artifacts, but **does not untrack existing files** or remove them from Git history. Verify whether any values or customer data were real, revoke/rotate exposed secrets, audit access, and plan safe replacement of tracked runtime files with a backed-up deployment migration. Never run a cleanup that deletes live storage during a Cloudways Git pull.
 
-### Web-only job scheduler
+This documentation cleanup removes obsolete root-level audit outputs from the current tree; historical versions remain accessible through Git history. No application runtime behavior or database migration is changed by this cleanup.
 
-- File-backed, lock-protected job queue.
-- Manual **Run queue** action from the dashboard.
-- Optional bounded web runner; no CLI worker is required.
-- Manual, daily, every-3-days or weekly scheduling.
-- Hourly throttling and per-request job limits prevent long web requests.
-- Scan Only scheduling performs deterministic audits without requiring a provider.
+## Branding note
 
-### System Health + Error Monitor integration
-
-AI provider, queue and release-check failures are recorded in the existing Error Monitor. The System Health page now exposes AI state, provider readiness, selected model, queue/failed-job counts, catalogue/SEO health and daily request/token usage. Matching health incidents resolve automatically after recovery under the existing v1.6.3 incident lifecycle.
-
-### Agent and AI discovery
-
-- `/feeds/ai-products.json`
-- `/feeds/agent-products.json`
-- `/feeds/ai-content.json`
-- `/api/agent/catalog/search`
-- `/.well-known/agent-capabilities.json`
-- `/api/openapi.json`
-
-The capability contract explicitly keeps purchase, payment and order submission behind human approval. Commerce truth remains sourced from verified live variants.
-
-## Retained platform capabilities
-
-- v1.6.4 icon-only storefront utilities and light/dark parity.
-- v1.6.3 browser-only first-run setup, System Health and Error Monitor.
-- Automatic incident resolution/reopen and 90-day purge of resolved non-critical errors while retaining critical history.
-- 376 parent plant records from the v1.6.2 catalogue expansion.
-- Discovery, Plant Finder, Live Variant Engine, Shopping Intelligence, CMS/SEO, Growth Center and commerce guardrails.
-
-## Web-only installation
-
-1. Upload the application folder using the hosting panel or FTP.
-2. Point the domain/subdomain document root to `public/`.
-3. Open `/admin/setup` and create the first administrator.
-4. Open **Admin → System Health** and run/confirm the health scan.
-5. Open **Admin → AI & Search → Settings**.
-6. Leave **Scan Only** selected for provider-free deterministic auditing, or configure an API base URL, encrypted API key and text model before choosing **Review** or **Safe Auto**.
-7. Use **Test Connection** / **Refresh Models**, save, then activate the AI Engine.
-
-No SSH, environment-file editing, queue daemon or console migration is required for normal v1.7.0 installation and administration.
-
-## Important truthfulness rule
-
-AI is an enrichment and maintenance layer, not the commercial source of truth. v1.7.0 does **not** permit AI to fabricate live price, inventory, SKU, delivery availability, customer ratings/reviews, toxicity/pet-safety or other protected facts. Those values must come from verified business data or explicit human verification.
-
-## Developer QA
-
-Automated regression remains in `scripts/full_regression.sh`; it is for development/CI and is not required for browser installation.
+**Ananta** is the repository/product name. The current staging implementation retains **Sanjay Nursery** runtime labels, session naming and version checks for compatibility. Rebranding those in the actual PHP application is a separate, tested migration.

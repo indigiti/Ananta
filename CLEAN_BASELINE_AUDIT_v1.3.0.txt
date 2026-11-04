@@ -1,8 +1,0 @@
-Sanjay Nursery v1.3.0 clean-baseline audit
-Generated: 2026-09-16T04:10:13.791432+00:00
-
-PASS 200 /health — products=174, admin_initialized=False, published_content=0
-PASS 200 /ready — ok=True, checks=84
-PASS 200 /shop — clean baseline route
-PASS 200 /collections/aglaonema — clean baseline route
-PASS 200 /product/aglaonema-bai-kaw — clean baseline route

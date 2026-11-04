@@ -1,0 +1,21 @@
+# Ananta: prevent adding deployment-specific runtime data, credentials and logs.
+# WARNING: Git ignore rules do not untrack files already committed.
+/storage/**
+!/storage/**/
+!/storage/**/.keep
+!/storage/.htaccess
+
+# Generated release reports and local QA artifacts
+/AUDIT_*
+/*_AUDIT_*
+/HTTP_RUNTIME_AUDIT*
+/CLEAN_BASELINE_AUDIT*
+/RELEASE_MANIFEST.sha256
+/THEME_PRE_POST_CONTACT_SHEET.png
+/PRE_POST_PERFORMANCE_*.csv
+*.log
+*.tmp
+*.bak
+.DS_Store
+__pycache__/
+*.py[cod]
