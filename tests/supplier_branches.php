@@ -84,6 +84,10 @@ try{
     supplier_branch_review($a,$branchA,'suspended','suspended QA-2026');
     $check(count(array_filter(marketplace_public_offers_dto($p),static fn($o)=>($o['id']??'')===$offer))===0,'Suspended branch remained public');
     $check(supplier_branch_public($a,$branchA)===null,'Suspended public branch projection exposed');
+    $correctKey=(string)getenv('SANJAY_DATA_KEY');
+    putenv('SANJAY_DATA_KEY='.base64_encode(str_repeat('X',32)));
+    $check(supplier_branch_public($a,$branchA)===null,'Public branch failed open when storage cannot decrypt');
+    putenv('SANJAY_DATA_KEY='.$correctKey);
     $code=(string)file_get_contents($root.'/public/index.php');
     $check(str_contains($code,"/supplier/branch/save")&&str_contains($code,"/admin/marketplace/branches/review"),'Branch web routes missing');
     $template=(string)file_get_contents($root.'/templates/supplier/dashboard.php');

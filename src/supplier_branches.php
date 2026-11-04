@@ -111,7 +111,9 @@ function supplier_branch_for_offer(string $tenantId,string $branchId,bool $requi
 }
 /** Public projections never contain exact address, PIN or private review evidence. */
 function supplier_branch_public(string $tenantId,string $branchId): ?array {
-    $row=supplier_branch_by_id($branchId);
+    // Public discovery must fail closed, not take down the storefront, if private
+    // storage is temporarily unreadable or its encryption key is unavailable.
+    try{$row=supplier_branch_by_id($branchId);}catch(Throwable){return null;}
     if(!$row||($row['tenant_id']??'')!==$tenantId||($row['state']??'')!=='approved')return null;
     return ['id'=>$row['id'],'name'=>$row['name'],'city'=>$row['city']];
 }
