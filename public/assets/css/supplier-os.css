@@ -63,3 +63,30 @@ html[data-theme=dark] .ananta-supplier-surface .ananta-import-panel{background:#
 @media(max-width:940px){.ananta-supplier-surface .ananta-auth-shell{grid-template-columns:1fr;max-width:640px;gap:36px}.ananta-supplier-surface .ananta-auth-story h1{font-size:clamp(40px,6.5vw,58px)}.ananta-supplier-surface .ananta-auth-panel{max-width:none}.ananta-supplier-surface .ananta-supplier-offer{grid-template-columns:1fr}}
 @media(max-width:620px){.ananta-supplier-surface .ananta-auth-shell{padding:38px 16px 64px;gap:30px}.ananta-supplier-surface .ananta-auth-story h1{font-size:clamp(35px,9vw,47px);line-height:1.12}.ananta-supplier-surface .ananta-auth-story>p:not(.kicker){font-size:14px}.ananta-supplier-surface .ananta-auth-panel{border-radius:20px;padding:23px 20px}.ananta-supplier-surface .ananta-auth-benefits{gap:11px;margin-top:21px}.ananta-supplier-surface .ananta-supplier-top{flex-direction:column}.ananta-supplier-surface .ananta-supplier-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.ananta-supplier-surface .ananta-supplier-stats article{padding:10px}.ananta-supplier-surface .ananta-supplier-stats strong{font-size:23px}.ananta-supplier-surface .ananta-supplier-report{grid-template-columns:1fr 1fr}.ananta-supplier-surface .ananta-supplier-report button{grid-column:1/-1}.ananta-supplier-surface .ananta-supplier-section-head{flex-direction:column}.ananta-supplier-surface .ananta-auth-panel .ananta-supplier-form{gap:16px}}
 @media(prefers-reduced-motion:reduce){.ananta-supplier-surface *, .ananta-supplier-surface *:before,.ananta-supplier-surface *:after{scroll-behavior:auto;transition:none}}
+
+
+/* B3: private RFQ inbox and supplier quotation */
+.ananta-supplier-surface .ananta-sourcing-quick-link{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:21px 24px;margin:24px 0;background:linear-gradient(105deg,#e6f3e4,#f4f9ef);border:1px solid #cde4cc;border-radius:18px}
+.ananta-supplier-surface .ananta-sourcing-quick-link strong{font-size:15px;color:#20442f}
+.ananta-supplier-surface .ananta-sourcing-quick-link p{font-size:12px;color:#506d58;margin:8px 0 0}
+.ananta-supplier-surface .ananta-sourcing-quick-link .btn{white-space:nowrap}
+.ananta-supplier-surface .ananta-sourcing-list{display:grid;gap:0}
+.ananta-supplier-surface .ananta-sourcing-list-item{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-top:1px solid #dce8de;text-decoration:none;color:inherit}
+.ananta-supplier-surface .ananta-sourcing-list-item>div{display:grid;gap:6px}
+.ananta-supplier-surface .ananta-sourcing-list-item strong{color:#235139;font-size:15px}
+.ananta-supplier-surface .ananta-sourcing-list-item small{color:#5e7864;font-size:12px}
+.ananta-supplier-surface .ananta-supplier-empty{padding:32px 16px;text-align:center;color:#54705e}
+.ananta-supplier-surface .ananta-rfq-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:16px 0}
+.ananta-supplier-surface .ananta-rfq-facts div{display:grid;gap:7px;border-bottom:1px solid #dfe9df;padding:0 0 12px}
+.ananta-supplier-surface .ananta-rfq-facts dt{color:#607968;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:750}
+.ananta-supplier-surface .ananta-rfq-facts dd{color:#274a34;font-size:14px;font-weight:650;margin:0}
+.ananta-supplier-surface .ananta-sourcing-contact{padding:17px 20px;border:1px solid #c8e0d0;background:#edf6ed;border-radius:14px;margin-top:20px}
+.ananta-supplier-surface .ananta-sourcing-contact strong{font-size:13px;color:#254e36}
+.ananta-supplier-surface .ananta-sourcing-contact p{margin:6px 0 0;font-size:12px;overflow-wrap:anywhere}
+html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-quick-link{background:#2c5039;border-color:#426d4f}
+html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-quick-link :is(strong,p){color:#e2eee0}
+html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-list-item strong{color:#e4f1e5}
+html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-list-item small{color:#b2c7b5}
+html[data-theme=dark] .ananta-supplier-surface .ananta-rfq-facts dd{color:#e2efe0}
+html[data-theme=dark] .ananta-supplier-surface .ananta-sourcing-contact{background:#2b4b34;border-color:#447454}
+@media(max-width:680px){.ananta-supplier-surface .ananta-sourcing-quick-link{flex-direction:column;align-items:flex-start}.ananta-supplier-surface .ananta-rfq-facts{grid-template-columns:1fr}.ananta-supplier-surface .ananta-sourcing-list-item{align-items:flex-start;flex-direction:column}}

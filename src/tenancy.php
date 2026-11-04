@@ -31,10 +31,10 @@ function tenant_user_email(string $email): string {
 }
 function tenant_roles(): array {
     return [
-        'owner'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','team.read'],
-        'manager'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage'],
-        'inventory'=>['offers.read','availability.report','branches.read'],
-        'viewer'=>['offers.read','branches.read'],
+        'owner'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','rfq.read','rfq.quote','team.read'],
+        'manager'=>['offers.read','offers.draft','availability.report','branches.read','branches.manage','rfq.read','rfq.quote'],
+        'inventory'=>['offers.read','availability.report','branches.read','rfq.read'],
+        'viewer'=>['offers.read','branches.read','rfq.read'],
     ];
 }
 function tenant_require_admin(): void {

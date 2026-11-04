@@ -54,7 +54,9 @@ $nurseryOffers=marketplace_offers_for_product($product);
       <div class="ananta-offer-detail"><span><?=e($offer['label'])?></span><?php if(isset($offer['price_inr'])&&$offer['price_inr']>0):?><strong><?=money($offer['price_inr'])?> <small>indicative</small></strong><?php else:?><strong>Ask for price</strong><?php endif;?></div>
       <small class="ananta-offer-caveat"><?=e($st['note'])?><?php if(!empty($offer['checked_at'])):?> · Updated <?=e(gmdate('d M Y',strtotime($offer['checked_at'])?:time()))?><?php endif;?></small>
       <a class="ananta-seller-cta" href="<?=e(marketplace_offer_contact_url($offer,$product))?>" target="_blank" rel="noopener noreferrer" data-track="generate_lead" data-lead-type="nursery_offer">Ask nursery on WhatsApp <?=ui_icon('external')?></a>
+      <a class="ananta-seller-cta" href="<?=e(url('/sourcing?product='.rawurlencode((string)$product['slug']).'&supplier='.rawurlencode((string)$offer['supplier']['id'])))?>">Request tracked quote <?=ui_icon('chevron-right')?></a>
       </article><?php endforeach;?>
+      <div class="ananta-sourcing-product-cta"><div><p class="kicker">Buying for a project?</p><strong>Request quotations from multiple nurseries.</strong><span>Choose up to five verified suppliers and compare their indicative offers in one place.</span></div><a class="ananta-seller-cta" href="<?=e(url('/sourcing?product='.rawurlencode((string)$product['slug'])))?>">Request multiple quotes <?=ui_icon('chevron-right')?></a></div>
       <?php if(!$optionCount):?><div class="ananta-no-offers"><strong>No verified nursery offers yet</strong><p>Check with the founding nursery for the latest batch, or revisit when independent suppliers publish offers.</p><a class="ananta-seller-cta" href="<?=e(url('/contact?product='.rawurlencode($product['slug'])))?>">Request availability <?=ui_icon('chevron-right')?></a></div><?php endif;?>
     </section>
 

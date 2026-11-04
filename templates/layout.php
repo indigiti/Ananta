@@ -22,6 +22,7 @@ else $pageSchema=[];
 $siConfig=function_exists('si_public_config')?si_public_config():['enabled'=>false];
 $currentPath=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
 $isSupplierSurface=str_starts_with($currentPath,url('/supplier'));
+$isSourcingSurface=str_starts_with($currentPath,url('/sourcing'))||str_starts_with($currentPath,url('/account/sourcing'));
 ?>
 <!doctype html>
 <html lang="en" data-theme="light">
@@ -45,6 +46,7 @@ $isSupplierSurface=str_starts_with($currentPath,url('/supplier'));
 <link rel="stylesheet" href="<?= e(asset('css/app.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/ananta-premium.css')) ?>">
 <?php if($isSupplierSurface): ?><link rel="stylesheet" href="<?=e(asset('css/supplier-os.css'))?>"><?php endif; ?>
+<?php if($isSourcingSurface): ?><link rel="stylesheet" href="<?=e(asset('css/sourcing.css'))?>"><?php endif; ?>
 <?php if (!empty($pageSchema)): ?><script type="application/ld+json" nonce="<?= e($GLOBALS['csp_nonce'] ?? '') ?>"><?= json_encode($pageSchema, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_HEX_TAG|JSON_HEX_AMP) ?></script><?php endif; ?>
 </head>
 <body class="ananta-storefront <?=$isSupplierSurface?'ananta-supplier-surface':''?> page-theme page-theme-<?= e($pageTheme['key'] ?? 'sanjay-botanical-retail') ?> surface-<?= e(str_replace('_','-',$pageTheme['surface'] ?? 'default')) ?>" style="<?= e($themeStyle) ?>" data-page-theme="<?= e($pageTheme['key'] ?? 'sanjay-botanical-retail') ?>" data-analytics-enabled="<?=!empty($growthTracking['enabled'])?'1':'0'?>" data-analytics-consent="<?=!empty($growthTracking['consent'])?'1':'0'?>" data-ga4="<?=e($growthTracking['ga4']??'')?>" data-gtm="<?=e($growthTracking['gtm']??'')?>" data-si-enabled="<?=!empty($siConfig['enabled'])?'1':'0'?>" data-si-personalisation="<?=!empty($siConfig['personalisation'])?'1':'0'?>">
@@ -84,7 +86,7 @@ $isSupplierSurface=str_starts_with($currentPath,url('/supplier'));
   </div>
   <div class="mobile-menu sn-mobile-menu" data-menu hidden>
     <div class="mobile-menu-head"><strong>Explore Ananta</strong><button type="button" class="menu-theme" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"><?=ui_icon('theme')?> <span data-theme-label>Dark mode</span></button></div>
-    <a href="<?= e(url('/shop')) ?>">Catalogue</a><a href="<?= e(url('/nurseries')) ?>">Nurseries</a><a href="<?= e(url('/plant-finder')) ?>">Plant Finder</a><a href="<?= e(url('/collections/indoor-plants')) ?>">Indoor Plants</a><a href="<?= e(url('/collections/outdoor-plants')) ?>">Outdoor Plants</a><a href="<?= e(url('/collections/succulents-cacti')) ?>">Succulents & Cacti</a><a href="<?= e(url('/collections/pots-planters')) ?>">Pots & Planters</a><a href="<?= e(url('/collections/gardening-essentials')) ?>">Gardening Essentials</a><a href="<?= e(url('/materials')) ?>">Plant Care</a><a href="<?= e(url('/contact#bulk')) ?>">Corporate / Bulk</a><a href="<?= e(url('/contact')) ?>">Visit & Contact</a><a href="<?= e(url(customer_logged_in()?'/account':'/account/login')) ?>"><?= customer_logged_in() ? 'My account' : 'Sign in / Register' ?></a>
+    <a href="<?= e(url('/shop')) ?>">Catalogue</a><a href="<?= e(url('/nurseries')) ?>">Nurseries</a><a href="<?= e(url('/sourcing')) ?>">Bulk Sourcing</a><a href="<?= e(url('/plant-finder')) ?>">Plant Finder</a><a href="<?= e(url('/collections/indoor-plants')) ?>">Indoor Plants</a><a href="<?= e(url('/collections/outdoor-plants')) ?>">Outdoor Plants</a><a href="<?= e(url('/collections/succulents-cacti')) ?>">Succulents & Cacti</a><a href="<?= e(url('/collections/pots-planters')) ?>">Pots & Planters</a><a href="<?= e(url('/collections/gardening-essentials')) ?>">Gardening Essentials</a><a href="<?= e(url('/materials')) ?>">Plant Care</a><a href="<?= e(url('/contact#bulk')) ?>">Corporate / Bulk</a><a href="<?= e(url('/contact')) ?>">Visit & Contact</a><a href="<?= e(url(customer_logged_in()?'/account':'/account/login')) ?>"><?= customer_logged_in() ? 'My account' : 'Sign in / Register' ?></a>
   </div>
 </header>
 <?php if ($success || $error): ?><div class="shell flash-wrap"><div class="flash <?= $error ? 'error':'success' ?>"><?= e($error ?: $success) ?></div></div><?php endif; ?>
@@ -94,7 +96,7 @@ $isSupplierSurface=str_starts_with($currentPath,url('/supplier'));
   <div class="shell footer-grid sn-footer-grid">
     <div class="sn-footer-brand"><a class="brand sn-brand footer-brand-lockup" href="<?=e(url('/'))?>"><i class="sn-brand-mark" aria-hidden="true"></i><span class="brand-main">Ananta</span></a><p>Discover plants, explore verified nursery offers and source greener spaces with confidence. Sanjay Nursery is our founding nursery.</p></div>
     <div><h3>Shop</h3><a href="<?= e(url('/collections/indoor-plants')) ?>">Indoor plants</a><a href="<?= e(url('/collections/outdoor-plants')) ?>">Outdoor plants</a><a href="<?= e(url('/collections/succulents-cacti')) ?>">Succulents & cacti</a><a href="<?= e(url('/collections/pots-planters')) ?>">Pots & planters</a></div>
-    <div><h3>Services</h3><a href="<?= e(url('/nurseries')) ?>">Find nurseries</a><a href="<?= e(url('/contact#bulk')) ?>">Corporate gifting</a><a href="<?= e(url('/contact#bulk')) ?>">Bulk plants</a><a href="<?= e(url('/contact#bulk')) ?>">Garden projects</a><a href="<?= e(url('/contact')) ?>">Visit nursery</a></div>
+    <div><h3>Services</h3><a href="<?= e(url('/nurseries')) ?>">Find nurseries</a><a href="<?=e(url('/sourcing'))?>">Compare nursery quotes</a><a href="<?= e(url('/contact#bulk')) ?>">Corporate gifting</a><a href="<?= e(url('/contact#bulk')) ?>">Bulk plants</a><a href="<?= e(url('/contact#bulk')) ?>">Garden projects</a><a href="<?= e(url('/contact')) ?>">Visit nursery</a></div>
     <div><h3>Learn</h3><a href="<?= e(url('/materials')) ?>">Plant care</a><a href="<?= e(url('/journal')) ?>">Nursery journal</a><a href="<?= e(url('/about')) ?>">Our story</a><a href="<?= e(url('/contact')) ?>">Contact us</a><a href="<?= e(url('/privacy/preferences')) ?>">Privacy preferences</a></div>
     <div><h3>Founding nursery · Sanjay Nursery</h3><p>Kadam Wak Wasti, Pune–Solapur Road, Loni Kalbhor, Pune.</p><a href="mailto:sanjaynursery@gmail.com">sanjaynursery@gmail.com</a><a href="tel:+919225337601">+91 92253 37601</a></div>
   </div>

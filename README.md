@@ -2,7 +2,7 @@
 
 **AI-ready nursery discovery and commerce, built PHP-first.**
 
-Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, cross-supplier RFQs and WhatsApp integrations are **roadmap items, not features already delivered**.
+Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, multi-line AI BOQ procurement, WhatsApp integrations and transactional multi-vendor checkout remain **roadmap items**. B3 introduces an authenticated, enquiry-only one-plant multi-nursery RFQ pilot.
 
 > **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
@@ -27,6 +27,18 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 3. The P0–P5 implementation backlog, acceptance tests, tenant isolation and RFQ/WhatsApp delivery constraints.
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
+
+## Release B3 — Multi-nursery RFQs and supplier sourcing inbox (staging)
+
+**Buyer journey:** A signed-in buyer opens `/sourcing` (also linked from plant and nursery pages), selects a plant, quantity, specification, delivery region and up to five verified nurseries, then explicitly consents to sending the requirement. Optional separate consent controls sharing their account name, email and phone. Requests are kept in a single encrypted file-first record under `storage/private-domain/marketplace/sourcing-rfqs.json`; customer account details are not sent without consent. A buyer tracks their requests and compares indicative supplier quotations through `/account/sourcing`.
+
+**Supplier journey:** Verified, invited nursery users open `/supplier/enquiries`, see only requests addressed to their own tenant and can return an indicative unit quote / lead time or decline. Owner/manager roles may quote; inventory/viewer roles have read-only access. A buyer can close requests to new quotes. Uninvited suppliers cannot access other supplier names, quotes, buyer contacts or RFQs.
+
+**Admin:** The existing `/admin/marketplace` screen shows aggregate sourcing counts without publishing buyer details. The original TradeOS project/BOQ workflow remains independent.
+
+**Safeguards:** 1–5 recipient cap, 50,000-plant request limit, 5 submissions/hour per buyer/IP, verified supplier rechecks, client ownership checks, per-supplier authorization, strict input limits, CSRF, encrypted atomic writes, UUIDv7 IDs and a 1,500-RFQ pilot cap. No auto-published quote, stock reservation, order, payment, bulk BOQ import, AI price invention or automated WhatsApp messages.
+
+**Tests:** `php tests/sourcing.php`, `php tests/sourcing_ui.php`, the full PHP regression and DigiOps package/staging boot checks. This feature requires real Cloudways buyer/supplier/browser acceptance, encrypted backups with restoration, and operational onboarding checks before production exposure.
 
 ## Release B2 — SupplierOS layout and controlled CSV inventory imports
 

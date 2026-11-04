@@ -7,7 +7,11 @@ declare(strict_types=1);
  */
 
 function commerce_root(): string { return data_root() . '/private-domain/commerce'; }
-function commerce_customer_file(): string { return commerce_root() . '/customers.json'; }
+function commerce_customer_file(): string {
+    $test=trim((string)getenv('ANANTA_TEST_CUSTOMERS_FILE'));
+    if(PHP_SAPI==='cli'&&($GLOBALS['app']['environment']??'')==='staging'&&$test!=='')return $test;
+    return commerce_root() . '/customers.json';
+}
 function commerce_address_file(): string { return commerce_root() . '/addresses.json'; }
 function commerce_order_file(): string { return commerce_root() . '/orders.json'; }
 function commerce_payment_file(): string { return commerce_root() . '/payments.json'; }

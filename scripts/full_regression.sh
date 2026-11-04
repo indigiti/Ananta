@@ -6,7 +6,7 @@ find . -name "*.php" -print0 | xargs -0 -n1 php -l >/dev/null
 
 # The active catalogue contains enquiry-first plant varieties. Commerce workflows
 # that require priced pot-size SKUs remain deferred until live batch data is assigned.
-for t in foundation_hardening smoke variants commerce_core procurement quality cms growth themes mediaos shopping_intelligence intelligence security commerce_ux discovery catalogue_expansion monitoring theme_ui ai_engine ui_performance release_regression marketplace_offers tenancy supplier_branches supplier_import supplier_ui media_persistence; do
+for t in foundation_hardening smoke variants commerce_core procurement quality cms growth themes mediaos shopping_intelligence intelligence security commerce_ux discovery catalogue_expansion monitoring theme_ui ai_engine ui_performance release_regression marketplace_offers tenancy supplier_branches supplier_import supplier_ui sourcing sourcing_ui media_persistence; do
   echo "== $t =="
   php "tests/$t.php"
 done
