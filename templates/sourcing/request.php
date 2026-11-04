@@ -5,6 +5,7 @@
     <p class="kicker">New sourcing request</p><h2 id="source-form-title">Tell nurseries what you need.</h2>
     <form method="post" action="<?=e(url('/sourcing'))?>" class="ananta-source-form">
       <?=csrf_field()?>
+      <input type="hidden" name="_rfq_form_token" value="<?=e($formToken??'')?>">
       <label>Plant or variety
         <select name="product_slug" required><option value="">Select a plant</option>
         <?php foreach($products as $plant):?><option value="<?=e($plant['slug'])?>" <?=($selectedSlug??'')===$plant['slug']?'selected':''?>><?=e($plant['name'])?></option><?php endforeach;?></select>

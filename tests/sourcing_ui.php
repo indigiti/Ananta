@@ -13,7 +13,7 @@ $errors=[];$check=static function(bool $ok,string $msg)use(&$errors){if(!$ok)$er
 ob_start();
 render('sourcing/request',['title'=>'Plant sourcing','robots'=>'noindex,nofollow',
     'products'=>products_public(),'suppliers'=>[['id'=>uuidv7(),'name'=>'Test Nursery & Co','city'=>'Pune']],
-    'selectedSlug'=>products_public()[0]['slug']??'']);
+    'selectedSlug'=>products_public()[0]['slug']??'','formToken'=>str_repeat('a',48)]);
 $html=ob_get_clean();
 foreach(['<main id="main">','ananta-source-form','name="supplier_ids[]"','name="consent"','name="share_contact"',
          'name="quantity"','name="specification"','name="destination"','Sourcing requests'] as $token) {
@@ -24,6 +24,8 @@ $check(str_contains($html,'Test Nursery &amp; Co'),'Nursery name not HTML-escape
 $check(str_contains($html,asset('css/sourcing.css')),'Sourcing CSS not linked or fingerprinted.');
 $check((bool)preg_match('/sourcing[.]css[?]v=1[.]7[.]0-[a-f0-9]{12}/',$html),'Sourcing asset fingerprint missing.');
 $check(str_contains($html,'name="_csrf"'),'Sourcing form lacks CSRF protection.');
+$check(str_contains($html,'name="_rfq_form_token"'),'One-time request token missing from form.');
+$check(str_contains($html,'value="'.str_repeat('a',48).'"'),'One-time token not preserved in the form.');
 $check(!str_contains($html,'name="unit_price_inr"'),'Buyer input can forge a supplier quotation.');
 $_SERVER['REQUEST_URI']='/ananta/shop';
 ob_start();

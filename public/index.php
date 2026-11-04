@@ -155,15 +155,24 @@ if($path==='/sourcing'){
     require_customer('/sourcing');
     if($method==='POST'){
         verify_csrf();
+        $token=(string)($_POST['_rfq_form_token']??'');
+        $expected=(string)($_SESSION['sourcing_form_token']??'');
+        if($expected===''||!hash_equals($expected,$token)){
+            flash('error','This request form was already submitted or expired. Start another request.');
+            redirect('/sourcing');
+        }
         try{
             $id=sourcing_create($_POST);
+            unset($_SESSION['sourcing_form_token']); // A second click/retry cannot create another RFQ.
             flash('success','Your requirement was sent to the selected nurseries. Track quotations here.');
             redirect('/account/sourcing/'.$id);
         }catch(Throwable $e){flash('error',$e->getMessage());redirect('/sourcing');}
     }
+    if(empty($_SESSION['sourcing_form_token']))$_SESSION['sourcing_form_token']=bin2hex(random_bytes(24));
     $selectedSlug=trim((string)($_GET['product']??''));
     render('sourcing/request',['title'=>'Source plants from nurseries','robots'=>'noindex,nofollow',
         'suppliers'=>sourcing_verified_suppliers(),'products'=>products_public(),'selectedSlug'=>$selectedSlug,
+        'formToken'=>$_SESSION['sourcing_form_token'],
         'selectedSupplier'=>trim((string)($_GET['supplier']??''))]);
     exit;
 }
