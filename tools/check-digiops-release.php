@@ -12,6 +12,8 @@ $required=[
     'private/src/bootstrap.php',
     'private/src/digiops_seed.php',
     'private/src/marketplace_offers.php',
+    'private/src/media_persistence.php',
+    'private/python/media_worker.py',
     'private/config/app.php',
     'private/templates/home.php',
     'private/templates/product.php',

@@ -365,11 +365,14 @@ function delete_product(string $guid, ?string $expectedChecksum=null): bool {
 }
 
 function media_files(): array {
-    $dir = dirname(__DIR__) . '/public/assets/images/products';
     $files=[];
-    foreach (glob($dir.'/*.{webp,jpg,jpeg,png}',GLOB_BRACE) ?: [] as $p) {
-        $files[]=['name'=>basename($p),'bytes'=>filesize($p)?:0,'mtime'=>filemtime($p)?:0];
+    foreach ([dirname(__DIR__).'/public/assets/images/products',media_persistent_dir()] as $dir) {
+        foreach (glob($dir.'/*.{webp,jpg,jpeg,png}',GLOB_BRACE) ?: [] as $p) {
+            if(!is_file($p)||is_link($p))continue;
+            $files[basename($p)]=['name'=>basename($p),'bytes'=>filesize($p)?:0,'mtime'=>filemtime($p)?:0];
+        }
     }
+    $files=array_values($files);
     usort($files,fn($a,$b)=>$b['mtime']<=>$a['mtime']); return $files;
 }
 
@@ -382,7 +385,9 @@ function media_upload(array $file): array {
     $stem=strtolower(pathinfo((string)($file['name']??'image'),PATHINFO_FILENAME));
     $stem=trim((string)preg_replace('/[^a-z0-9]+/','-',$stem),'-') ?: 'image';
     $name=$stem.'-'.substr(bin2hex(random_bytes(5)),0,10).'.webp';
-    $dest=dirname(__DIR__).'/public/assets/images/products/'.$name;
+    $dir=media_persistent_dir();
+    if(!is_dir($dir)&&!@mkdir($dir,0750,true)&&!is_dir($dir))return [false,'Private media storage unavailable.'];
+    $dest=$dir.'/'.$name;
     $raw=@file_get_contents($tmp); $img=$raw!==false && function_exists('imagecreatefromstring') ? @imagecreatefromstring($raw) : false;
     if ($img && function_exists('imagewebp')) {
         $w=imagesx($img); $h=imagesy($img); $pixels=$w*$h;

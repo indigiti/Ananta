@@ -50,6 +50,8 @@ Package contract:
 
 **Important:** The public PHP entry point loads `private_html/ananta/public/index.php` from the same Cloudways application home. This relies on the sibling `public_html/` and `private_html/` layout shown in DigiOps. The first installation copies a small allowlist of committed **public-domain catalogue/configuration seed JSON** into missing private `storage/` files; later releases **never** ship or overwrite live storage, user records, audit journals, admin keys or supplier offers. Catalogue updates after first install require a separate reviewed data migration, not an artifact overwrite.
 
+New uploaded product WebP files are stored persistently under `private_html/ananta/storage/private-domain/media/products/` and served through the application only when appropriately authorized or approved. Unlike the legacy release directory, these files are not overwritten during a normal DigiOps code deployment. A backup/restore drill is still required.
+
 This remains a **staging-only/file-first release**. `APP_ENV=production` is intentionally blocked. Before exposing real customers or accepting real payments, complete P0 tenant isolation, data/secret remediation, backup restore tests and a persistence design for media uploads: files written into the replaceable public assets tree will not survive an atomic public-directory swap unless stored and served from persistent private storage.
 
 Local validation: `php tools/package-digiops-release.php && php tools/check-digiops-release.php && bash tools/smoke-digiops-layout.sh`. Do not configure both Cloudways Git Pull and DigiOps to write the same `/ananta/` paths.
