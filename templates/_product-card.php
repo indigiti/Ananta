@@ -4,6 +4,7 @@ $isEnquiry=product_is_enquiry($p);
 $care=(array)($p['care_profile']??[]);
 $hasImage=product_has_image($p);
 $facets=function_exists('discovery_product_facets')?discovery_product_facets($p):['live'=>!$isEnquiry,'media_ready'=>false];
+$nurseryOfferCount=count(marketplace_offers_for_product($p));
 ?>
 <article class="product-card reveal marketplace-card sn-plant-card" data-product-card data-item-id="<?=e($p['sku'])?>" data-item-name="<?=e($p['name'])?>" data-item-category="<?=e($p['collection']??$p['category_label'])?>" data-product-slug="<?=e($p['slug'])?>" data-product-guid="<?=e($p['guid'])?>">
   <a class="product-image sn-plant-image" href="<?=e(url('/product/'.$p['slug']))?>" data-track="select_item" data-item-id="<?=e($p['sku'])?>" data-item-name="<?=e($p['name'])?>">
@@ -24,6 +25,7 @@ $facets=function_exists('discovery_product_facets')?discovery_product_facets($p)
     <?php if(!empty($p['botanical_name'])):?><div class="product-meta-line sn-botanical"><?=e($p['botanical_name'])?></div><?php endif;?>
     <p class="product-description"><?=e($p['short'])?></p>
     <div class="sn-card-care"><?php if(!empty($care['light'])):?><span><?=ui_icon('sun')?> <?=e($care['light'])?></span><?php endif;?><?php if(!empty($care['difficulty'])):?><span><?=ui_icon('sparkles')?> <?=e($care['difficulty'])?></span><?php endif;?></div>
+    <?php if($nurseryOfferCount):?><a class="ananta-card-offers" href="<?=e(url('/product/'.$p['slug'].'#buy-from'))?>"><?=$nurseryOfferCount?> nursery <?=$nurseryOfferCount===1?'offer':'offers'?> · Compare <?=ui_icon('chevron-right')?></a><?php endif;?>
     <div class="product-card-foot"><strong class="sn-card-price"><small><?=!empty($facets['live'])?'Live price':'Nursery availability'?></small><?=e(product_price_label($p))?></strong><a href="<?=e(url('/product/'.$p['slug']))?>" data-track="select_item" data-item-id="<?=e($p['sku'])?>" data-item-name="<?=e($p['name'])?>">View plant →</a></div>
   </div>
 </article>

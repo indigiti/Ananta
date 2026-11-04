@@ -6,6 +6,7 @@ $isEnquiry=product_is_enquiry($product);
 $hasImage=product_has_image($product);
 $gallery=function_exists('mediaos_gallery')?mediaos_gallery($product,true):[];
 $facets=function_exists('discovery_product_facets')?discovery_product_facets($product):[];
+$nurseryOffers=marketplace_offers_for_product($product);
 ?>
 <section class="product-mobile-summary shell reveal sn-pdp-mobile-summary">
   <p class="kicker"><?=e($product['category_label'])?> · <?=e($product['collection']??'Plant')?></p>
@@ -41,6 +42,21 @@ $facets=function_exists('discovery_product_facets')?discovery_product_facets($pr
       <div><b><?=ui_icon($icon)?> <?=e($label)?></b><span><?=e($care[$key])?></span></div>
       <?php endforeach; ?>
     </div>
+
+
+    <section class="ananta-buy-from" id="buy-from" aria-labelledby="ananta-seller-title">
+      <?php $optionCount=count($nurseryOffers)+(!empty($sellableVariants)?1:0); ?>
+      <div class="ananta-buy-head"><div><p class="kicker">Compare nurseries</p><h2 id="ananta-seller-title">Buy from a nursery</h2></div><span class="ananta-offer-count"><?=$optionCount?> <?=$optionCount===1?'option':'options'?></span></div>
+      <p>Compare nursery-specific plant sizes, indicative prices and latest availability. External nursery offers require confirmation before purchasing.</p>
+      <?php if($sellableVariants):?><article class="ananta-seller-option"><div class="ananta-seller-name"><span class="ananta-seller-avatar"><?=ui_icon('plant')?></span><div><strong>Sanjay Nursery</strong><small>Founding nursery · Direct checkout</small></div><span class="ananta-status confirmed">Checkout-ready</span></div><p>Choose a live batch with a validated price and current stock.</p><a class="ananta-seller-cta" href="#configure">Choose size &amp; buy <?=ui_icon('chevron-right')?></a></article><?php endif;?>
+      <?php foreach($nurseryOffers as $offer):$st=$offer['public_status'];?><article class="ananta-seller-option">
+      <div class="ananta-seller-name"><span class="ananta-seller-avatar"><?=ui_icon('plant')?></span><div><strong><?=e($offer['supplier']['name'])?></strong><small><?=e($offer['supplier']['city'])?> · Supplier enquiry</small></div><span class="ananta-status <?=e($st['key'])?>"><?=e($st['label'])?></span></div>
+      <div class="ananta-offer-detail"><span><?=e($offer['label'])?></span><?php if(isset($offer['price_inr'])&&$offer['price_inr']>0):?><strong><?=money($offer['price_inr'])?> <small>indicative</small></strong><?php else:?><strong>Ask for price</strong><?php endif;?></div>
+      <small class="ananta-offer-caveat"><?=e($st['note'])?><?php if(!empty($offer['checked_at'])):?> · Updated <?=e(gmdate('d M Y',strtotime($offer['checked_at'])?:time()))?><?php endif;?></small>
+      <a class="ananta-seller-cta" href="<?=e(marketplace_offer_contact_url($offer,$product))?>" target="_blank" rel="noopener noreferrer" data-track="generate_lead" data-lead-type="nursery_offer">Ask nursery on WhatsApp <?=ui_icon('external')?></a>
+      </article><?php endforeach;?>
+      <?php if(!$optionCount):?><div class="ananta-no-offers"><strong>No verified nursery offers yet</strong><p>Check with the founding nursery for the latest batch, or revisit when independent suppliers publish offers.</p><a class="ananta-seller-cta" href="<?=e(url('/contact?product='.rawurlencode($product['slug'])))?>">Request availability <?=ui_icon('chevron-right')?></a></div><?php endif;?>
+    </section>
 
     <?php if($variants): ?>
       <div class="sn-variant-engine" id="configure"><div class="sn-variant-head"><div><p class="kicker">Live pot sizes & batches</p><h2>Select the exact nursery SKU.</h2></div><span><?=count($variants)?> variant<?=count($variants)===1?'':'s'?></span></div>
