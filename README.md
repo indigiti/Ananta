@@ -28,6 +28,13 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## B8.5 — Staging pilot acceptance, recovery and monitoring
+
+- Admin console: `/admin/b8/acceptance` shows local source-of-truth health checks, encrypted message queue reconciliation, CRM capacity, eligible Merchant SKUs, feed audit timing and storage use.
+- Field acceptance checklist explicitly separates **operator attestations** from independent Meta, Google, payment and real-browser verification. No automatic production-ready/approved claim can be made from a manual checkbox.
+- Cloudways private CLI: `php src/b8_pilot_cli.php status`, `php src/b8_pilot_cli.php backup`, `php src/b8_pilot_cli.php verify <private-backup-directory>`. The backup copies only existing encrypted Connect/CRM/Discover/pilot envelopes; checksums and a separate read/decryption drill verify the copy. The live files are never overwritten by the drill.
+- Local success does not verify offsite copies, expiry/retention policy, Google approvals, paid checkout or actual mobile UX. Those remain operational gate evidence.
+- The pilot stays PHP-first and staging-only. Before substantial traffic, move queue and notification projection into an SQL transactional outbox, add retention and supervised workers, and validate rate limits and recovery during realistic load.
 ## B8.4 — Google and AI distribution diagnostics (staging)
 
 - The existing hosted \`/feeds/google-merchant.xml\` remains the supported scheduled Merchant Center source; no Merchant API upload, product approval, paid placement or indexing is claimed. Register the HTTPS URL as a primary *file-based* product data source in Merchant Center after seller/returns/shipping/checkout verification.

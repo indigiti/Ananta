@@ -828,3 +828,16 @@ Operational limits: first 100 tasks displayed, at most 30 notes per lead, 2000 l
 ## B8.4 — Merchant feed monitoring and AI discovery readiness
 
 The initial Google integration uses a hosted scheduled XML data source, not Merchant API ingestion (which would require an API-type data source and external authorization). The same retail-eligibility filter feeds Merchant XML and SKU-level diagnostics. A private, encrypted daily snapshot records a SHA-256 feed fingerprint, exact eligible SKU count, local Product/ProductGroup Offer URL/price consistency and current AI-feed coverage. Search Console analytics is optionally read-only with an OAuth token and storefront-matching URL-prefix property; no Google write endpoints are called. External account/site verification, product approvals, shipping returns, Search Console authorization and live Google Rich Results Test remain pending operational gates. Google indexing and AI citations are not guarantees.
+
+
+---
+
+## B8.5 — Staging pilot acceptance, recovery and monitoring
+
+- Admin console: `/admin/b8/acceptance` shows local source-of-truth health checks, encrypted message queue reconciliation, CRM capacity, eligible Merchant SKUs, feed audit timing and storage use.
+- Field acceptance checklist explicitly separates **operator attestations** from independent Meta, Google, payment and real-browser verification. No automatic production-ready/approved claim can be made from a manual checkbox.
+- Cloudways private CLI: `php src/b8_pilot_cli.php status`, `php src/b8_pilot_cli.php backup`, `php src/b8_pilot_cli.php verify <private-backup-directory>`. The backup copies only existing encrypted Connect/CRM/Discover/pilot envelopes; checksums and a separate read/decryption drill verify the copy. The live files are never overwritten by the drill.
+- Local success does not verify offsite copies, expiry/retention policy, Google approvals, paid checkout or actual mobile UX. Those remain operational gate evidence.
+- The pilot stays PHP-first and staging-only. Before substantial traffic, move queue and notification projection into an SQL transactional outbox, add retention and supervised workers, and validate rate limits and recovery during realistic load.
+
+**Acceptance boundary:** all workstream code can be fully CI tested, but B8.5 field pilot cannot be declared completed until independent evidence has been collected and verified. Backup location must be transferred off-server with a secrets-free retention policy; a decryption drill is not an entire host/DB restore.

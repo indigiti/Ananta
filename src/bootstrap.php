@@ -48,6 +48,7 @@ require_once $root . '/src/connect_crm.php';
 require_once $root . '/src/integrations.php';
 require_once $root . '/src/discover_merchant.php';
 require_once $root . '/src/discover_distribution.php';
+require_once $root . '/src/b8_acceptance.php';
 require_once $root . '/src/discovery.php';
 require_once $root . '/src/commerceux.php';
 require_once $root . '/src/ai_engine.php';
