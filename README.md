@@ -28,6 +28,14 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## B8.4 — Google and AI distribution diagnostics (staging)
+
+- The existing hosted \`/feeds/google-merchant.xml\` remains the supported scheduled Merchant Center source; no Merchant API upload, product approval, paid placement or indexing is claimed. Register the HTTPS URL as a primary *file-based* product data source in Merchant Center after seller/returns/shipping/checkout verification.
+- A daily, CLI-compatible \`src/discover_distribution_cli.php\` records an encrypted, deduplicated SKU count, feed SHA-256 and local XML/Product schema checks. The admin \`/admin/discover/merchant\` page shows this audit, latest historical snapshots, AI feed completeness and SEO issues.
+- Optional **read-only Search Console** Search Analytics metrics use \`ANANTA_GSC_PROPERTY\` (exact HTTPS storefront URL prefix) and \`ANANTA_GSC_ACCESS_TOKEN\` (OAuth read-only token in Cloudways). The admin dashboard explicitly distinguishes its last provider response from local checks. Access-token renewal and initial OAuth authorization remain external configuration tasks.
+- Google Rich Results Test and schema.org validator are linked for genuine public product-URL validation; this release does not impersonate either service or promise AI citations.
+- Local endpoint data can be compared with real Merchant Center diagnostics during the B8.5 pilot. No scheduled Google push or token is enabled by default.
+
 ## B8.3 — Tenant CRM, assignments, follow-ups and RFQ reminders
 
 - Encrypted CRM lead records with stage, tags, notes, active owner/manager assignment, optimistic-version concurrency and tenant-private tasks.

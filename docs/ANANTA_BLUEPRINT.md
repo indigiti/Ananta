@@ -821,3 +821,10 @@ CRM lead stages, owner/manager assignments, private notes and follow-up tasks no
 The optional CLI reconciler \`src/connect_crm_worker_cli.php\` scans durable RFQ records and queues purpose-scoped approved templates with stable event identities. This is **OFF** until \`ANANTA_CONNECT_RFQ_AUTOMATION=1\`, \`ANANTA_WA_RFQ_TEMPLATE\` matches an approved \`ANANTA_WA_APPROVED_TEMPLATES\` entry, and the existing B8.2 sender/consent/send switches are all enabled. Only buyer contact details explicitly shared with selected nurseries are candidates; an RFQ submission alone does not grant WhatsApp consent. No template variables, marketing broadcasts, unrestricted blast rules or live Meta send are assumed.
 
 Operational limits: first 100 tasks displayed, at most 30 notes per lead, 2000 leads and 3000 tasks per staging file. Archive and retention policy remain required before production. B8.4 expands search/merchant distribution and B8.5 runs evidence-based pilot checks.
+
+
+---
+
+## B8.4 — Merchant feed monitoring and AI discovery readiness
+
+The initial Google integration uses a hosted scheduled XML data source, not Merchant API ingestion (which would require an API-type data source and external authorization). The same retail-eligibility filter feeds Merchant XML and SKU-level diagnostics. A private, encrypted daily snapshot records a SHA-256 feed fingerprint, exact eligible SKU count, local Product/ProductGroup Offer URL/price consistency and current AI-feed coverage. Search Console analytics is optionally read-only with an OAuth token and storefront-matching URL-prefix property; no Google write endpoints are called. External account/site verification, product approvals, shipping returns, Search Console authorization and live Google Rich Results Test remain pending operational gates. Google indexing and AI citations are not guarantees.

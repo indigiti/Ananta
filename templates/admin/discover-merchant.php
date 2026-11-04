@@ -38,3 +38,44 @@
  <p><strong>Merchant feed:</strong> <code><?=e(url('/feeds/google-merchant.xml'))?></code></p>
  <p><strong>AI products:</strong> <code><?=e(url('/feeds/ai-products.json'))?></code> · <strong>Sitemap:</strong> <code><?=e(url('/sitemap.xml'))?></code></p>
 </section>
+<section class="admin-panel">
+ <div class="panel-head"><h2>B8.4 · Google and AI distribution diagnostics</h2><span class="status-pill">Scheduled XML · no automated Google submission</span></div>
+ <p>The hosted XML is the supported feed method. Register its HTTPS URL in the verified Merchant Center primary data source; Google fetches it on its own schedule. A local feed refresh only records a fingerprint and never implies listing approval.</p>
+ <div class="ananta-b8-reasons">
+ <div><span>Current feed items</span><strong><?=e((string)$distribution['current']['sku_count'])?></strong></div>
+ <div><span>Feed and schema consistency</span><strong><?=$distribution['current']['valid']?'Pass':'Needs review'?></strong></div>
+ <div><span>Last recorded audit</span><strong><?=e($distribution['last']['at']??'Never')?></strong></div>
+ <div><span>External Merchant approval</span><strong>Not verified</strong></div>
+ </div>
+ <?php if($distribution['current']['issues']):?>
+ <h3>Local distribution issues</h3><div class="ananta-b8-reasons"><?php foreach($distribution['current']['issues'] as $issue=>$count):?><div><span><?=e(str_replace('_',' ',$issue))?></span><strong><?=e((string)$count)?></strong></div><?php endforeach;?></div>
+ <?php endif;?>
+ <form method="post" action="<?=e(url('/admin/discover/distribution/refresh'))?>">
+ <?=csrf_field()?><button class="btn primary" type="submit">Record fresh feed and schema audit</button></form>
+ <p class="ananta-b8-help">Merchant XML SHA-256: <code><?=e($distribution['current']['feed_sha256'])?></code>. Snapshot digests allow operators to detect feed changes and reconcile submitted SKU counts.</p>
+</section>
+<section class="admin-panel">
+ <div class="panel-head"><h2>Search Console · read-only integration</h2><span class="status-pill"><?=$distribution['search_console_configured']?'Credentials configured':'Not connected'?></span></div>
+ <?php if($distribution['gsc']):?>
+ <div class="ananta-b8-reasons">
+  <div><span>Property</span><strong><?=e($distribution['gsc']['property'])?></strong></div>
+  <div><span>Clicks</span><strong><?=e((string)$distribution['gsc']['clicks'])?></strong></div>
+  <div><span>Impressions</span><strong><?=e((string)$distribution['gsc']['impressions'])?></strong></div>
+  <div><span>Last API read</span><strong><?=e($distribution['gsc']['synced_at'])?></strong></div>
+ </div>
+ <?php else:?><p>No Google Search Console Search Analytics API response has been received.</p><?php endif;?>
+ <form method="post" action="<?=e(url('/admin/discover/distribution/gsc-sync'))?>">
+ <?=csrf_field()?><button class="btn primary" type="submit">Refresh verified Google Search Console metrics</button></form>
+ <p class="ananta-b8-help">Requires a read-only OAuth access token in Cloudways environment and ANANTA_GSC_PROPERTY matching this storefront's HTTPS URL prefix. This is not a Search Console ownership verification or token-refresh implementation.</p>
+</section>
+<section class="admin-panel">
+ <div class="panel-head"><h2>AI search and rich result readiness</h2></div>
+ <div class="ananta-b8-reasons">
+  <div><span>Public AI-feed products</span><strong><?=e((string)$distribution['ai']['public_products'])?></strong></div>
+  <div><span>Canonical record mismatches</span><strong><?=e((string)$distribution['ai']['canonical_mismatches'])?></strong></div>
+  <div><span>Missing botanical names</span><strong><?=e((string)$distribution['ai']['missing_botanical_names'])?></strong></div>
+  <div><span>Missing approved image URLs</span><strong><?=e((string)$distribution['ai']['missing_images'])?></strong></div>
+ </div>
+ <p><a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google Rich Results Test</a> · <a href="https://validator.schema.org/" target="_blank" rel="noopener">Schema Markup Validator</a>. Automated Google rich-result validation is not claimed; test live public product URLs in those official tools.</p>
+ <p>AI discovery and search indexing are independently controlled by search systems. Public feeds and structured data improve eligibility, not guaranteed rankings or citations.</p>
+</section>
