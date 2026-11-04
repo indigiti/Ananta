@@ -62,3 +62,6 @@
 <p>Inbound events are accepted only when the Meta app HMAC is valid, the phone ID matches this tenant, and the receiver is enabled. Acknowledgement happens only after encrypted persistence.</p>
 <a class="btn primary" href="<?=e(url('/admin/connect/inbox'))?>">Open platform inbox</a>
 <p>Webhook endpoint for each configured sender: <code>/ananta/webhooks/meta/whatsapp/{phone_number_id}</code>. Only supply the real phone number ID to Meta; never place secrets in the URL. Configure Cloudways CLI cron to run the included worker after testing.</p></section>
+<section class="admin-panel"><h2>B8.5 · Operational acceptance</h2>
+<p>Review consent, queue health, encrypted-backup restore and provider-verified field evidence before activating automated messaging.</p>
+<a class="btn outline" href="<?=e(url('/admin/b8/acceptance'))?>">Open pilot acceptance dashboard</a></section>

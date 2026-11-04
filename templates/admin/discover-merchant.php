@@ -79,3 +79,7 @@
  <p><a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google Rich Results Test</a> · <a href="https://validator.schema.org/" target="_blank" rel="noopener">Schema Markup Validator</a>. Automated Google rich-result validation is not claimed; test live public product URLs in those official tools.</p>
  <p>AI discovery and search indexing are independently controlled by search systems. Public feeds and structured data improve eligibility, not guaranteed rankings or citations.</p>
 </section>
+
+<section class="admin-panel"><h2>Release acceptance and recovery</h2>
+<p>Local catalogue and schema checks are not evidence of Merchant Center approval or live product indexing.</p>
+<a class="btn outline" href="<?=e(url('/admin/b8/acceptance'))?>">View B8.5 field acceptance checklist</a></section>

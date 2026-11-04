@@ -561,6 +561,18 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
         catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/admin/connect/inbox/'.$m[1]);
     }
+    if($path==='/admin/b8/acceptance'){
+        render_admin('b8-acceptance',['title'=>'B8 Pilot Acceptance and Recovery',
+            'snapshot'=>b8_acceptance_snapshot()]);exit;
+    }
+    if($path==='/admin/b8/acceptance/evidence'&&$method==='POST'){
+        verify_csrf();
+        try{
+            b8_acceptance_evidence_save((string)($_POST['step']??''),(string)($_POST['reference']??''));
+            flash('success','Operator attestation recorded. This is not independent provider verification.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/b8/acceptance');
+    }
     if ($path === '/admin/connect') {
         render_admin('connect',['title'=>'Ananta Connect · WhatsApp',
             'summary'=>connect_admin_summary(),
