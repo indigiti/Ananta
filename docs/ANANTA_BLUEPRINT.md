@@ -13,6 +13,7 @@
 - [Part VII: Release B1 — supplier branches and stock review](#part-vii-release-b1--supplier-branches-private-locations-and-stock-review)
 - [Part VIII: Release B2 — SupplierOS styling and CSV import](#part-viii-release-b2--supplieros-styling-and-csv-to-draft-imports)
 - [Part IX: Release B3 — private buyer sourcing and nursery quotations](#part-ix-release-b3--private-buyer-sourcing-nursery-inbox-and-indicative-quotations)
+- [Part X: Release B4 — reviewed multi-line BOQs and PO drafts](#part-x-release-b4--buyer-reviewed-multi-line-boqs-and-non-binding-po-drafts)
 
 ---
 
@@ -717,3 +718,27 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 **Deliberate limitations:** Single-plant RFQs rather than multi-row Excel/PDF BOQs; manual quotations without binding purchase order or settlement; no external WhatsApp transport or delivery-confirmation claims; no automated seller matching based on verified real-time inventory; no supplier-specific payment capture. Keep original TradeOS customer projects and Sanjay Nursery checkout isolated.
 
 **Next acceptance gates:** A real two-supplier pilot and buyer test, real browser QA, opt-in policy/legal text, supplier account and document verification, recovery/MFA, backup restore, and measures of conversion from submitted RFQ to returned quotation.
+
+
+---
+
+## Part X: Release B4 — Buyer-reviewed multi-line BOQs and non-binding PO drafts
+
+**Scope and operating principle:** extend B3 with multi-line sourcing while maintaining file-first, Cloudways staging and human-confirmed commercial figures. Never silently promote an AI-generated or supplier-stated estimate into reserved stock, binding orders or payments.
+
+| Requirement | Implementation |
+| --- | --- |
+| BOQ entry | `/sourcing/boq` CSV upload, strict header `product_slug,quantity,specification`, 128 KB and maximum 30 lines |
+| Product normalization | Deterministic, active canonical catalogue slug matching. Invalid or invented plants rejected, duplicates rejected |
+| Buyer review | Fifteen-minute server-side preview, supplier selection, contact consent, explicit confirmation; no raw unreviewed import |
+| Invited suppliers | 1–5 active onboarded verified nursery accounts with tenant isolation |
+| Supplier quotations | Manual price for every row, bounded INR unit prices, lead days, total computed server-side |
+| Quotation versioning | Immutable revision snapshots, max 10 per nursery, stale-write protection via expected quote version |
+| Buyer approval | Specific supplier and specific quote revision, explicit draft-only consent, idempotent UUIDv7 PO draft |
+| Status and data integrity | Accepted draft freezes future quotes/awards, buyer-owned private record, single atomic encrypted mutation |
+| Safety boundary | `binding=false`, taxes/freight/payment/unverified, no supplier acceptance, no checkout/settlement |
+| Regression gates | Cross-tenant and cross-buyer denial; malformed CSV, duplicate grades, revision conflict, double awards, sensitive-data encryption and UI/Cloudways assets |
+
+**AI extraction decision:** Full AI PDF/photograph BOQ extraction is intentionally *not* activated. Before launch require opt-in model/provider control, source citation to exact document regions, confidence metadata, deterministic plant matching, field-by-field human confirmation, no document leakage across tenants and an operational cost/rate policy. B4 is a controlled CSV normalization/import release, not a live LLM claim.
+
+**Next after B4:** buyer/supplier acceptance of contract and tax terms, shipping/serviceability calculation, optional split-supplier awards with distinct PO drafts, and only then transaction/payments. Operational gate: real Cloudways browser approval on phone/tablet/desktop, supplier onboarding/verification, restore-tested encrypted backups and legally checked data retention/consent.

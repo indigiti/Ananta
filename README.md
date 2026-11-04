@@ -28,6 +28,16 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## Release B4 — Reviewed multi-plant BOQs, quote revisions and non-binding PO drafts (staging)
+
+The buyer can upload a UTF-8 CSV at `/sourcing/boq` with the exact columns `product_slug,quantity,specification`. The server validates a maximum of 30 unique canonical plant/grade lines and 128 KB per file. The preview stays in the buyer's session for 15 minutes; the buyer must review the matched plant names/quantities and explicitly select 1–5 verified, onboarded nurseries before submission. No PDFs, image OCR or LLM extraction is enabled in B4: hallucinated product/specification/quantity values are prevented by deterministic catalogue validation and human review. AI extraction remains a later opt-in module, never a silent source of commercial truth.
+
+Invited nursery owners/managers respond to **every line** with a manually entered indicative unit price and lead time. A maximum of ten revisions is retained as separate snapshots with optimistic version checks; stale submissions fail. Suppliers cannot see competing vendors or their quote versions. A buyer may select an exact submitted version and approve a **non-binding, buyer-approved purchase-order draft**. Duplicate approvals are idempotent; other vendor awards and further quote changes are blocked.
+
+The draft explicitly records that supplier acceptance, live stock, GST/taxes, freight, payment and binding legal terms are unconfirmed. No commercial purchase order is issued, emailed, dispatched, paid or settled; this is buyer quotation selection only. The original single-plant RFQ and founding nursery checkout remain intact. The pilot persists data through Ananta's authenticated encrypted file store with UUIDv7 identifiers, tenant authorization and single-writer locking.
+
+Acceptance tests: `php tests/sourcing_boq.php`, `php tests/sourcing_boq_ui.php`, full PHP regression, DigiOps package checks and Cloudways split-path staging smoke. Production gates remain legal/tax verification, supplier document verification, backups and actual two-nursery pilot, followed by a measured SQL migration when capacity warrants.
+
 ## Release B3 — Multi-nursery RFQs and supplier sourcing inbox (staging)
 
 **Buyer journey:** A signed-in buyer opens `/sourcing` (also linked from plant and nursery pages), selects a plant, quantity, specification, delivery region and up to five verified nurseries with active supplier accounts, then explicitly consents to sending the requirement. Optional separate consent controls sharing their account name, email and phone. Requests are kept in a single encrypted file-first record under `storage/private-domain/marketplace/sourcing-rfqs.json`; customer account details are not sent without consent. A buyer tracks their requests and compares indicative supplier quotations through `/account/sourcing`.

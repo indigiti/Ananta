@@ -22,6 +22,7 @@ require_once $root . '/src/variants.php';
 require_once $root . '/src/marketplace_offers.php';
 require_once $root . '/src/supplier_bulk_import.php';
 require_once $root . '/src/sourcing.php';
+require_once $root . '/src/sourcing_boq.php';
 require_once $root . '/src/commerce.php';
 require_once $root . '/src/configurator.php';
 require_once $root . '/src/bespoke.php';

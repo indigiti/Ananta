@@ -150,6 +150,52 @@ if (str_starts_with($path,'/api/intelligence/')) {
 
 
 
+/* ---------------- Buyer-reviewed multi-line BOQs (file-first staging) ---------------- */
+if($path==='/sourcing/boq/template.csv'&&$method==='GET'){
+    require_customer('/sourcing/boq');
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="ananta-boq-template.csv"');
+    header('Cache-Control: private, no-store');
+    echo implode(',',sourcing_boq_headers())."\r\n";exit;
+}
+if($path==='/sourcing/boq/preview'&&$method==='POST'){
+    require_customer('/sourcing/boq');verify_csrf();
+    try{
+        $upload=$_FILES['boq_file']??null;
+        if(!is_array($upload)||($upload['error']??UPLOAD_ERR_NO_FILE)!==UPLOAD_ERR_OK
+            ||!is_string($upload['tmp_name']??null)||!is_uploaded_file($upload['tmp_name']))
+            throw new InvalidArgumentException('Select a valid CSV file.');
+        sourcing_boq_stage($upload['tmp_name']);
+        flash('success','BOQ parsed. Review every matched plant and quantity before inviting nurseries.');
+    }catch(Throwable $e){flash('error',$e->getMessage());}
+    redirect('/sourcing/boq');
+}
+if($path==='/sourcing/boq/submit'&&$method==='POST'){
+    require_customer('/sourcing/boq');verify_csrf();
+    try{
+        $id=sourcing_boq_submit($_POST);
+        flash('success','BOQ shared with selected nurseries. Supplier prices remain unverified until submitted.');
+        redirect('/account/sourcing/'.$id);
+    }catch(Throwable $e){flash('error',$e->getMessage());redirect('/sourcing/boq');}
+}
+if($path==='/sourcing/boq'&&$method==='GET'){
+    require_customer('/sourcing/boq');
+    render('sourcing/boq',['title'=>'Multi-plant BOQ sourcing','robots'=>'noindex,nofollow',
+        'preview'=>sourcing_boq_pending(),'suppliers'=>sourcing_verified_suppliers()]);
+    exit;
+}
+if(preg_match('#^/account/sourcing/([0-9a-f-]{36})/approve-draft$#D',$path,$m)&&$method==='POST'){
+    require_customer('/account/sourcing');verify_csrf();
+    try{
+        $supplierId=(string)($_POST['supplier_id']??'');
+        $version=filter_var($_POST['quote_version']??'',FILTER_VALIDATE_INT);
+        if($version===false||$version<1)throw new InvalidArgumentException('Choose a valid quote revision.');
+        sourcing_boq_approve_draft($m[1],$supplierId,$version,(string)($_POST['confirmation']??''));
+        flash('success','Buyer-approved non-binding PO draft recorded. No order was sent or paid.');
+    }catch(Throwable $e){flash('error',$e->getMessage());}
+    redirect('/account/sourcing/'.$m[1]);
+}
+
 /* ---------------- Ananta Sourcing (buyer-owned, multi-nursery RFQs) ---------------- */
 if($path==='/sourcing'){
     require_customer('/sourcing');
@@ -223,6 +269,14 @@ if($path==='/supplier'||str_starts_with($path,'/supplier/')){
     if($path==='/supplier/enquiries'){
         $requests=sourcing_supplier_rows($supplier['tenant_id']);
         render('supplier/enquiries',['title'=>'Supplier sourcing inbox','robots'=>'noindex,nofollow','supplier'=>$supplier,'requests'=>$requests]);exit;
+    }
+    if(preg_match('#^/supplier/enquiries/([0-9a-f-]{36})/boq-quote$#D',$path,$m)&&$method==='POST'){
+        verify_csrf();
+        try{
+            sourcing_boq_quote($supplier['tenant_id'],$m[1],$_POST);
+            flash('success','BOQ quote revision saved for buyer review.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier/enquiries/'.$m[1]);
     }
     if(preg_match('#^/supplier/enquiries/([0-9a-f-]{36})/respond$#D',$path,$m)&&$method==='POST'){
         verify_csrf();
