@@ -28,11 +28,7 @@ jobs:
 
       - name: Reject committed runtime secrets and mutable state
         run: |
-          forbidden="$(git ls-files -- storage/private-domain storage/journals storage/locks storage/indexes | grep -Ev '/\.keep
-        run: find . -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
-      - name: Full file-first regression
-        run: bash scripts/full_regression.sh
- || true)"
+          forbidden="$(git ls-files -- storage/private-domain storage/journals storage/locks storage/indexes | grep -Ev '/[.]keep($)' || true)"
           if [ -n "$forbidden" ]; then
             echo "::error::Tracked runtime data detected in the working tree."
             printf '%s\n' "$forbidden"
