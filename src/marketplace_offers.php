@@ -3,10 +3,12 @@ declare(strict_types=1);
 
 /**
  * Ananta file-first supplier offer registry.
- * Platform-admin curated pilot only; not a tenant-authenticated supplier portal.
+ * Platform-admin verified suppliers; tenant members may create draft offers and report availability.
  * Seller offers are enquiries, NEVER additions to the legacy single-seller cart.
  */
 function marketplace_registry_file(): string {
+    $override=trim((string)getenv('ANANTA_TEST_MARKETPLACE_FILE'));
+    if(PHP_SAPI==='cli'&&$override!==''&&($GLOBALS['app']['environment']??'')==='staging')return $override;
     return data_root() . '/private-domain/marketplace/supplier-offers.json';
 }
 function marketplace_offers_store(bool $refresh=false): array {
@@ -68,11 +70,19 @@ function marketplace_supplier_save(array $input): string {
         return $raw;
     },'marketplace.supplier.save');
     marketplace_offers_store(true);
+    tenant_sync_supplier($savedId,$status);
     audit_event('marketplace.supplier.save',['supplier_id'=>$savedId,'status'=>$status]);
     return $savedId;
 }
 function marketplace_offer_save(array $input): string {
-    require_admin();
+    $platformAdmin=admin_logged_in();
+    if(!$platformAdmin){
+        $identity=tenant_identity();
+        if(!$identity||!tenant_can('offers.draft',(string)$identity['tenant_id']))throw new RuntimeException('Supplier offer access denied.');
+        if((string)($input['supplier_id']??'')!==$identity['tenant_id'])throw new RuntimeException('Cross-tenant offer access denied.');
+        if((string)($input['status']??'draft')!=='draft')throw new RuntimeException('Supplier draft requires platform review before publication.');
+        if((string)($input['availability']??'unknown')==='confirmed')throw new RuntimeException('Stock confirmation requires platform evidence review.');
+    }
     $id=strtolower(trim((string)($input['id']??'')));
     if($id!==''&&!marketplace_uuid_valid($id))throw new InvalidArgumentException('Invalid offer ID.');
     $supplierId=strtolower(trim((string)($input['supplier_id']??'')));
@@ -101,13 +111,15 @@ function marketplace_offer_save(array $input): string {
     $savedId=$id!==''?$id:uuidv7();
     $now=gmdate('c');
     marketplace_ensure_dir();
-    foundation_json_mutate(marketplace_registry_file(),function(array $raw)use($savedId,$id,$supplierId,$product,$label,$status,$availability,$price,$quantity,$evidence,$now) {
+    foundation_json_mutate(marketplace_registry_file(),function(array $raw)use($savedId,$id,$supplierId,$product,$label,$status,$availability,$price,$quantity,$evidence,$now,$platformAdmin) {
         $offers=array_values((array)($raw['offers']??[]));$found=false;
         $row=['id'=>$savedId,'supplier_id'=>$supplierId,'product_guid'=>(string)$product['guid'],
             'label'=>$label,'status'=>$status,'availability'=>$availability,'price_inr'=>$price,
             'quantity'=>$quantity,'evidence_ref'=>$evidence,'checked_at'=>$now,'updated_at'=>$now];
         foreach($offers as &$existing) {
             if(($existing['id']??'')===$savedId) {
+                if(($existing['supplier_id']??'')!==$supplierId)throw new RuntimeException('Offer ownership cannot be changed.');
+                if(!$platformAdmin&&($existing['status']??'draft')!=='draft')throw new RuntimeException('Only platform staff can edit published offers.');
                 $row['created_at']=$existing['created_at']??$now;
                 $existing=$row;$found=true;break;
             }
@@ -172,4 +184,33 @@ function marketplace_public_offers_dto(array $product): array {
             'checkout_enabled'=>false];
     }
     return $out;
+}
+
+
+/** Seller-reported quantities remain non-reserved until platform checks evidence. */
+function marketplace_offer_report(string $offerId,string $supplierId,string $availability,?int $quantity): void {
+    tenant_require('availability.report',$supplierId);
+    if(!tenant_valid_id($offerId))throw new InvalidArgumentException('Invalid offer identity.');
+    if(!in_array($availability,['reported','unknown','unavailable'],true))throw new InvalidArgumentException('Suppliers cannot confirm stock without platform verification.');
+    if($quantity!==null&&($quantity<0||$quantity>1000000))throw new InvalidArgumentException('Quantity outside supported range.');
+    marketplace_ensure_dir();
+    foundation_json_mutate(marketplace_registry_file(),static function(array $raw)use($offerId,$supplierId,$availability,$quantity){
+        $found=false;
+        foreach($raw['offers']??[] as &$offer){
+            if(($offer['id']??'')!==$offerId)continue;
+            if(($offer['supplier_id']??'')!==$supplierId)throw new RuntimeException('Cross-tenant availability update denied.');
+            $offer['availability']=$availability;
+            $offer['quantity']=$quantity;
+            $offer['evidence_ref']='';
+            $offer['checked_at']=gmdate('c');
+            $offer['updated_at']=gmdate('c');
+            $found=true;break;
+        }
+        unset($offer);
+        if(!$found)throw new RuntimeException('Supplier offer not found.');
+        return $raw;
+    },'marketplace.offer.report');
+    marketplace_offers_store(true);
+    $who=tenant_identity();
+    audit_event('marketplace.offer.report',['supplier_id'=>$supplierId,'offer_id'=>$offerId,'user_id'=>$who['id']??null,'availability'=>$availability]);
 }

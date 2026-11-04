@@ -24,7 +24,7 @@ if ($base && str_starts_with($uriPath, $base)) $uriPath = substr($uriPath, strle
 $path = '/' . trim($uriPath, '/');
 if ($path === '//') $path = '/';
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
-if (str_starts_with($path,'/account') || str_starts_with($path,'/admin') || str_starts_with($path,'/trade')) { header('Cache-Control: no-store, private'); header('Pragma: no-cache'); }
+if (str_starts_with($path,'/account') || str_starts_with($path,'/admin') || str_starts_with($path,'/supplier') || str_starts_with($path,'/trade')) { header('Cache-Control: no-store, private'); header('Pragma: no-cache'); }
 
 if ($method==='GET' && !str_starts_with($path,'/admin/')) {
     if ($path==='/robots.txt') { header('Content-Type: text/plain; charset=utf-8'); echo "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /account/\nSitemap: ".absolute_url('/sitemap.xml')."\n"; exit; }
@@ -144,6 +144,51 @@ if (str_starts_with($path,'/api/intelligence/')) {
     http_response_code(404);echo json_encode(['error'=>'not_found']);exit;
 }
 
+
+/* Supplier access — invite-only and tenant-scoped */
+if ($path==='/supplier/login') {
+    if($method==='POST'){
+        verify_csrf();try{$ok=tenant_login((string)($_POST['email']??''),(string)($_POST['password']??''));}catch(Throwable){$ok=false;}
+        if($ok)redirect('/supplier');
+        flash('error','Sign-in unsuccessful. Check credentials and nursery verification.');redirect('/supplier/login');
+    }
+    if(tenant_identity())redirect('/supplier');
+    render('supplier/login',['title'=>'Supplier sign in','robots'=>'noindex,nofollow']);exit;
+}
+if ($path==='/supplier/accept') {
+    header('Referrer-Policy: no-referrer');
+    if($method==='POST'){
+        verify_csrf();$token=(string)($_POST['token']??'');
+        try{tenant_invite_accept($token,(string)($_POST['name']??''),(string)($_POST['password']??''));flash('success','Supplier account activated. Sign in to continue.');redirect('/supplier/login');}
+        catch(Throwable $e){flash('error',$e->getMessage());redirect('/supplier/accept?token='.rawurlencode($token));}
+    }
+    $token=(string)($_GET['token']??'');try{$invitation=tenant_invite_preview($token);}catch(Throwable){$invitation=null;}
+    render('supplier/accept',['title'=>'Activate supplier access','invitation'=>$invitation,'token'=>$token,'robots'=>'noindex,nofollow']);exit;
+}
+if($path==='/supplier/logout'&&$method==='POST'){verify_csrf();tenant_logout();redirect('/supplier/login');}
+if($path==='/supplier'||str_starts_with($path,'/supplier/')){
+    $supplier=tenant_identity();
+    if(!$supplier){flash('error','Supplier authentication is required.');redirect('/supplier/login');}
+    if($path==='/supplier'){render('supplier/dashboard',['title'=>'Supplier workspace','supplier'=>$supplier,'robots'=>'noindex,nofollow']);exit;}
+    if($path==='/supplier/offer/draft'&&$method==='POST'){
+        verify_csrf();
+        try{$input=$_POST;$input['supplier_id']=$supplier['tenant_id'];$input['status']='draft';$input['availability']='unknown';marketplace_offer_save($input);flash('success','Offer draft saved for platform review.');}
+        catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier');
+    }
+    if($path==='/supplier/offer/report'&&$method==='POST'){
+        verify_csrf();
+        try{
+            $qty=trim((string)($_POST['quantity']??''));
+            if($qty!==''&&!ctype_digit($qty))throw new InvalidArgumentException('Invalid quantity.');
+            marketplace_offer_report((string)($_POST['offer_id']??''),$supplier['tenant_id'],(string)($_POST['availability']??'unknown'),$qty===''?null:(int)$qty);
+            flash('success','Availability updated; buyers must still reconfirm.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/supplier');
+    }
+    http_response_code(404);render('404',['title'=>'Not found','robots'=>'noindex,nofollow']);exit;
+}
+
 /* ---------------- Admin OS ---------------- */
 if ($path === '/admin/setup') {
     if (admin_initialized()) redirect('/admin/login');
@@ -175,6 +220,14 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
     if ($path === '/admin/errors') { $status=trim((string)($_GET['status']??''));$severity=trim((string)($_GET['severity']??''));$source=trim((string)($_GET['source']??''));$q=trim((string)($_GET['q']??''));render_admin('errors',['title'=>'Error Monitor','incidents'=>monitor_list_incidents($status,$severity,$source,$q),'status'=>$status,'severity'=>$severity,'source'=>$source,'q'=>$q,'health'=>$adminHealth]);exit; }
     if ($path === '/admin/errors/cleanup' && $method==='POST') { verify_csrf();$r=monitor_cleanup(true);flash('success','Retention cleanup completed. '.$r['removed'].' non-critical resolved incident(s) removed; critical incidents retained.');redirect('/admin/errors'); }
     if ($path === '/admin/marketplace') { render_admin('marketplace',['title'=>'Nurseries and seller offers','store'=>marketplace_offers_store()]); exit; }
+    if ($path === '/admin/marketplace/invite' && $method==='POST') {
+        verify_csrf();
+        try{$token=tenant_invite_issue((string)($_POST['supplier_id']??''),(string)($_POST['email']??''),(string)($_POST['role']??'owner'));
+            flash('tenant_invite_link',url('/supplier/accept?token='.$token));
+            flash('success','One-time 24-hour invitation created. Copy it below now.');
+        }catch(Throwable $e){flash('error',$e->getMessage());}
+        redirect('/admin/marketplace');
+    }
     if ($path === '/admin/marketplace/suppliers/save' && $method==='POST') { verify_csrf();try{$id=marketplace_supplier_save($_POST);flash('success','Nursery saved: '.$id);}catch(Throwable $e){flash('error',$e->getMessage());}redirect('/admin/marketplace'); }
     if ($path === '/admin/marketplace/offers/save' && $method==='POST') { verify_csrf();try{$id=marketplace_offer_save($_POST);flash('success','Offer saved: '.$id);}catch(Throwable $e){flash('error',$e->getMessage());}redirect('/admin/marketplace'); }
     if ($path === '/admin/orders') { $status=trim((string)($_GET['status']??'')); render_admin('orders',['title'=>'Orders','orders'=>admin_orders($status?:null)]); exit; }

@@ -17,6 +17,14 @@
     <button class="btn primary" type="submit">Save nursery</button> <?php if($editSupplier):?><a class="btn outline" href="<?=e(url('/admin/marketplace'))?>">Create new</a><?php endif;?>
   </form>
 </section>
+<section class="admin-panel"><div class="panel-head"><h2>Invite verified nursery staff</h2><span class="status-pill">Private onboarding</span></div>
+<p>Invitations expire after 24 hours. Members choose their own passwords and receive only tenant-scoped permissions. Share the one-time link privately.</p>
+<?php if($inviteUrl=flash('tenant_invite_link')):?><div class="ananta-admin-invite" role="status"><strong>Copy invitation link now</strong><input type="text" value="<?=e($inviteUrl)?>" readonly aria-label="One-time supplier invitation" onclick="this.select()"><small>This link is shown only once. Do not put it in a public post.</small></div><?php endif;?>
+<form class="stack-form" method="post" action="<?=e(url('/admin/marketplace/invite'))?>"><?=csrf_field()?>
+<label>Verified nursery<select name="supplier_id" required><option value="">Select nursery</option><?php foreach($suppliers as $s):if(($s['status']??'')!=='verified')continue;?><option value="<?=e($s['id'])?>"><?=e($s['name'])?> — <?=e($s['city'])?></option><?php endforeach;?></select></label>
+<label>Member email<input type="email" name="email" maxlength="254" autocomplete="off" required></label>
+<label>Access<select name="role"><option value="owner">Owner</option><option value="manager">Manager</option><option value="inventory">Inventory</option><option value="viewer">Viewer</option></select></label>
+<button class="btn primary" type="submit">Create invitation</button></form></section>
 <section class="admin-panel"><div class="panel-head"><h2>Supplier register</h2><span class="status-pill"><?=count($suppliers)?> nurseries</span></div>
 <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Nursery</th><th>City</th><th>State</th><th>Offers</th><th>Updated</th></tr></thead><tbody>
 <?php foreach($suppliers as $s):?><tr><td><strong><?=e($s['name'])?></strong><small><?=e($s['id'])?></small></td><td><?=e($s['city'])?></td><td><span class="status-pill <?=($s['status']??'')==='verified'?'ok':'warn'?>"><?=e($s['status']??'draft')?></span></td><td><?=count(array_filter($offers,fn($o)=>($o['supplier_id']??'')===$s['id']))?></td><td><?=e($s['updated_at']??'—')?> <a class="text-link" href="<?=e(url('/admin/marketplace?supplier='.$s['id']))?>">Edit</a></td></tr><?php endforeach;?>

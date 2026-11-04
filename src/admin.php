@@ -30,8 +30,8 @@ function audit_event(string $action, array $context = []): void {
     $record = [
         'ts'=>gmdate('c'),
         'action'=>$action,
-        'actor_guid'=>$identity['guid'] ?? null,
-        'actor_role'=>$identity['role'] ?? null,
+        'actor_guid'=>$identity['guid'] ?? ($_SESSION['supplier_user']['user_id']??null),
+        'actor_role'=>$identity['role'] ?? (isset($_SESSION['supplier_user'])?'supplier':null),
         'ip_hash'=>$ip!==''?substr(hash('sha256',$ip),0,20):null,
         'context'=>$context,
     ];

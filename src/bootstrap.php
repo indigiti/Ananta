@@ -16,6 +16,7 @@ if (PHP_SAPI !== 'cli') {
 }
 require_once $root . '/src/security.php';
 require_once $root . '/src/admin.php';
+require_once $root . '/src/tenancy.php';
 require_once $root . '/src/variants.php';
 require_once $root . '/src/marketplace_offers.php';
 require_once $root . '/src/commerce.php';
