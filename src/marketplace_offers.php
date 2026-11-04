@@ -196,7 +196,8 @@ function marketplace_offer_report(string $offerId,string $supplierId,string $ava
     marketplace_ensure_dir();
     foundation_json_mutate(marketplace_registry_file(),static function(array $raw)use($offerId,$supplierId,$availability,$quantity){
         $found=false;
-        foreach($raw['offers']??[] as &$offer){
+        $offers=array_values((array)($raw['offers']??[]));
+        foreach($offers as &$offer){
             if(($offer['id']??'')!==$offerId)continue;
             if(($offer['supplier_id']??'')!==$supplierId)throw new RuntimeException('Cross-tenant availability update denied.');
             $offer['availability']=$availability;
@@ -208,6 +209,7 @@ function marketplace_offer_report(string $offerId,string $supplierId,string $ava
         }
         unset($offer);
         if(!$found)throw new RuntimeException('Supplier offer not found.');
+        $raw['offers']=$offers;
         return $raw;
     },'marketplace.offer.report');
     marketplace_offers_store(true);
