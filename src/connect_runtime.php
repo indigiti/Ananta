@@ -212,6 +212,11 @@ function connect_template_allowed(string $name,string $language): bool {
 function connect_enqueue(string $tenant,string $phone,string $purpose,string $template,string $lang,string $unique): string {
     if($tenant==='platform')require_admin();
     else tenant_require('connect.send',$tenant);
+    return connect_enqueue_system_record($tenant,$phone,$purpose,$template,$lang,$unique);
+}
+function connect_enqueue_system_record(string $tenant,string $phone,string $purpose,string $template,string $lang,string $unique): string {
+    if(PHP_SAPI!=='cli'&&!admin_logged_in()&&!tenant_can('connect.send',$tenant))
+        throw new RuntimeException('Direct queue record permission denied.');
     $phone=connect_normalize_phone($phone);
     if(!in_array($purpose,['service','rfq_updates','marketing'],true))throw new InvalidArgumentException('Invalid send purpose.');
     if(!preg_match('/^[a-zA-Z0-9:_-]{8,120}$/D',$unique))throw new InvalidArgumentException('Provide a stable unique event reference.');

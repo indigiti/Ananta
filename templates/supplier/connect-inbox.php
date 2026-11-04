@@ -1,5 +1,6 @@
 <section class="shell ananta-supplier-workspace">
 <div class="ananta-supplier-top"><div><p class="kicker">NurserySetu · Ananta Connect</p><h1>WhatsApp inbox.</h1><p>Official Meta Cloud API conversations for your nursery only. Inbound messages and provider receipts are recorded after signature verification.</p></div><a class="btn outline" href="<?=e(url('/supplier/connect'))?>">Sender settings</a></div>
+<p><a class="btn outline" href="<?=e(url('/supplier/connect/report'))?>">CRM reports and follow-ups</a></p>
 <div class="ananta-supplier-panel"><h2>Conversations</h2><p>Showing the most recent <?=count($conversations)?> conversations. Message status is based on Meta delivery events, not assumptions.</p>
 <div class="ananta-connect-list"><?php foreach($conversations as $conversation):?>
 <a class="ananta-connect-item" href="<?=e(url('/supplier/connect/inbox/'.$conversation['id']))?>">

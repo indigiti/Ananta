@@ -811,3 +811,13 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 ## B8.2 — Verified WhatsApp webhook and consent-gated CRM
 
 Signed provider-specific Meta webhooks, encrypted per-tenant CRM, deduplicated inbound messages, monotonic delivery receipts and an idempotent outbox are implemented for the staging pilot. Only owner/manager or platform admin access can view private inbox threads. Sending requires account activation, Cloudways ANANTA_CONNECT_ALLOW_SEND=1, allowlisted Meta-approved templates, and purpose-scoped consent. Suspicious or ambiguous sends are held for reconciliation. NO automatic RFQ notifications, bulk broadcasts or production-delivery guarantees. Real account onboarding, test receipts, backup recovery and retention management remain acceptance gates.
+
+
+
+## B8.3 — CRM records, assignments and conditional RFQ notification reconciliation (staging)
+
+CRM lead stages, owner/manager assignments, private notes and follow-up tasks now persist in a separate encrypted file-first ledger, avoiding coupling to Meta delivery receipts. The nursery can manage these at \`/supplier/connect/inbox/{conversation_uuid}/crm\` and see reports at \`/supplier/connect/report\`. Every mutation verifies the active tenant and current team membership and rejects stale revisions.
+
+The optional CLI reconciler \`src/connect_crm_worker_cli.php\` scans durable RFQ records and queues purpose-scoped approved templates with stable event identities. This is **OFF** until \`ANANTA_CONNECT_RFQ_AUTOMATION=1\`, \`ANANTA_WA_RFQ_TEMPLATE\` matches an approved \`ANANTA_WA_APPROVED_TEMPLATES\` entry, and the existing B8.2 sender/consent/send switches are all enabled. Only buyer contact details explicitly shared with selected nurseries are candidates; an RFQ submission alone does not grant WhatsApp consent. No template variables, marketing broadcasts, unrestricted blast rules or live Meta send are assumed.
+
+Operational limits: first 100 tasks displayed, at most 30 notes per lead, 2000 leads and 3000 tasks per staging file. Archive and retention policy remain required before production. B8.4 expands search/merchant distribution and B8.5 runs evidence-based pilot checks.
