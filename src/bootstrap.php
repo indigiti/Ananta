@@ -20,6 +20,7 @@ require_once $root . '/src/tenancy.php';
 require_once $root . '/src/supplier_branches.php';
 require_once $root . '/src/variants.php';
 require_once $root . '/src/marketplace_offers.php';
+require_once $root . '/src/supplier_bulk_import.php';
 require_once $root . '/src/commerce.php';
 require_once $root . '/src/configurator.php';
 require_once $root . '/src/bespoke.php';

@@ -9,6 +9,7 @@ $editingPlant=$editing?product_by_guid((string)$editing['product_guid']):null;
 $branchEditId=(string)($_GET['branch']??'');
 $branchEditing=$branchesById[$branchEditId]??null;
 $approvedBranches=array_values(array_filter($branches,static fn($b)=>($b['state']??'pending')==='approved'));
+$pendingCsv=tenant_can('offers.draft',$tenantId)?supplier_csv_pending($tenantId):null;
 ?>
 <section class="shell ananta-supplier-workspace">
   <div class="ananta-supplier-top">
@@ -39,7 +40,7 @@ $approvedBranches=array_values(array_filter($branches,static fn($b)=>($b['state'
     <div class="ananta-supplier-list" aria-label="Branch records">
     <?php foreach($branches as $branch):?>
       <article class="ananta-supplier-branch">
-        <div><strong><?=e($branch['name'])?></strong><small><?=e($branch['city'])?><?=!empty($branch['pincode'])?' · '.e($branch['pincode']):''?></small></div>
+        <div><strong><?=e($branch['name'])?></strong><small><?=e($branch['city'])?><?=!empty($branch['pincode'])?' · '.e($branch['pincode']):''?></small><small>CSV branch ID: <code><?=e($branch['id'])?></code></small></div>
         <div class="ananta-supplier-branch-actions"><span class="ananta-branch-state <?=e($branch['state']??'pending')?>"><?=e(ucfirst($branch['state']??'pending'))?></span>
           <?php if(tenant_can('branches.manage',$tenantId)):?><a href="<?=e(url('/supplier?branch='.$branch['id'].'#branches'))?>">Edit branch</a><?php endif;?></div>
       </article>
@@ -66,6 +67,44 @@ $approvedBranches=array_values(array_filter($branches,static fn($b)=>($b['state'
       <div class="ananta-supplier-form-actions"><button type="submit" class="btn dark">Save draft for review</button><?php if($editing):?><a class="btn outline" href="<?=e(url('/supplier#offers'))?>">Clear form</a><?php endif;?></div>
     </form>
     <?php if(!$branches):?><p class="ananta-supplier-caption">You need a branch record before you can create a seller offer.</p><?php endif;?>
+  </section>
+  <?php endif;?>
+
+  <?php if(tenant_can('offers.draft',$tenantId)):?>
+  <section class="ananta-supplier-panel ananta-import-panel" id="import" aria-labelledby="supplier-import-title">
+    <div class="ananta-supplier-section-head">
+      <div><p class="kicker">SupplierOS · Bulk catalogue</p><h2 id="supplier-import-title">Import plant offers</h2></div>
+      <span class="ananta-offer-count">Draft only</span>
+    </div>
+    <p>Upload a UTF-8 CSV to prepare up to 50 branch-specific plant offers. Nothing is published automatically. The platform must review every listing before it appears to buyers.</p>
+    <p class="ananta-import-note">Required columns: <code>branch_id,product_slug,label,price_inr,quantity</code>. Use a branch ID from your locations above and a plant slug from the Ananta catalogue. Price and quantity may be left empty.</p>
+    <div class="ananta-import-actions"><a class="ananta-seller-cta" href="<?=e(url('/supplier/import/template.csv'))?>">Download CSV template <?=ui_icon('external')?></a></div>
+    <form method="post" action="<?=e(url('/supplier/import/preview'))?>" enctype="multipart/form-data" class="ananta-supplier-form">
+      <?=csrf_field()?>
+      <label for="supplier-csv-upload">Choose CSV file (maximum 128 KB / 50 rows)
+        <input id="supplier-csv-upload" type="file" name="csv_file" accept=".csv,text/csv" required>
+      </label>
+      <div class="ananta-supplier-form-actions"><button class="btn dark" type="submit">Validate and preview offers</button></div>
+    </form>
+    <?php if($pendingCsv):?>
+    <div class="ananta-import-preview" aria-labelledby="supplier-preview-heading">
+      <h3 id="supplier-preview-heading"><?=count($pendingCsv['rows'])?> offers ready for review</h3>
+      <p class="ananta-import-note">This preview expires after 15 minutes. Duplicate existing offers will be skipped; stock remains unverified.</p>
+      <div class="ananta-import-review"><table>
+        <thead><tr><th>Plant</th><th>Size / grade</th><th>Indicative price</th><th>Quantity</th><th>Status</th></tr></thead>
+        <tbody><?php foreach($pendingCsv['rows'] as $importRow):?>
+          <tr><td><?=e($importRow['product_name'])?></td><td><?=e($importRow['label'])?></td>
+          <td><?=isset($importRow['price_inr'])?money($importRow['price_inr']):'Request quote'?></td>
+          <td><?=isset($importRow['quantity'])?e((string)$importRow['quantity']):'Unspecified'?></td><td>Draft</td></tr>
+        <?php endforeach;?></tbody>
+      </table></div>
+      <form method="post" action="<?=e(url('/supplier/import/confirm'))?>" class="ananta-supplier-form">
+        <?=csrf_field()?>
+        <input type="hidden" name="preview_token" value="<?=e($pendingCsv['token'])?>">
+        <div class="ananta-supplier-form-actions"><button class="btn dark" type="submit">Import <?=count($pendingCsv['rows'])?> draft offers</button></div>
+      </form>
+    </div>
+    <?php endif;?>
   </section>
   <?php endif;?>
   <section class="ananta-supplier-panel" id="inventory">

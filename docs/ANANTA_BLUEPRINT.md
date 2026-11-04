@@ -11,6 +11,7 @@
 - [Part V: Release A — tenant identity and repository containment](#part-v-release-a--tenant-identity-and-repository-containment-implementation)
 - [Part VI: Release A2 — persistent uploaded plant media](#part-vi-release-a2--persistent-uploaded-plant-media)
 - [Part VII: Release B1 — supplier branches and stock review](#part-vii-release-b1--supplier-branches-private-locations-and-stock-review)
+- [Part VIII: Release B2 — SupplierOS styling and CSV import](#part-viii-release-b2--supplieros-styling-and-csv-to-draft-imports)
 
 ---
 
@@ -668,3 +669,25 @@ For DigiOps split deployment (\`public_html/ananta/\` + \`private_html/ananta/\`
 | Test gate | Two independent tenants, wrong-tenant access and mutation denial, approval/reapproval/suspension checks, public DTO redaction, full regression and DigiOps release smoke |
 
 This does **not** implement bulk imports, unlimited multi-branch scale, digital KYC, map-based serviceability, supplier image rights attestations, B2B RFQs, WhatsApp API messaging or transactional stock reservations. Those remain explicit backlog items. Real-world supplier and branch proof must be reviewed manually before publishing.
+
+---
+
+## Part VIII: Release B2 — SupplierOS styling and CSV-to-draft imports
+
+Purpose: repair deployed supplier screen layout and prepare safe, file-first bulk nursery onboarding.
+
+Design acceptance:
+- Supplier sign-in and invitation pages use a constrained editorial heading, separate secure form card, accessible stacked fields and clear desktop/mobile/dark layouts.
+- Supplier CSS is isolated into supplier-os.css and only included for supplier routes. Consumer newsletter is not rendered on supplier authentication pages.
+- CSS/JS cache busting is based on the file's SHA-256 content fingerprint, not just the unchanged product version. DigiOps smoke tests the /ananta/ sibling path.
+- Footer Ananta wordmark remains legible against dark green.
+
+Inventory import acceptance:
+- Only authenticated supplier owner/manager members can upload an exact-column UTF-8 CSV: branch_id,product_slug,label,price_inr,quantity.
+- Maximum 50 rows or 128 KiB per upload, tenant-owned branches, existing published plants, constrained fields and duplicate-row detection.
+- Server-side session preview expires in 15 minutes; a CSRF-protected explicit confirmation is required.
+- Draft inserts occur as one locked aggregate write with stable idempotency row keys; existing offers with the same supplier/branch/plant/grade are skipped.
+- All imported records remain unverified, non-public and enquiry-only until independent branch and offer approval. Do not publish, verify stock or modify other tenants.
+- Automated coverage includes HTML/CSS integration, invalid inputs, cross-tenant denial, retries, no public exposure and split DigiOps release packaging.
+
+Pending: real-browser QA at common phone/tablet/desktop widths, password recovery/MFA, supplier KYC, serviceability, lead inbox, formal backup restoration, RFQ workflow and WhatsApp API integration.
