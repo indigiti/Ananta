@@ -32,7 +32,7 @@ if ($method==='GET' && !str_starts_with($path,'/admin/')) {
     if ($r=cms_redirect_for_path($path)) { http_response_code((int)$r['code']); header('Location: '.url((string)$r['to'])); exit; }
 }
 
-if ($path==='/LIVE_VARIANT_IMPORT_TEMPLATE.csv' && $method==='GET'){header('Content-Type: text/csv; charset=utf-8');header('Content-Disposition: attachment; filename="Sanjay_Nursery_Live_Variant_Import_Template.csv"');readfile(dirname(__DIR__).'/LIVE_VARIANT_IMPORT_TEMPLATE.csv');exit;}
+if ($path==='/LIVE_VARIANT_IMPORT_TEMPLATE.csv' && $method==='GET'){header('Content-Type: text/csv; charset=utf-8');header('Content-Disposition: attachment; filename="Sanjay_Nursery_Live_Variant_Import_Template.csv"');readfile(dirname(__DIR__).'/resources/LIVE_VARIANT_IMPORT_TEMPLATE.csv');exit;}
 
 if ($path === '/health') {
     header('Content-Type: application/json; charset=utf-8');

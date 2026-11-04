@@ -6,9 +6,11 @@ Ananta is the project and repository name for a nursery platform evolving from a
 
 > **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
-## What works today (v1.7.0)
+## What works today (Ananta storefront + v1.7.0 foundation)
 
-- PHP storefront, plant catalogue, collections, search, discovery and Plant Finder.
+- Ananta-branded premium botanical storefront, responsive mobile typography, curated plant catalogue, collections, search, discovery and Plant Finder.
+- **File-first admin-managed nursery offers:** `/nurseries`, verified supplier storefronts, `/product/{slug}#buy-from`, freshness-aware availability, WhatsApp enquiry links and a public seller-offer API. Independent nursery offers are **enquiry-only** and cannot enter the founding nursery cart.
+- Supplier/offer administration at `/admin/marketplace` for trusted platform admins. This is **not yet supplier self-service or hardened multi-tenant SaaS**.
 - Admin interfaces for catalogue, CMS, media, themes, commerce/variant workflows and operations.
 - AI & Search engine with **Scan Only**, administrator-reviewed suggestions, constrained **Safe Auto**, catalogue/SEO analysis, comparison/listicle publishing and rollback.
 - Human-approval-gated AI discovery and agent-facing catalogue feeds.
@@ -68,8 +70,8 @@ Reusable source files: [live-variant import template](resources/LIVE_VARIANT_IMP
 
 **Important: historical operational data needs a separate remediation.** The public Git history includes tracked files under `storage/private-domain/` and `storage/journals/`, including a setup key. A new `.gitignore` blocks accidental addition of new storage artifacts, but **does not untrack existing files** or remove them from Git history. Verify whether any values or customer data were real, revoke/rotate exposed secrets, audit access, and plan safe replacement of tracked runtime files with a backed-up deployment migration. Never run a cleanup that deletes live storage during a Cloudways Git pull.
 
-This documentation cleanup removes obsolete root-level audit outputs from the current tree; historical versions remain accessible through Git history. No application runtime behavior or database migration is changed by this cleanup.
+The earlier documentation cleanup removed obsolete audit outputs; historical versions remain accessible through Git history. The newer storefront/marketplace pilot does change public PHP templates, CSS and routes, but **does not** add a database, payment gateway, or independent supplier login.
 
 ## Branding note
 
-**Ananta** is the repository/product name. The current staging implementation retains **Sanjay Nursery** runtime labels, session naming and version checks for compatibility. Rebranding those in the actual PHP application is a separate, tested migration.
+**Ananta** is now the public-facing storefront identity. **Sanjay Nursery** remains explicitly the founding nursery and the legacy application's internal runtime/configuration/session identity for compatibility. Completing the internal rename is a separate staged migration; do not confuse branding with multi-tenant production readiness.

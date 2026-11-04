@@ -1,0 +1,24 @@
+name: Ananta PHP regression
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, fileinfo, gd, curl, openssl, sodium
+          coverage: none
+      - name: Lint all PHP
+        run: find . -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+      - name: Full file-first regression
+        run: bash scripts/full_regression.sh
