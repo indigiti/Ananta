@@ -27,6 +27,7 @@ try {
     $alpha=marketplace_supplier_save(['name'=>'Pune QA Alpha Nursery','city'=>'Pune','phone'=>'919811110001','status'=>'verified']);
     $beta=marketplace_supplier_save(['name'=>'Pune QA Beta Nursery','city'=>'Pune','phone'=>'919811110002','status'=>'verified']);
     $gamma=marketplace_supplier_save(['name'=>'Pune QA Gamma Nursery','city'=>'Pune','phone'=>'919811110003','status'=>'verified']);
+    $unonboarded=marketplace_supplier_save(['name'=>'Pune QA No-Login Nursery','city'=>'Pune','phone'=>'919811110004','status'=>'verified']);
     $invA=tenant_invite_issue($alpha,'rfq-alpha@example.invalid','owner');
     $invB=tenant_invite_issue($beta,'rfq-beta@example.invalid','manager');
     $invC=tenant_invite_issue($gamma,'rfq-gamma@example.invalid','inventory');
@@ -34,6 +35,9 @@ try {
     tenant_invite_accept($invA,'Owner Alpha','Sourcing-Test-Alpha-2026!');
     tenant_invite_accept($invB,'Manager Beta','Sourcing-Test-Beta-2026!');
     tenant_invite_accept($invC,'Inventory Gamma','Sourcing-Test-Gamma-2026!');
+    $assert(!in_array($unonboarded,array_column(sourcing_verified_suppliers(),'id'),true),
+        'Verified directory supplier with no active login was offered RFQ delivery.');
+    try{sourcing_parse_recipients([$unonboarded]);$issues[]='Unonboarded directory listing accepted RFQ routing.';}catch(InvalidArgumentException){}
     $buyerGuid=uuidv7();$otherGuid=uuidv7();
     confidential_json_write(commerce_customer_file(),[
         ['guid'=>$buyerGuid,'name'=>'Original Buyer','email'=>'buyer-private@example.invalid','phone'=>'919888777666','status'=>'active','role'=>'customer'],

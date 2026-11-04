@@ -704,7 +704,7 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 | --- | --- |
 | Buyer sourcing entry points | /sourcing and contextual plant/nursery CTAs for authenticated customers |
 | Requirement fields | One canonical published plant, quantity, size/grade, destination, optional notes |
-| Explicit buyer consent | Buyer selects 1–5 verified nurseries, grants request sharing; account email/phone only shared with separate consent |
+| Explicit buyer consent | Buyer selects 1–5 verified, actively onboarded nurseries, grants request sharing; account email/phone only shared with separate consent |
 | Encrypted record | File-first `private-domain/marketplace/sourcing-rfqs.json`, UUIDv7, authenticated encryption, locked aggregate mutations |
 | Buyer quotation workspace | /account/sourcing and private detail, buyer-only read, compare independent quotes |
 | Supplier inbox | /supplier/enquiries, only currently authorized tenant members; separate supplier projection hides all competing vendors |

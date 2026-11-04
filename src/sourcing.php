@@ -28,8 +28,22 @@ function sourcing_buyer(): array {
     return $buyer;
 }
 function sourcing_verified_suppliers(): array {
+    // Only actively onboarded nurseries should receive sourcing requests.
+    // An admin-verified directory profile without a supplier member has no
+    // authenticated inbox and must not appear as a deliverable RFQ destination.
+    $identity=tenant_store();
+    $active=[];
+    foreach($identity['memberships'] as $member){
+        $tenantId=(string)($member['tenant_id']??'');
+        $user=$identity['users'][(string)($member['user_id']??'')]??null;
+        $tenant=$identity['tenants'][$tenantId]??null;
+        if(($member['active']??false)&&$user&&($user['active']??false)
+           &&$tenant&&($tenant['status']??'')==='active'&&tenant_valid_id($tenantId)){
+            $active[$tenantId]=true;
+        }
+    }
     $all=array_values(array_filter(marketplace_offers_store()['suppliers'],
-        static fn($s)=>($s['status']??'')==='verified'&&tenant_valid_id((string)($s['id']??''))));
+        static fn($s)=>($s['status']??'')==='verified'&&isset($active[(string)($s['id']??'')])));
     usort($all,static fn($a,$b)=>strnatcasecmp((string)($a['name']??''),(string)($b['name']??'')));
     return array_map(static fn($s)=>['id'=>$s['id'],'name'=>$s['name'],'city'=>$s['city']],$all);
 }

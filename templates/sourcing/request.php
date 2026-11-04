@@ -16,13 +16,13 @@
       </div>
       <label>Size, pot, grade and other specifications<input name="specification" maxlength="180" placeholder="12 inch pot · 100–120 cm · Grade A" required></label>
       <label>Additional notes (optional)<textarea name="notes" maxlength="600" rows="3" placeholder="Delivery requirements, preferred timeline or special instructions"></textarea></label>
-      <fieldset class="ananta-source-suppliers"><legend>Select up to five verified nurseries</legend>
+      <fieldset class="ananta-source-suppliers"><legend>Select up to five verified, onboarded nurseries</legend>
         <p>Invited nurseries can view this plant requirement. A verified profile does not guarantee live stock.</p>
         <?php foreach($suppliers as $nursery):?>
           <label><input type="checkbox" name="supplier_ids[]" value="<?=e($nursery['id'])?>" <?=($selectedSupplier??'')===$nursery['id']?'checked':''?>>
             <span><strong><?=e($nursery['name'])?></strong><small><?=e($nursery['city'])?></small></span></label>
         <?php endforeach;?>
-        <?php if(!$suppliers):?><p>No verified nurseries are available to invite yet.</p><?php endif;?>
+        <?php if(!$suppliers):?><p>No verified nurseries currently have an active sourcing inbox.</p><?php endif;?>
       </fieldset>
       <label class="ananta-source-check"><input type="checkbox" name="share_contact" value="yes"><span>Allow the selected nurseries to see my account name, email and phone. Without this, they can respond only inside Ananta.</span></label>
       <label class="ananta-source-check"><input type="checkbox" name="consent" value="yes" required><span>I agree to share this plant requirement with the nurseries selected above for the purpose of receiving quotations.</span></label>
