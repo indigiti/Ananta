@@ -92,8 +92,11 @@ function sourcing_boq_submit(array $input): string {
             throw new RuntimeException('Catalogue changed. Please preview the BOQ again.');
         $totalQuantity+=(int)$line['quantity'];
     }
+    $origin=(string)($pending['origin']??'csv');
+    $sourceHash=(string)($pending['source_sha256']??'');
+    $aiAssisted=($pending['ai_assisted']??false)===true;
     $now=gmdate('c');$id=uuidv7();$batchId=(string)$pending['id'];$resultId='';
-    sourcing_mutate(static function(array $store)use($buyer,$supplierIds,$lines,$now,$id,$batchId,$destination,$notes,$shareContact,$contact,$totalQuantity,&$resultId){
+    sourcing_mutate(static function(array $store)use($buyer,$supplierIds,$lines,$now,$id,$batchId,$destination,$notes,$shareContact,$contact,$totalQuantity,$origin,$sourceHash,$aiAssisted,&$resultId){
         foreach($store['rfqs'] as $existing){
             if(($existing['buyer_guid']??'')===$buyer['guid']&&($existing['batch_id']??'')===$batchId){
                 $resultId=$existing['id'];return $store;
@@ -108,6 +111,7 @@ function sourcing_boq_submit(array $input): string {
         }
         $store['rfqs'][$id]=[
             'id'=>$id,'batch_id'=>$batchId,'buyer_guid'=>$buyer['guid'],'type'=>'boq',
+            'source_origin'=>$origin,'source_sha256'=>$sourceHash,'ai_assisted'=>$aiAssisted,
             'plant_guid'=>$lines[0]['product_guid'],'plant_name'=>'Multi-plant BOQ ('.count($lines).' lines)',
             'specification'=>'Buyer-reviewed catalogue BOQ','quantity'=>$totalQuantity,'lines'=>$lines,
             'destination'=>$destination,'notes'=>$notes,'contact_shared'=>$shareContact,'buyer_contact'=>$contact,

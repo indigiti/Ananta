@@ -2,7 +2,7 @@
 
 **AI-ready nursery discovery and commerce, built PHP-first.**
 
-Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, multi-line AI BOQ procurement, WhatsApp integrations and transactional multi-vendor checkout remain **roadmap items**. B3 introduces an authenticated, enquiry-only one-plant multi-nursery RFQ pilot.
+Ananta is the project and repository name for a nursery platform evolving from a single-brand storefront toward a multi-nursery retail and wholesale commerce network. The current codebase is a **Sanjay Nursery v1.7.0 staging application**; its supplier SaaS, verified multi-nursery marketplace, fully autonomous AI BOQ procurement, WhatsApp integrations and transactional multi-vendor checkout remain **roadmap items**. B3 introduces an authenticated, enquiry-only one-plant multi-nursery RFQ pilot.
 
 > **Runtime boundary:** The included application is file-backed and staging-only. `src/bootstrap.php` rejects `APP_ENV=production`; do not present this checkout as a production-ready multi-tenant marketplace.
 
@@ -27,6 +27,20 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 3. The P0–P5 implementation backlog, acceptance tests, tenant isolation and RFQ/WhatsApp delivery constraints.
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
+
+## Release B5 — Excel and text-PDF BOQ ingestion with mandatory human verification
+
+Ananta now offers an **optional document intake workflow** alongside the original strict CSV importer at `/sourcing/boq`. A buyer can upload XLSX (up to 1 MiB) or a text-based PDF (up to 3 MiB). XLSX is parsed using PHP ZIP + DOM/XML; the first worksheet must contain exactly `product_slug` (or `plant_name`), `quantity`, and `specification` columns. XLSX macros, formulas, embedded external objects, extra filled columns, pathological ZIP inflation and more than 30 rows are rejected. These restrictions are deliberate security boundaries, not full Excel-format support.
+
+PDF processing requires the server's optional `pdftotext` executable and an existing selectable text layer. There is **no built-in OCR for scanned PDFs** and no guarantee that Cloudways exposes `pdftotext`. When absent or the PDF is image-only, the application refuses extraction and directs the buyer to XLSX/CSV. Text PDF tables may be split by a pipe, tabs or multiple spaces. The untrusted PDF is never executed.
+
+If a text PDF is extractable and the existing AI Engine has an enabled, configured review provider, the buyer can **explicitly opt in** to send a capped excerpt of extracted PDF text to that provider for suggested rows. The model must provide verbatim source evidence per row. Missing evidence or malformed JSON fails the entire preview. No document, plant name, quantity, price or purchase order is accepted based solely on an AI reply. The third-party provider may process opted-in document text, subject to the provider's terms; using AI is not required to complete sourcing.
+
+A buyer sees a session-bound 15-minute extraction preview with each original source row, confidence and the proposed catalogue match. Unmatched plant names have **no preselected match**; quantities/specifications can be corrected, and each row must be explicitly confirmed. Only then does Ananta create the existing B4 **reviewed BOQ draft** and present the separate verified-nursery selection/contact-sharing/consent step. No uploading or reviewing creates an RFQ, supplier quote, payment or order. The raw source document is never saved in application storage; a source hash, limited evidence excerpts and human verification flags are retained in the encrypted RFQ once consented and submitted.
+
+**Cloudways prerequisites:** PHP 8.4 with `zip` and `dom`/`xml` for Excel, and an installed executable `pdftotext` for PDFs. The optional AI path requires the existing AI Engine's configured provider and appropriate buyer consent. The strict B4 CSV workflow remains available with no new runtime dependencies.
+
+**Tests:** `php tests/sourcing_ingest.php`, full PHP regression, DigiOps privacy/package verification and Cloudways staging smoke. Live browser, optional PDF binary, upload limits, real-world XLSX variants and vendor-specific PDFs require acceptance before enabling production buyers.
 
 ## Release B4 — Reviewed multi-plant BOQs, quote revisions and non-binding PO drafts (staging)
 

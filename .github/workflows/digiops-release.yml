@@ -28,7 +28,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: mbstring, fileinfo, gd, curl, openssl, sodium, zip
+          extensions: mbstring, fileinfo, gd, curl, openssl, sodium, zip, dom, xml
           coverage: none
 
       - name: Install optional visual-intelligence test dependency

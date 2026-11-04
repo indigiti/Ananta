@@ -18,6 +18,7 @@ $required=[
     'private/src/supplier_bulk_import.php',
     'private/src/sourcing.php',
     'private/src/sourcing_boq.php',
+    'private/src/sourcing_ingest.php',
     'private/templates/sourcing/boq.php',
     'private/templates/sourcing/request.php',
     'private/templates/supplier/enquiries.php',

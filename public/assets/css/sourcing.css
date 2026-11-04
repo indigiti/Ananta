@@ -83,3 +83,32 @@ html[data-theme=dark] .ananta-boq-table-wrap{border-color:#44634c}
 html[data-theme=dark] .ananta-boq-table thead{background:#2d4936}
 html[data-theme=dark] .ananta-boq-table :is(th,td){color:#e2eee1;border-color:#415945}
 @media(max-width:680px){.ananta-boq-entry{flex-direction:column;align-items:flex-start;padding:17px}.ananta-boq-table{min-width:420px}}
+
+
+/* B5: evidence-first document extraction and mandatory human BOQ review */
+.ananta-ingest-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.ananta-ingest-choice>div{display:grid;gap:7px;padding:15px;border:1px solid #d9e7da;border-radius:14px;background:#f5f9f3}
+.ananta-ingest-choice strong{color:#234a35;font-size:14px}
+.ananta-ingest-choice small{color:#58715e;font-size:12px;line-height:1.55}
+.ananta-ingest-upload{padding:20px;background:#f8fbf7;border:1px solid #dce8dc;border-radius:16px}
+.ananta-ingest-upload input[type=file]{background:#fff}
+.ananta-ingest-review{margin:26px 0;padding:23px;border:1px solid #b9d8bc;border-radius:19px;background:#f3f8f1}
+.ananta-ingest-review h3{font-family:var(--a-serif,Georgia,serif);font-size:28px;line-height:1.18;font-weight:500;letter-spacing:-.025em;color:#234731;margin:8px 0}
+.ananta-ingest-review>p{font-size:13px;color:#496c53;line-height:1.65}
+.ananta-ingest-row{margin:0;padding:19px;border:1px solid #d8e7d9;border-radius:14px;background:#fff;min-width:0}
+.ananta-ingest-row legend{padding:0 7px;font-size:12px;color:#396f47;font-weight:750}
+.ananta-ingest-evidence{font-size:12px;line-height:1.5;padding:10px;background:#f2f7f0;border-radius:10px;overflow-wrap:anywhere;color:#526c59}
+.ananta-ingest-original{font-size:12px;line-height:1.55;color:#5c7360;overflow-wrap:anywhere}
+.ananta-ingest-fields{display:grid;grid-template-columns:2fr minmax(90px,1fr) 2fr;gap:12px;align-items:start}
+.ananta-ingest-fields label{display:grid;gap:7px;font-size:12px;font-weight:750;color:#2e5239;min-width:0}
+.ananta-ingest-fields :is(select,input){box-sizing:border-box;min-height:45px;width:100%;min-width:0;background:#fff;border:1px solid #ceddce;border-radius:10px;padding:9px 12px;font-size:13px;color:#24452e}
+.ananta-ingest-legacy{margin-top:24px;padding:15px;border:1px dashed #bacfbc;border-radius:12px;color:#41664b}
+.ananta-ingest-legacy summary{font-weight:700;font-size:13px;cursor:pointer}
+.ananta-ingest-legacy p{font-size:12px;line-height:1.5}
+html[data-theme=dark] .ananta-ingest-choice>div,html[data-theme=dark] .ananta-ingest-upload,html[data-theme=dark] .ananta-ingest-review{background:#233d2e;border-color:#46694b}
+html[data-theme=dark] .ananta-ingest-choice :is(strong,small),html[data-theme=dark] .ananta-ingest-review :is(h3,p){color:#d7e9d5}
+html[data-theme=dark] .ananta-ingest-row{background:#1f3729;border-color:#42664a}
+html[data-theme=dark] .ananta-ingest-row :is(p,label,legend){color:#d0e4cf}
+html[data-theme=dark] .ananta-ingest-fields :is(select,input){background:#192e21;color:#f0f7ed;border-color:#416a4b}
+@media(max-width:800px){.ananta-ingest-fields{grid-template-columns:1fr 1fr}.ananta-ingest-fields label:first-child{grid-column:1/-1}}
+@media(max-width:530px){.ananta-ingest-choice,.ananta-ingest-fields{grid-template-columns:1fr}.ananta-ingest-fields label:first-child{grid-column:auto}.ananta-ingest-review{padding:16px}.ananta-ingest-row{padding:13px}}

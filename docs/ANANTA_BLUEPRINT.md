@@ -14,6 +14,7 @@
 - [Part VIII: Release B2 — SupplierOS styling and CSV import](#part-viii-release-b2--supplieros-styling-and-csv-to-draft-imports)
 - [Part IX: Release B3 — private buyer sourcing and nursery quotations](#part-ix-release-b3--private-buyer-sourcing-nursery-inbox-and-indicative-quotations)
 - [Part X: Release B4 — reviewed multi-line BOQs and PO drafts](#part-x-release-b4--buyer-reviewed-multi-line-boqs-and-non-binding-po-drafts)
+- [Part XI: Release B5 — Excel and optional AI-assisted text-PDF ingestion](#part-xi-release-b5--excel-and-optional-ai-assisted-text-pdf-boq-intake)
 
 ---
 
@@ -742,3 +743,27 @@ Pending: real-browser QA at common phone/tablet/desktop widths, password recover
 **AI extraction decision:** Full AI PDF/photograph BOQ extraction is intentionally *not* activated. Before launch require opt-in model/provider control, source citation to exact document regions, confidence metadata, deterministic plant matching, field-by-field human confirmation, no document leakage across tenants and an operational cost/rate policy. B4 is a controlled CSV normalization/import release, not a live LLM claim.
 
 **Next after B4:** buyer/supplier acceptance of contract and tax terms, shipping/serviceability calculation, optional split-supplier awards with distinct PO drafts, and only then transaction/payments. Operational gate: real Cloudways browser approval on phone/tablet/desktop, supplier onboarding/verification, restore-tested encrypted backups and legally checked data retention/consent.
+
+
+---
+
+## Part XI: Release B5 — Excel and optional AI-assisted text-PDF BOQ intake
+
+**Approach:** extend B4 with *source-evidenced suggestions* and a mandatory buyer correction step. Never turn a document or an AI output into commercial truth automatically.
+
+| Gate | Implementation |
+| --- | --- |
+| XLSX intake | First worksheet, PHP ZIP/DOM parsing, max 1 MiB compressed / 30 rows; no formulas, macros, external links, embedded objects or expansion bombs |
+| Text PDF | Optional server-side `pdftotext` with fixed argv, bounded output and runtime, max 3 MiB; no scanned-image OCR guarantee |
+| AI review path | Explicit per-upload opt-in, existing configured AI provider, no background auto-run; extracted PDF text snippet sent only after consent |
+| Evidence constraints | AI must supply an exact verbatim source line; any unverifiable field rejects suggestion |
+| Catalogue matching | Exact active slug/name only; conflicting or unfamiliar names remain unresolved, not fuzzy-auto-replaced |
+| Buyer verification | 15-minute buyer/session-scoped preview; per-line catalogue dropdown, quantity, specification; explicit confirmation of every row |
+| Submission | Produces existing B4 staged BOQ only; separate nursery selection and consent required to create any RFQ |
+| Audit | Source type, hash, limited source row reference, matching confidence and human review flag encrypted in the buyer's RFQ |
+| Security | Upload MIME/signature checks, file size caps, safe zip/XML parsing, quotas, strict output validation, tenant-bound stages, no executable uploads, zero raw upload persistence |
+| CI checks | Valid XLSX and PDF-text fixture, spoofing, formulas, external links, unresolved plants, corrected quantities, buyer isolation, no auto-RFQ, post-review approval compatibility |
+
+**Deployment constraints:** PDF text extractor availability and Cloudways PHP extensions must be checked on the actual target server. An image-only scanned PDF requires a separately approved OCR implementation, privacy review, cost limits and source bounding boxes. This B5 milestone does not offer universal PDF/Excel compatibility or autonomous AI procurement.
+
+**Next exit gate:** real supplier/buyer documents (different spreadsheets, PDF layouts, scanned images), mobile accessibility, private data retention and backup restoration; evaluate conversion and extraction error rates before enabling an OCR provider or transactional supplier purchase orders.
