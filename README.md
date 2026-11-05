@@ -28,6 +28,14 @@ The combined [Ananta AI-native commerce blueprint](docs/ANANTA_BLUEPRINT.md) con
 
 **Planned ≠ implemented.** Complete P0 containment, data isolation, restore testing and permission checks before advertising supplier SaaS capabilities. Cross-seller settlement and automated inventory reservations need transactional persistence.
 
+## ACP.1–ACP.3 — Agentic Commerce Protocol staging integration
+
+- **ACP.1:** native OpenAI CSV candidate, mapped from audited Merchant-ready nursery SKUs with accurate brand and seller attribution, HTTPS product/photo URLs, INR prices, country and explicit search/checkout eligibility flags. No empty file, zero-price plant or invented inventory is exported.
+- **ACP.2:** authenticated and HMAC-signed create/retrieve/update/cancel checkout sessions under `/ananta/acp/checkout_sessions`, version `2026-04-17`, UUIDv7, bounded encrypted state, idempotency, time-limited sessions and authoritative inventory/shipping quote checks. Completion is deliberately unavailable.
+- **ACP.3:** Stripe Shared Payment Token *test-only* adapter with a manual-capture PaymentIntent, protected signed order-event outbox and explicit payment/legal/SQL-stock certification gates. No live capture or binding order can be created through ACP on the staging/file-first runtime.
+- Admin dashboard `/admin/acp` displays native feed and protocol readiness. Private CLI `php src/acp_cli.php status|events-worker`. See `docs/ACP_IMPLEMENTATION.md` for configuration, testing, and external approval requirements.
+
+**Go-live status:** Only protocol staging code is implemented. ACP checkout cannot be certified or activated until seller/market onboarding, real purchasable inventory, delegated payment authorization, tax validation and SQL-backed reservations are independently proven.
 ## B8-G Completion — Live catalogue reconciliation and Google item-status diagnostics
 
 - Read-only runtime comparison of the immutable 376-product GitHub baseline with Cloudways pricing, stock, variants and rights-cleared photos in /admin/discover/completion.
