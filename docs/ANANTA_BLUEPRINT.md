@@ -848,3 +848,9 @@ The initial Google integration uses a hosted scheduled XML data source, not Merc
 ## B8-G Completion (November 2026)
 
 An immutable 376-SKU enquiry baseline supports read-only reconciliation with private runtime inventory. Merchant XML requires tracked real inventory, price, approved media, seller, checkout/shipping/returns sign-off and recent SKU identifier/stock evidence. Google Merchant API products.list is read-only, and actual provider statuses and missing offer IDs are distinguished from local readiness. The separate admin-only OpenAI-compatible CSV is a partner preview and cannot be published without actual eligibility and approved onboarding. No automatic product writes, Google upload, Merchant approval or AI citation claims. See docs/B8G_COMPLETION.md.
+
+---
+
+## ACP.1–ACP.3 — Agentic Commerce Protocol, staging implementation
+
+The ACP native feed uses B8-G merchant evidence and sets `is_eligible_checkout=false` until partner activation. Protocol v2026-04-17 authenticated/HMAC signed checkout sessions implement create, get, update and cancel with encrypted UUIDv7 state and authoritative INR item/shipping quotes. The complete endpoint exists but rejects payment and never creates a binding order until transaction-safe SQL stock reservation, legal GST, real PSP authorization and third-party conformance tests are certified. ACP.3 supplies a Stripe Shared Payment Token test-only manual authorization adapter plus a signed event outbox, without live capture. See `docs/ACP_IMPLEMENTATION.md`.

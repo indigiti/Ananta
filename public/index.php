@@ -24,6 +24,9 @@ if ($base && str_starts_with($uriPath, $base)) $uriPath = substr($uriPath, strle
 $path = '/' . trim($uriPath, '/');
 if ($path === '//') $path = '/';
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
+if ($path === '/acp/checkout_sessions' || str_starts_with($path,'/acp/checkout_sessions/')) {
+    acp_http_handle($method,$path);
+}
 if (str_starts_with($path,'/account') || str_starts_with($path,'/admin') || str_starts_with($path,'/supplier') || str_starts_with($path,'/trade')) { header('Cache-Control: no-store, private'); header('Pragma: no-cache'); }
 
 if ($method==='GET' && !str_starts_with($path,'/admin/')) {
@@ -572,6 +575,21 @@ if ($path === '/admin' || str_starts_with($path,'/admin/')) {
             flash('success','Operator attestation recorded. This is not independent provider verification.');
         }catch(Throwable $e){flash('error',$e->getMessage());}
         redirect('/admin/b8/acceptance');
+    }
+    if($path==='/admin/acp'){
+        render_admin('acp',['title'=>'Ananta · ACP Agentic Commerce Readiness',
+            'report'=>acp_readiness_report()]);exit;
+    }
+    if($path==='/admin/acp/products.csv'&&$method==='GET'){
+        require_admin();
+        try{$csv=acp_feed_csv();}
+        catch(Throwable $e){flash('error','ACP feed is not ready: '.$e->getMessage());
+            redirect('/admin/acp');}
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Cache-Control: no-store, private');
+        header('Content-Disposition: attachment; filename="ananta-acp-native-partner-preview.csv"');
+        header('X-Content-Type-Options: nosniff');
+        echo $csv;exit;
     }
     if ($path === '/admin/connect') {
         render_admin('connect',['title'=>'Ananta Connect · WhatsApp',

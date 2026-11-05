@@ -54,6 +54,8 @@ function b8_acceptance_backup_sources(): array {
         'distribution-audit.json'=>[discover_distribution_file(),'ananta:discover:distribution:v1'],
         'merchant-evidence.json'=>[merchant_completion_reviews_file(),'ananta:discover:merchant-evidence:v1'],
         'google-product-status.json'=>[merchant_google_file(),'ananta:discover:google-status:v1'],
+        'acp-checkout-sessions.json'=>[acp_sessions_file(),'ananta:acp:sessions:v1'],
+        'acp-order-events.json'=>[acp_events_file(),'ananta:acp:events:v1'],
         'pilot-evidence.json'=>[b8_acceptance_file(),'ananta:b8:acceptance:v1'],
     ];
 }
