@@ -31,10 +31,12 @@ function acp_api_authorize(array $headers,string $method,string $raw): void {
         throw new RuntimeException('ACP staging API is not activated.');
     if(($GLOBALS['app']['environment']??'')!=='staging')
         throw new RuntimeException('File-first ACP API cannot be used in production.');
+    if($method!=='GET'&&!str_starts_with(strtolower((string)($headers['content-type']??'')),'application/json'))
+        throw new InvalidArgumentException('ACP requests require Content-Type: application/json.');
     $key=(string)getenv('ANANTA_ACP_API_KEY');
     $auth=(string)($headers['authorization']??'');
     if(!str_starts_with($auth,'Bearer ')||!hash_equals($key,substr($auth,7)))
-        throw new InvalidArgumentException('ACP authorization rejected.');
+        throw new UnexpectedValueException('ACP authorization rejected.');
     $api=(string)($headers['api-version']??'');
     if($api!==acp_version())throw new InvalidArgumentException('Unsupported ACP API-Version.');
     $timestamp=(string)($headers['timestamp']??'');
@@ -47,7 +49,7 @@ function acp_api_authorize(array $headers,string $method,string $raw): void {
     // until then require an explicit base64 HMAC-SHA256 of the raw request body.
     $expected=base64_encode(hash_hmac('sha256',$raw,$secret,true));
     if(!hash_equals($expected,(string)($headers['signature']??'')))
-        throw new InvalidArgumentException('Invalid ACP body signature.');
+        throw new UnexpectedValueException('Invalid ACP body signature.');
     if($method!=='GET'){
         $idem=(string)($headers['idempotency-key']??'');
         if(!preg_match('/^[A-Za-z0-9._:-]{12,128}$/D',$idem))
@@ -91,6 +93,26 @@ function acp_items_validate(array $body): array {
         throw new InvalidArgumentException('ACP checkout supports INR only.');
     return $items;
 }
+function acp_buyer_validate(mixed $buyer): ?array {
+    if($buyer===null)return null;
+    if(!is_array($buyer)||array_is_list($buyer))
+        throw new InvalidArgumentException('Buyer must be an object.');
+    $allowed=['first_name','last_name','name','email','phone_number'];
+    $clean=[];
+    foreach($buyer as $key=>$raw){
+        if(!in_array($key,$allowed,true)||!is_string($raw))
+            throw new InvalidArgumentException('Unsupported buyer field.');
+        $value=trim($raw);
+        if(text_len($value)>160||preg_match('/[\x00-\x1f\x7f]/',$value))
+            throw new InvalidArgumentException('Invalid buyer attribute.');
+        if($key==='email'&&$value!==''&&!filter_var($value,FILTER_VALIDATE_EMAIL))
+            throw new InvalidArgumentException('Invalid buyer email.');
+        if($key==='phone_number'&&$value!==''&&!preg_match('/^\+?[0-9 ()-]{7,22}$/D',$value))
+            throw new InvalidArgumentException('Invalid buyer phone.');
+        $clean[$key]=$value;
+    }
+    return $clean;
+}
 function acp_fulfillment_validate(mixed $data): ?array {
     if($data===null)return null;
     if(!is_array($data))throw new InvalidArgumentException('Invalid fulfillment details.');
@@ -106,9 +128,17 @@ function acp_fulfillment_validate(mixed $data): ?array {
             throw new InvalidArgumentException('Invalid fulfillment address field: '.$key);
         $address[$key]=$v;
     }
-    $address['country']='IN';$address['postal_code']=$pin;
+    $allowed=['name','line_one','line_two','city','state','country','postal_code','phone_number'];
+    $clean=[];
+    foreach($address as $key=>$value){
+        if(!in_array($key,$allowed,true)||!is_string($value)||text_len($value)>180
+          ||preg_match('/[\x00-\x1f\x7f]/',$value))
+            throw new InvalidArgumentException('Unsupported or invalid fulfillment field.');
+        $clean[$key]=trim($value);
+    }
+    $clean['country']='IN';$clean['postal_code']=$pin;
     // Customer PII stays encrypted in the ACP session store. Never log it.
-    return ['address'=>$address];
+    return ['address'=>$clean];
 }
 function acp_quote_items(array $items,?array $fulfillment): array {
     $lookup=[];
@@ -205,11 +235,15 @@ function acp_session_public(array $s): array {
     return $response;
 }
 function acp_session_create(array $body,string $key): array {
+    foreach(array_keys($body) as $field)
+        if(!in_array($field,['line_items','currency','capabilities','buyer',
+            'fulfillment_details','locale','timezone'],true))
+            throw new InvalidArgumentException('Unsupported checkout create input: '.$field);
+    if(!array_key_exists('capabilities',$body)||!is_array($body['capabilities']))
+        throw new InvalidArgumentException('ACP capabilities object is required.');
     $items=acp_items_validate($body);
     $fulfillment=acp_fulfillment_validate($body['fulfillment_details']??null);
-    $buyer=$body['buyer']??null;
-    if($buyer!==null&&(!is_array($buyer)||strlen(json_encode($buyer))>5000))
-        throw new InvalidArgumentException('Invalid buyer details.');
+    $buyer=acp_buyer_validate($body['buyer']??null);
     $request=['items'=>$items,'fulfillment'=>$fulfillment,'buyer'=>$buyer];
     $answer=null;
     acp_sessions_mutate(static function(array $d)use($request,$key,&$answer){
@@ -237,6 +271,11 @@ function acp_session_get(string $id): ?array {
     $s=acp_session_record($id);return $s?acp_session_public($s):null;
 }
 function acp_session_update(string $id,array $body,string $key): array {
+    foreach(array_keys($body) as $field)
+        if(!in_array($field,['line_items','buyer','fulfillment_details','selected_fulfillment_options'],true))
+            throw new InvalidArgumentException('Unsupported checkout update input: '.$field);
+    if(isset($body['selected_fulfillment_options'])&&$body['selected_fulfillment_options']!==[])
+        throw new InvalidArgumentException('Unsupported fulfillment override in the pilot.');
     if(!tenant_valid_id($id))throw new RuntimeException('ACP checkout session not found.');
     $request=['body'=>$body];
     $answer=null;
@@ -253,9 +292,7 @@ function acp_session_update(string $id,array $body,string $key): array {
                 if(array_key_exists('fulfillment_details',$body))
                     $s['fulfillment_details']=acp_fulfillment_validate($body['fulfillment_details']);
                 if(array_key_exists('buyer',$body)){
-                    if(!is_array($body['buyer'])||strlen(json_encode($body['buyer']))>5000)
-                        throw new InvalidArgumentException('Invalid buyer update.');
-                    $s['buyer']=$body['buyer'];
+                    $s['buyer']=acp_buyer_validate($body['buyer']);
                 }
                 $s['revision']++;$s['updated_at']=gmdate('c');$d['sessions'][$id]=$s;
                 return acp_session_public($s);

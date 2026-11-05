@@ -22,7 +22,7 @@ $deny=static function(callable $fn,string $why)use(&$errors){
     try{$fn();$errors[]=$why;}catch(RuntimeException|InvalidArgumentException){}
 };
 $signed=static function(string $raw,string $idem='idem_secure_valid_0123456'):array{
-    return ['authorization'=>'Bearer '.str_repeat('K',40),
+    return ['content-type'=>'application/json','authorization'=>'Bearer '.str_repeat('K',40),
         'api-version'=>'2026-04-17','timestamp'=>gmdate('Y-m-d\TH:i:s\Z'),
         'signature'=>base64_encode(hash_hmac('sha256',$raw,str_repeat('H',40),true)),
         'idempotency-key'=>$idem,'request-id'=>'req_2026_abc_xyz'];
@@ -45,6 +45,15 @@ try{
     $bad=$h;$bad['timestamp']='2025-01-01T00:00:00Z';
     $deny(static fn()=>acp_api_authorize($bad,'POST',$raw),
         'ACP API accepted replayed stale Timestamp.');
+    $bad=$h;$bad['content-type']='text/plain';
+    $deny(static fn()=>acp_api_authorize($bad,'POST',$raw),
+        'ACP API accepted non-JSON Content-Type.');
+    $deny(static fn()=>acp_buyer_validate(['email'=>'valid@example.in','card_number'=>'4111111111111111']),
+        'Buyer PII allowlist accepted raw card data.');
+    $deny(static fn()=>acp_fulfillment_validate(['address'=>[
+        'line_one'=>'Test Road','city'=>'Pune','state'=>'Maharashtra','country'=>'IN',
+        'postal_code'=>'411001','card_number'=>'4111111111111111']]),
+        'Unrecognized payment data accepted in fulfillment address.');
     $bad=$h;$bad['api-version']='2025-09-12';
     $deny(static fn()=>acp_api_authorize($bad,'POST',$raw),
         'ACP API accepted old incompatible protocol version.');

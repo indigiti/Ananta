@@ -6,11 +6,12 @@ declare(strict_types=1);
  * Never enables cross-site cookie authentication or bypasses API HMAC.
  */
 function acp_http_headers(): array {
-    $names=['authorization'=>'HTTP_AUTHORIZATION','api-version'=>'HTTP_API_VERSION',
+    $names=['content-type'=>'CONTENT_TYPE','authorization'=>'HTTP_AUTHORIZATION','api-version'=>'HTTP_API_VERSION',
         'timestamp'=>'HTTP_TIMESTAMP','signature'=>'HTTP_SIGNATURE',
         'request-id'=>'HTTP_REQUEST_ID','idempotency-key'=>'HTTP_IDEMPOTENCY_KEY'];
     $h=[];
     foreach($names as $key=>$server)$h[$key]=(string)($_SERVER[$server]??'');
+    if($h['authorization']==='')$h['authorization']=(string)($_SERVER['REDIRECT_HTTP_AUTHORIZATION']??'');
     if($h['authorization']===''&&function_exists('getallheaders')){
         foreach(getallheaders() as $k=>$value)if(strtolower((string)$k)==='authorization'){
             $h['authorization']=(string)$value;break;
@@ -57,7 +58,7 @@ function acp_http_handle(string $method,string $path): never {
     if(!is_string($raw)||strlen($raw)>65536){
         http_response_code(413);echo '{"type":"invalid_request","code":"too_large","message":"Request too large"}';exit;
     }
-    if(!request_is_https()&&PHP_SAPI!=='cli-server'){
+    if(!request_is_https()){
         http_response_code(403);echo '{"type":"invalid_request","code":"https_required","message":"HTTPS required"}';exit;
     }
     $h=acp_http_headers();
@@ -68,6 +69,9 @@ function acp_http_handle(string $method,string $path): never {
     try{
         $r=acp_http_execute($method,substr($path,4),$raw,$h);
         $status=$r['http'];$response=$r['response'];
+    }catch(UnexpectedValueException $e){
+        $status=401;$response=['type'=>'invalid_request','code'=>'unauthorized',
+            'message'=>'ACP authentication or signature failed.'];
     }catch(JsonException|InvalidArgumentException $e){
         $status=422;$response=['type'=>'invalid_request','code'=>'invalid_request',
             'message'=>'Invalid or unauthorized ACP request.'];
