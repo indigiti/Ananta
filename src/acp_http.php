@@ -25,7 +25,7 @@ function acp_http_execute(string $method,string $route,string $raw,array $header
     if($method!=='GET'){
         if(trim($raw)==='')throw new InvalidArgumentException('ACP request JSON required.');
         $body=json_decode($raw,true,32,JSON_THROW_ON_ERROR);
-        if(!is_array($body)||array_is_list($body))throw new InvalidArgumentException('Invalid ACP JSON object.');
+        if(!is_array($body)||!str_starts_with(ltrim($raw),'{'))throw new InvalidArgumentException('Invalid ACP JSON object.');
     }
     $key=(string)($headers['idempotency-key']??'');
     if($route==='/checkout_sessions'&&$method==='POST')

@@ -60,9 +60,10 @@ try{
     $same=acp_http_execute('POST','/checkout_sessions',$raw,$h);
     $pass($same['response']['id']===$session,'Repeated idempotent create generated a second session.');
     $pass(count(acp_sessions_store()['sessions'])===1,'ACP idempotency created duplicate records.');
+    $differentRaw=json_encode(['currency'=>'inr','line_items'=>[
+        ['id'=>'DIFFERENT-SKU','quantity'=>1]]],JSON_THROW_ON_ERROR);
     $deny(static fn()=>acp_http_execute('POST','/checkout_sessions',
-        json_encode(['currency'=>'inr','line_items'=>[['id'=>'DIFFERENT-SKU','quantity'=>1]]]),
-        $signed('[]')), 'Idempotency payload conflict not detected.');
+        $differentRaw,$signed($differentRaw)), 'Idempotency payload conflict not detected.');
     $update=['fulfillment_details'=>['address'=>['line_one'=>'Rose Garden',
         'city'=>'Pune','state'=>'Maharashtra','country'=>'IN','postal_code'=>'411001']]];
     $updateRaw=json_encode($update,JSON_THROW_ON_ERROR);
